@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\SodaMutiServer_22\\SodaMutiServer_22.csproj": {}
+    "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\ServerCore\\ServerCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\SodaMutiServer_22\\SodaMutiServer_22.csproj": {
+    "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\ServerCore\\ServerCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\SodaMutiServer_22\\SodaMutiServer_22.csproj",
-        "projectName": "SodaMutiServer_22",
-        "projectPath": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\SodaMutiServer_22\\SodaMutiServer_22.csproj",
+        "projectUniqueName": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\ServerCore\\ServerCore.csproj",
+        "projectName": "ServerCore",
+        "projectPath": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\ServerCore\\ServerCore.csproj",
         "packagesPath": "C:\\Users\\jish\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\SodaMutiServer_22\\obj\\",
+        "outputPath": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\ServerCore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jish\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,12 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Google.Protobuf": {
+              "target": "Package",
+              "version": "[3.19.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

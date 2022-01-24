@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fMdoMyfxPPC2fE28YX3ymX9sJ39lcsQUgjAOYx2f1EkGFDeIb3FvkOBsk5RBcOcVN50C/yNjCZu4UYE/S7Bukg==",
+  "dgSpecHash": "jnU42b3mOLEiljvtdQtT6Q2oB8qsjdeVDIskEw1z/yZqk518l2Xho3w0As4kFAMj1de5WE+WdPDKlFK0kSpsKQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\SodaMutiServer_22\\Server.csproj",
+  "projectFilePath": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\DummyClient\\DummyClient.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jish\\.nuget\\packages\\google.protobuf\\3.19.3\\google.protobuf.3.19.3.nupkg.sha512",
     "C:\\Users\\jish\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",

@@ -117,11 +117,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\SodaMutiServer_22\\Server.csproj",
-      "projectName": "Server",
-      "projectPath": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\SodaMutiServer_22\\Server.csproj",
+      "projectUniqueName": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\ServerCore\\ServerCore.csproj",
+      "projectName": "ServerCore",
+      "projectPath": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\ServerCore\\ServerCore.csproj",
       "packagesPath": "C:\\Users\\jish\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\SodaMutiServer_22\\obj\\",
+      "outputPath": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\ServerCore\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jish\\AppData\\Roaming\\NuGet\\NuGet.Config",
