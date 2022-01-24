@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SodaMutiServer_22", "SodaMutiServer_22\SodaMutiServer_22.csproj", "{0B647A65-E57A-49E3-9E98-963337738B6F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B647A65-E57A-49E3-9E98-963337738B6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B647A65-E57A-49E3-9E98-963337738B6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B647A65-E57A-49E3-9E98-963337738B6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B647A65-E57A-49E3-9E98-963337738B6F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ADB7DC89-4FFA-42E9-BC8C-5425B18BF2C0}
+	EndGlobalSection
+EndGlobal
