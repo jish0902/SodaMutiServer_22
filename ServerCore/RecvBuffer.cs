@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ServerCore
 {
-    class RecvBuffer
+    public class RecvBuffer
     {
         // [r][][w][][][][][][]
         ArraySegment<byte> _buffer;

@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace ServerCore
 {
-    class Connector
+    public class Connector
     {
         
         Func<Session> _sessionFactory;
