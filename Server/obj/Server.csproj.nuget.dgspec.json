@@ -107,6 +107,10 @@
             "Google.Protobuf": {
               "target": "Package",
               "version": "[3.19.3, )"
+            },
+            "System.Memory": {
+              "target": "Package",
+              "version": "[4.5.4, )"
             }
           },
           "imports": [

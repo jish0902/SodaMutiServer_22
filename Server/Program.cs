@@ -13,14 +13,6 @@ namespace Server
 
 
 
-    
-
-
-
-
-
-
-
     class Program
     {
         static Listener _listener = new Listener();
