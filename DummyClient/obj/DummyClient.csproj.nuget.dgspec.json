@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\DummyClient\\DummyClient.csproj": {}
+    "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\DummyClient\\DummyClient.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\DummyClient\\DummyClient.csproj": {
+    "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\DummyClient\\DummyClient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\DummyClient\\DummyClient.csproj",
+        "projectUniqueName": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\DummyClient\\DummyClient.csproj",
         "projectName": "DummyClient",
-        "projectPath": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\DummyClient\\DummyClient.csproj",
+        "projectPath": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\DummyClient\\DummyClient.csproj",
         "packagesPath": "C:\\Users\\jish\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\DummyClient\\obj\\",
+        "outputPath": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\DummyClient\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jish\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\ServerCore\\ServerCore.csproj": {
-                "projectPath": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\ServerCore\\ServerCore.csproj"
+              "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\ServerCore\\ServerCore.csproj": {
+                "projectPath": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\ServerCore\\ServerCore.csproj"
               }
             }
           }
@@ -68,14 +68,14 @@
         }
       }
     },
-    "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\ServerCore\\ServerCore.csproj": {
+    "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\ServerCore\\ServerCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\ServerCore\\ServerCore.csproj",
+        "projectUniqueName": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\ServerCore\\ServerCore.csproj",
         "projectName": "ServerCore",
-        "projectPath": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\ServerCore\\ServerCore.csproj",
+        "projectPath": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\ServerCore\\ServerCore.csproj",
         "packagesPath": "C:\\Users\\jish\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\ServerCore\\obj\\",
+        "outputPath": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\ServerCore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jish\\AppData\\Roaming\\NuGet\\NuGet.Config",

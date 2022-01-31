@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading;
+using DummyClient.Session;
 using ServerCore;
 
 namespace DummyClient
@@ -22,7 +23,10 @@ namespace DummyClient
 
             
             Connector connector = new Connector();
-            //connector.Connect(endPoint, new Session(), 100);
+            connector.Connect(endPoint,() => { return new ServerSession(); }, 100);
+
+
+
 
             while (true)
             {

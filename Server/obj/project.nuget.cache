@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "bnrZ8qXAt1DwI/vpbx2cCWsdePN/uYa7XyfnvzJF3GdJfco7mEuAT9gWHFcnCuwXqubukdd8Laq7lJJ30EkAxg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\Server\\Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jish\\.nuget\\packages\\google.protobuf\\3.19.3\\google.protobuf.3.19.3.nupkg.sha512",
+    "C:\\Users\\jish\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\jish\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -179,7 +179,7 @@ namespace ServerCore
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine($"OnSendCompleted Failed {e}");
+                        Console.WriteLine($"OnSendCompleted Failed {e}\n");
                     }
                 }
                 else

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "js2VaBY3kITR/q+TK4/eOyu7MatQL+SZ2N4FYMv0coVuYd0sB1dFpNNyjdWTU7YOVY0flQiqejW+VfyRj0T65w==",
+  "dgSpecHash": "/kEjoszydXeOLXCpkDivMJiDlvOi+NL8FZzkSbitOgwK9lbDUwiOcreoM2/VX2C1iLYCMv9XPJ7uSAaFEVM/fg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jish\\Documents\\GitHub\\SodaMutiServer_22\\ServerCore\\ServerCore.csproj",
+  "projectFilePath": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\ServerCore\\ServerCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jish\\.nuget\\packages\\google.protobuf\\3.19.3\\google.protobuf.3.19.3.nupkg.sha512",
     "C:\\Users\\jish\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
