@@ -89,14 +89,11 @@ namespace Server.Session
 
 
 
-
-
-
-
         public override void OnConnected(EndPoint endPoint)
         {
             {
                 S_Connected connectedPacket = new S_Connected();
+                
                 Send(connectedPacket);
             }
             
@@ -104,12 +101,12 @@ namespace Server.Session
 
         public override void OnDisconnected(EndPoint endPoint)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("OnDisconnected");
         }
 
         public override void OnRecvPacket(ArraySegment<byte> buffer)
         {
-            throw new NotImplementedException();
+            PacketManager.Instance.OnRecvPacket(this, buffer);
 
         }
 

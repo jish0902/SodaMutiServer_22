@@ -10,17 +10,36 @@ class PacketHandler
 {
     internal static void S_LeaveGameHandler(PacketSession arg1, IMessage arg2)
     {
-        throw new NotImplementedException();
+        Console.WriteLine("S_LeaveGameHandler");
+
     }
 
     internal static void S_EnterGameHandler(PacketSession arg1, IMessage arg2)
     {
-        throw new NotImplementedException();
+        Console.WriteLine("S_EnterGameHandler");
     }
 
     internal static void S_ConnectedHandler(PacketSession session , IMessage message)
     {
         Console.WriteLine("S_ConnectedHandlerS");
+    }
+
+    internal static void S_SpawnHandler(PacketSession arg1, IMessage arg2)
+    {
+        Console.WriteLine("S_SpawnHandler");
+
+    }
+
+    internal static void S_DespawnHandler(PacketSession arg1, IMessage arg2)
+    {
+        Console.WriteLine("S_DespawnHandler");
+
+    }
+
+    internal static void S_MoveHandler(PacketSession arg1, IMessage arg2)
+    {
+        Console.WriteLine("S_MoveHandler");
+
     }
 }
 

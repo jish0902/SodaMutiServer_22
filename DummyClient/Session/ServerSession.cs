@@ -15,7 +15,7 @@ namespace DummyClient.Session
 
         public override void OnDisconnected(EndPoint endPoint)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("OnDisconnected");
         }
 
         public override void OnRecvPacket(ArraySegment<byte> buffer)
@@ -25,7 +25,7 @@ namespace DummyClient.Session
 
         public override void OnSend(int numOfByte)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("OnSend");
         }
     }
 }
