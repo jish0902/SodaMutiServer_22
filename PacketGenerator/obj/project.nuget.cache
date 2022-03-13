@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "wCRvY115zWuUrWNBnsRjefzsUiRlWuHbB0nJzhw+ncKkLL/4mK889ZBmBZ6itoec06GGl4MUOcyr/0hjPLcnOA==",
+  "dgSpecHash": "XbbgYpi68pya4cjApiFNMF9v9xKayaceJbf9F/z9aBRO8oN5T369HXLz8HhlhI927qvpD1WRx26XPBSJMREeJw==",
   "success": true,
   "projectFilePath": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\PacketGenerator\\PacketGenerator.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\jish\\.nuget\\packages\\google.protobuf\\3.19.3\\google.protobuf.3.19.3.nupkg.sha512",
+    "C:\\Users\\jish\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\jish\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\jish\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
+  ],
   "logs": []
 }

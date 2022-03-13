@@ -41,5 +41,30 @@ class PacketHandler
         Console.WriteLine("S_MoveHandler");
 
     }
+
+    internal static void S_ChangeHpHandler(PacketSession arg1, IMessage arg2)
+    {
+        Console.WriteLine("S_ChangeHpHandler");
+
+    }
+
+    internal static void S_DieHandler(PacketSession arg1, IMessage arg2)
+    {
+        Console.WriteLine("S_DieHandler");
+
+    }
+
+
+    internal static void S_LobbyPlayerInfoHandler(PacketSession arg1, IMessage arg2)
+    {
+        Console.WriteLine("S_LobbyPlayerInfoHandler");
+
+    }
+
+    internal static void S_SkillHandler(PacketSession arg1, IMessage arg2)
+    {
+        Console.WriteLine("S_SkillHandler");
+
+    }
 }
 

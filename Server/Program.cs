@@ -4,6 +4,8 @@ using Server.Session;
 using ServerCore;
 using Google.Protobuf.Protocol;
 using System.Threading;
+using Server.Game;
+using Server.Data;
 
 namespace Server
 {
@@ -20,6 +22,14 @@ namespace Server
         public static string IpAddress { get; set; }
 
 
+        static void GameLogicTask()
+        {
+            while (true)
+            {
+                GameLogic.Instance.Update();
+                Thread.Sleep(0);
+            }
+        }
 
         static void NetworkTask()
         {
@@ -38,6 +48,12 @@ namespace Server
 
         static void Main(string[] args)
         {
+            ConfingManager.LoadConfig();
+            DataManager.LoadData();
+
+
+            GameLogic.Instance.Push(() => { GameLogic.Instance.Add(1); }); //방하나 추가
+
             // DNS (Domain Name System)
             string host = Dns.GetHostName();
             IPHostEntry ipHost = Dns.GetHostEntry(host);
@@ -46,9 +62,9 @@ namespace Server
 
             IpAddress = ipAddr.ToString();
 
+
             _listener.Init(endPoint, () => { return SessionManager.Instance.Generate(); });
             Console.WriteLine("Listening...");
-
 
             //NetworkTask
             {
@@ -57,9 +73,9 @@ namespace Server
                 t.Start();
             }
 
-
-
-
+            //GameLogic
+            Thread.CurrentThread.Name = "GameLogic";
+            GameLogicTask();
 
         }
     }

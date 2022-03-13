@@ -13,6 +13,8 @@ namespace DummyClient
 
         static void Main(string[] args)
         {
+           
+
             // DNS (Domain Name System)
             string host = Dns.GetHostName();
             IPHostEntry ipHost = Dns.GetHostEntry(host);
@@ -23,7 +25,7 @@ namespace DummyClient
 
             
             Connector connector = new Connector();
-            connector.Connect(endPoint,() => { return new ServerSession(); }, 5);
+            connector.Connect(endPoint,() => { return new ServerSession(); }, 1);
 
 
 

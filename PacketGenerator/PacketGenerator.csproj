@@ -15,4 +15,8 @@
     <OutputPath>./bin</OutputPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Server\Server.csproj" />
+  </ItemGroup>
+
 </Project>

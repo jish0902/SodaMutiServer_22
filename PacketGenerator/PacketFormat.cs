@@ -82,5 +82,57 @@ class PacketManager
 		_onRecv.Add((ushort)MsgId.{0}, MakePacket<{1}>);
 		_handler.Add((ushort)MsgId.{0}, PacketHandler.{1}Handler);";
 
+
+		//{0} 패킷 등록
+		public static string skillHandlerFormat =
+@"
+using Google.Protobuf.Protocol;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+public class SkillManager
+{{
+    #region Singleton
+    static SkillManager _instance = new SkillManager();
+    public static SkillManager Instance {{ get {{ return _instance; }} }}
+    #endregion
+
+    public SkillManager()
+    {{
+        Register();
+    }}
+
+    Dictionary<int,Action<CreatureController>> _handler = new Dictionary<int,Action< CreatureController>>();
+
+
+    public void Register()
+    {{
+{0}
+    }}
+
+    public void UseSkill(CreatureController cc, S_Skill packet)
+    {{
+        Action<CreatureController> action;
+        if (_handler.TryGetValue(packet.Info.SkillId, out action))
+            action.Invoke(cc);
+
+    }}
+}}
+
+";
+		//{0}skillId
+		public static string skillManagerRegisterFormat =
+@"		_handler.Add({0}, SkillHandler.Skill{0});";
+
+
+
+
+
+
 	}
+
 }

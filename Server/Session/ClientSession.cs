@@ -5,17 +5,18 @@ using System.Net;
 using System.Text;
 using Google.Protobuf.Protocol;
 using Google.Protobuf;
+using Server.Game;
 
 namespace Server.Session
 {
     public partial class ClientSession : PacketSession
     {
-        //public Player MyPlayer { get; set; }
+        public Player MyPlayer { get; set; }
         public int SessionId { get; set; }
         object _lock = new object();
         List<ArraySegment<byte>> _reserveQueue = new List<ArraySegment<byte>>();
 
-        //public PlayerServerState ServerState { get; private set; } = PlayerServerState.ServerStateLogin;
+        public PlayerServerState ServerState { get; private set; } = PlayerServerState.ServerStateLogin;
 
         long _pingpongTick = 0;
 
@@ -39,6 +40,9 @@ namespace Server.Session
             }
 
         }
+
+       
+
         public void HandlePong()
         {
             _pingpongTick = System.Environment.TickCount64;
@@ -96,11 +100,23 @@ namespace Server.Session
                 
                 Send(connectedPacket);
             }
-            
+
+			//GameLogic.Instance.PushAfter(5000, Ping);
+           
         }
 
         public override void OnDisconnected(EndPoint endPoint)
         {
+            GameLogic.Instance.Push(() =>
+            {
+                if (MyPlayer == null)
+                    return;
+
+                GameRoom room = GameLogic.Instance.Find(1);
+                room.Push(room.LeaveGame, MyPlayer.info.ObjectId);
+            });
+            SessionManager.Instance.Remove(this);
+
             Console.WriteLine("OnDisconnected");
         }
 

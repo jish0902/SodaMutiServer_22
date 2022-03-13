@@ -34,3 +34,4 @@ C:\Users\jish\Documents\GitHub\GameServer_22\Server\Server\obj\Debug\netcoreapp3
 C:\Users\jish\Documents\GitHub\GameServer_22\Server\Server\obj\Debug\netcoreapp3.1\Server.dll
 C:\Users\jish\Documents\GitHub\GameServer_22\Server\Server\obj\Debug\netcoreapp3.1\Server.pdb
 C:\Users\jish\Documents\GitHub\GameServer_22\Server\Server\obj\Debug\netcoreapp3.1\Server.genruntimeconfig.cache
+C:\Users\jish\Documents\GitHub\GameServer_22\Server\Server\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll

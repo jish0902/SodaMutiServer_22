@@ -1,9 +1,12 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Xml;
+using Server;
+using Server.Data;
 
 namespace PacketGenerator
 {
@@ -11,9 +14,18 @@ namespace PacketGenerator
 	{
 		static string clientRegister;
 		static string serverRegister;
+		static string skillRegister;
+		
 
 		static void Main(string[] args)
 		{
+			ProtocolGen(args);
+			GenSkillManager(args);
+		}
+
+
+		static public void ProtocolGen(string[] args)
+        {
 			string file = "../../../Common/protoc-3.19.3-win64/bin/Protocol.proto";
 			if (args.Length >= 1)
 				file = args[0];
@@ -65,11 +77,31 @@ namespace PacketGenerator
 
 			string clientManagerText = string.Format(PacketFormat.managerFormat, clientRegister);
 			File.WriteAllText("ClientPacketManager.cs", clientManagerText);
-            Console.WriteLine(1);
+			Console.WriteLine(1);
 			string serverManagerText = string.Format(PacketFormat.managerFormat, serverRegister);
 			File.WriteAllText("ServerPacketManager.cs", serverManagerText);
 			Console.WriteLine(1);
+		}
 
+
+
+		public static void GenSkillManager(string[] args)
+        {
+			string file = "../../../Common/Config/SkillData.json";
+			if (args.Length >= 2)
+				file = args[1];
+			
+			DataManager.LoadData(file);
+			
+
+			foreach (var item in DataManager.SkillDict)
+            {
+				skillRegister += string.Format(PacketFormat.skillManagerRegisterFormat, item.Key.ToString()) +Environment.NewLine;
+			}
+			string skillRegisterText = string.Format(PacketFormat.skillHandlerFormat, skillRegister);
+			File.WriteAllText("SkillManager.cs", skillRegisterText);
+
+            
 		}
 
 		public static string FirstCharToUpper(string input)
