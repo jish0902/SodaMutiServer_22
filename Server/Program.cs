@@ -6,6 +6,7 @@ using Google.Protobuf.Protocol;
 using System.Threading;
 using Server.Game;
 using Server.Data;
+using System.Collections.Generic;
 
 namespace Server
 {
@@ -45,14 +46,25 @@ namespace Server
 
 
 
-
         static void Main(string[] args)
         {
+
+            
+
+
+
+
+
+
+
             ConfingManager.LoadConfig();
             DataManager.LoadData();
+            
+
+            GameLogic.Instance.Push(() => { GameLogic.Instance.Add(9); }); //방하나 추가
 
 
-            GameLogic.Instance.Push(() => { GameLogic.Instance.Add(1); }); //방하나 추가
+
 
             // DNS (Domain Name System)
             string host = Dns.GetHostName();

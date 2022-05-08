@@ -51,9 +51,10 @@ namespace Server.Session
                 MyPlayer.info.PositionInfo.State = CreatureState.Idle;
                 MyPlayer.info.PositionInfo.PosX = 0;
                 MyPlayer.info.PositionInfo.PosY = 0;
-                
+                MyPlayer.Side = 0;
+
                 StatInfo info;
-                if( Data.DataManager.StatDict.TryGetValue(101,out info) == true)
+                if(Data.DataManager.StatDict.TryGetValue(1001,out info) == true)
                 {
                     MyPlayer.info.StatInfo = info;
                     MyPlayer.stat.MergeFrom(info);

@@ -42,7 +42,9 @@ class PacketManager
 		_onRecv.Add((ushort)MsgId.SLobbyPlayerInfo, MakePacket<S_LobbyPlayerInfo>);
 		_handler.Add((ushort)MsgId.SLobbyPlayerInfo, PacketHandler.S_LobbyPlayerInfoHandler);		
 		_onRecv.Add((ushort)MsgId.SSkill, MakePacket<S_Skill>);
-		_handler.Add((ushort)MsgId.SSkill, PacketHandler.S_SkillHandler);
+		_handler.Add((ushort)MsgId.SSkill, PacketHandler.S_SkillHandler);		
+		_onRecv.Add((ushort)MsgId.SStatChange, MakePacket<S_StatChange>);
+		_handler.Add((ushort)MsgId.SStatChange, PacketHandler.S_StatChangeHandler);
 	}
 
 	public void OnRecvPacket(PacketSession session, ArraySegment<byte> buffer)

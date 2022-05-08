@@ -20,8 +20,11 @@ namespace Server.Data
 			{
 				stat.Hp = stat.MaxHp;
 				stat.Mp = stat.MaxMp;
-				dict.Add(stat.Class* 100 + stat.Level, stat);
-				//101 = 성기사 1레벨
+				stat.Speed = 3; //속도
+				stat.TotalExp = stat.Exp;
+				stat.Exp = 0;
+				dict.Add(1000 * stat.Class + stat.Level, stat); //1001
+				
 			}
 			return dict;
 		}
@@ -71,126 +74,119 @@ namespace Server.Data
 		}
 	}
 
-	#endregion
+    #endregion
 
 
 
-	//#region Item
-	//[Serializable]
-	//public class ItemData
-	//{
-	//	public int id;
-	//	public string name;
-	//	public ItemType itemType;
+    //#region Item
+    //[Serializable]
+    //public class ItemData
+    //{
+    //	public int id;
+    //	public string name;
+    //	public ItemType itemType;
 
-	//}
+    //}
 
-	//public class WeaponData : ItemData
-	//{
-	//	public WeaponType weaponType;
-	//	public int damage;
-
-
-	//}
-
-	//public class ArmorData : ItemData
-	//{
-	//	public ArmorType armorType;
-	//	public int defence;
-	//}
-
-	//public class ConsumableData : ItemData
-	//{
-	//	public ConsumableType consumableType;
-	//	public int MaxCount;
-	//}
-
-	//[Serializable]
-	//public class ItemLoader : ILoader<int, ItemData>
-	//{
-	//	public List<WeaponData> weapons = new List<WeaponData>();
-	//	public List<ArmorData> armors = new List<ArmorData>();
-	//	public List<ConsumableData> consumables = new List<ConsumableData>();
-
-	//	public Dictionary<int, ItemData> MakeDict()
-	//	{
+    //public class WeaponData : ItemData
+    //{
+    //	public WeaponType weaponType;
+    //	public int damage;
 
 
-	//		Dictionary<int, ItemData> dict = new Dictionary<int, ItemData>();
+    //}
 
-	//		foreach (ItemData item in weapons)
-	//		{
-	//			item.itemType = ItemType.Weapon;
-	//			dict.Add(item.id, item);
-	//		}
-	//		foreach (ItemData item in armors)
-	//		{
-	//			item.itemType = ItemType.Armor;
-	//			dict.Add(item.id, item);
-	//		}
-	//		foreach (ItemData item in consumables)
-	//		{
-	//			item.itemType = ItemType.Consumable;
-	//			dict.Add(item.id, item);
-	//		}
+    //public class ArmorData : ItemData
+    //{
+    //	public ArmorType armorType;
+    //	public int defence;
+    //}
 
-	//		return dict;
-	//	}
-	//}
+    //public class ConsumableData : ItemData
+    //{
+    //	public ConsumableType consumableType;
+    //	public int MaxCount;
+    //}
 
-	//#endregion
+    //[Serializable]
+    //public class ItemLoader : ILoader<int, ItemData>
+    //{
+    //	public List<WeaponData> weapons = new List<WeaponData>();
+    //	public List<ArmorData> armors = new List<ArmorData>();
+    //	public List<ConsumableData> consumables = new List<ConsumableData>();
 
-	//#region Mosnter
-
-	//[Serializable]
-	//public class RewardData
-	//{
-	//	public int probability; // 100분율
-	//	public int itemId;
-	//	public int count;
+    //	public Dictionary<int, ItemData> MakeDict()
+    //	{
 
 
-	//}
+    //		Dictionary<int, ItemData> dict = new Dictionary<int, ItemData>();
+
+    //		foreach (ItemData item in weapons)
+    //		{
+    //			item.itemType = ItemType.Weapon;
+    //			dict.Add(item.id, item);
+    //		}
+    //		foreach (ItemData item in armors)
+    //		{
+    //			item.itemType = ItemType.Armor;
+    //			dict.Add(item.id, item);
+    //		}
+    //		foreach (ItemData item in consumables)
+    //		{
+    //			item.itemType = ItemType.Consumable;
+    //			dict.Add(item.id, item);
+    //		}
+
+    //		return dict;
+    //	}
+    //}
+
+    //#endregion
+
+    #region Mosnter
+
+    [Serializable]
+    public class RewardData
+    {
+        public int probability; // 100분율
+        public int itemId;
+        public int count;
+    }
+
+    [Serializable]
+    public class MonsterData
+    {
+        public int id;
+        public string name;
+        public StatInfo stat;  //class = 100이상
+        public List<RewardData> rewards;
+        public string prefabPath;
+
+    }
+
+    [Serializable]
+    public class MonsterLoader : ILoader<int, MonsterData>
+    {
+        public List<MonsterData> monsters = new List<MonsterData>();
+        public Dictionary<int, MonsterData> MakeDict()
+        {
+            Dictionary<int, MonsterData> dict = new Dictionary<int, MonsterData>();
+            foreach (MonsterData monster in monsters)
+            {
+                monster.stat.Hp = monster.stat.MaxHp;
+                monster.stat.Mp = monster.stat.MaxMp;
+                monster.stat.Speed = 3; //속도
+                monster.stat.TotalExp = monster.stat.Exp;
+                monster.stat.Exp = 0;
+
+                dict.Add(monster.id, monster);
+            }
+            return dict;
+        }
+    }
 
 
-
-	//[Serializable]
-	//public class MonsterData
-	//{
-	//	public int id;
-	//	public string name;
-	//	public StatInfo stat;
-	//	public List<RewardData> rewards;
-	//	//public string prefabPath;
-
-	//}
-
-
-
-
-	//[Serializable]
-	//public class MonsterLoader : ILoader<int, MonsterData>
-	//{
-	//	public List<MonsterData> monsters = new List<MonsterData>();
-
-	//	public Dictionary<int, MonsterData> MakeDict()
-	//	{
-	//		Dictionary<int, MonsterData> dict = new Dictionary<int, MonsterData>();
-	//		foreach (MonsterData monster in monsters)
-	//		{
-
-	//			dict.Add(monster.id, monster);
-
-	//		}
-	//		return dict;
-	//	}
-	//}
-
-
-
-
-	//#endregion
-
+    #endregion
 
 
 

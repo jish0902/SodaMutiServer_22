@@ -15,7 +15,8 @@ namespace PacketGenerator
 		static string clientRegister;
 		static string serverRegister;
 		static string skillRegister;
-		
+		static string skillCoolRegister;
+		static string skillCoolMemberRegister;
 
 		static void Main(string[] args)
 		{
@@ -97,12 +98,35 @@ namespace PacketGenerator
 			foreach (var item in DataManager.SkillDict)
             {
 				skillRegister += string.Format(PacketFormat.skillManagerRegisterFormat, item.Key.ToString()) +Environment.NewLine;
+				skillCoolRegister += string.Format(PacketFormat.SkillCoolHandlerReigsterFormat, item.Key.ToString()) + Environment.NewLine;
+				skillCoolMemberRegister += string.Format(PacketFormat.SkillCoolMemeberReigsterFormat, item.Key.ToString()) + Environment.NewLine;
 			}
-			string skillRegisterText = string.Format(PacketFormat.skillHandlerFormat, skillRegister);
-			File.WriteAllText("SkillManager.cs", skillRegisterText);
+			string c_skillRegisterText = string.Format(PacketFormat.c_skillHandlerFormat, skillRegister);
+			string s_skillRegisterText = string.Format(PacketFormat.s_skillHandlerFormat, skillRegister);
+			string SkillCoolDown = string.Format(PacketFormat.skillCoolDownFormat, skillCoolRegister, skillCoolMemberRegister);
 
-            
+			File.WriteAllText("C_SkillManager.cs", c_skillRegisterText);
+			File.WriteAllText("S_SkillManager.cs", s_skillRegisterText);
+			File.WriteAllText("SkillCoolDown.cs", SkillCoolDown);
+
+
 		}
+
+
+		public static void SkillCoolGen(string[] args)
+        {
+
+        }
+
+
+
+
+
+
+
+
+
+
 
 		public static string FirstCharToUpper(string input)
 		{

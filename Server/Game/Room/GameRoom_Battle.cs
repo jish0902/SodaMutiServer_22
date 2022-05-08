@@ -16,16 +16,15 @@ namespace Server.Game
                 return;
 
             //검사
-
             PositionInfo movePosInfo = packet.PositionInfo; //C요청
-            ObjectInfo info = player.info;
             
-
-            info.PositionInfo.State = movePosInfo.State;
-            info.PositionInfo.DirY = movePosInfo.DirY;
-            info.PositionInfo.DirX = movePosInfo.DirX;
-            info.PositionInfo.PosX = movePosInfo.PosX;
-            info.PositionInfo.PosY = movePosInfo.PosY;
+            player.info.PositionInfo.State = movePosInfo.State;
+            player.info.PositionInfo.DirY = movePosInfo.DirY;
+            player.info.PositionInfo.DirX = movePosInfo.DirX;
+            player.info.PositionInfo.PosX = movePosInfo.PosX;
+            player.info.PositionInfo.PosY = movePosInfo.PosY;
+            player.info.PositionInfo.RotZ = movePosInfo.RotZ;
+            player.info.PositionInfo.Side = movePosInfo.Side;
             
             //다른플레이어에게 알려줌
             S_Move resMovePacket = new S_Move();
@@ -41,23 +40,30 @@ namespace Server.Game
                 return;
 
             //검사
-
-            S_Skill skillPacket = new S_Skill() { Info = new SkillInfo() };
-            skillPacket.ObjectId = player.info.ObjectId;
-            skillPacket.Info.SkillId = packet.Info.SkillId;
-
-            BroadCast(player.CurrentPlanetId,skillPacket);
-
-
             Skill skill = null;
-            if(DataManager.SkillDict.TryGetValue(skillPacket.Info.SkillId, out skill) == false)
+            if(DataManager.SkillDict.TryGetValue(packet.Info.SkillId, out skill) == false)
                 return;
 
-            if(skill.id == 101)
-            {
+            // useSkill
 
+            if (packet.Info.DirX != 0 || packet.Info.DirY != 0)
+            {
+                player.SkillDir = new System.Numerics.Vector2(packet.Info.DirX, packet.Info.DirY);
             }
+            SkillManager.Instance.UseSkill(player, packet.Info.SkillId);
+
         }
     }
+
+
+
+
+
+
+
+
+
+
+
 }
    

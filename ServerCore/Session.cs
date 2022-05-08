@@ -82,7 +82,7 @@ namespace ServerCore
 
             RegisterRecv();
         }
-
+        
         public void Send(List<ArraySegment<byte>> sendBuffList)
         {
             if (sendBuffList.Count == 0)
@@ -90,15 +90,11 @@ namespace ServerCore
 
             lock (_lock)
             {
-                foreach (ArraySegment<byte> sendbuff in sendBuffList)
-                {
-                    foreach (ArraySegment<byte> sendBuff in sendBuffList)
-                        _sendQueue.Enqueue(sendBuff);
+                foreach (ArraySegment<byte> sendBuff in sendBuffList)
+                    _sendQueue.Enqueue(sendBuff);
 
-                    if (_pendingList.Count == 0)
-                        RegisterSend();
-                }
-
+                if (_pendingList.Count == 0)
+                    RegisterSend();
             }
         }
 

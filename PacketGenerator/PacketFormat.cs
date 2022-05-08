@@ -84,7 +84,7 @@ class PacketManager
 
 
 		//{0} 패킷 등록
-		public static string skillHandlerFormat =
+		public static string c_skillHandlerFormat =
 @"
 using Google.Protobuf.Protocol;
 using System;
@@ -128,11 +128,107 @@ public class SkillManager
 		public static string skillManagerRegisterFormat =
 @"		_handler.Add({0}, SkillHandler.Skill{0});";
 
+		//{0} 패킷 등록
+		public static string s_skillHandlerFormat =
+@"using Server.Game;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+
+public class SkillManager
+{{
+    #region Singleton
+    static SkillManager _instance = new SkillManager();
+    public static SkillManager Instance {{ get {{ return _instance; }} }}
+    #endregion
+
+    public SkillManager()
+    {{
+        Register();
+    }}
+    Dictionary<int, Action<GameObject>> _handler = new Dictionary<int, Action<GameObject>>();
+
+    public void Register()
+    {{
+{0}
+    }}
+
+
+    public void UseSkill(GameObject obj,int id)
+    {{ 
+        Action<GameObject> action = null;
+        _handler.TryGetValue(id, out action);
+        if(action != null)
+            action.Invoke(obj);
+    }}
+
+
+}}
+
+
+
+";
+
+
+
+		//{0}스킬 등록
+		//{1}스킬 변수 생성
+		public static string skillCoolDownFormat =
+@"using System;
+using System.Collections.Generic;
+using System.Text;
+
+
+public class SkillCoolDown
+{{
+    Dictionary<int, short> _handler = new Dictionary<int, short>();
+
+    public SkillCoolDown()
+    {{
+        Register();
+    }}
+
+    public void Register()
+    {{
+{0}
+    }}
+
+{1}
+
+    public short GetCoolTime(int id)
+    {{
+        short cool = -1;
+        if(_handler.TryGetValue(id, out cool) == true)
+        {{
+            return cool;
+        }}
+        return cool;
+
+    }}
+
+    public void SetCoolTime(int id, short time)
+    {{
+        if (_handler.ContainsKey(id) == true)
+            _handler[id] = time;
+    }}
+
+
+}}
+
+";
+		//{0} 스킬 아이디
+		public static string SkillCoolHandlerReigsterFormat =
+			@"		_handler.Add({0},cool{0});";
+		
+		//{0} 스킬 아이디
+		public static string SkillCoolMemeberReigsterFormat =
+			@"	short cool{0}= 0;";
+
+	}//class
 
 
 
 
-
-	}
-
+	
 }

@@ -3,6 +3,7 @@ using Google.Protobuf.Protocol;
 using Server.Game.Room;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 
 namespace Server.Game
@@ -20,7 +21,9 @@ namespace Server.Game
         public void Init(int mapId, int zoneCells)
         {
             Map.LoadMap(mapId);
-
+            Map.SetMonster(this,1);
+            
+            
 
 
 
@@ -99,7 +102,6 @@ namespace Server.Game
             }
             else if (type == GameObjectType.Projectile)
             {
-
                 Projectile projectile = gameObject as Projectile;
                 _projectilList.Add(gameObject.Id, projectile);
                 projectile.Room = this;
@@ -122,26 +124,81 @@ namespace Server.Game
 
         public void LeaveGame(int id)
         {
-            Player player;
-            if(true == _playerList.TryGetValue(id ,out player)){
-                Planet planet =  Map.Planets.Find(p => p.Id == player.CurrentPlanetId);
-                planet.Players.Remove(player);
-               
+            GameObjectType type = ObjectManager.GetObjectTypeById(id);
 
-                S_Despawn despawnpacket = new S_Despawn();
-                despawnpacket.ObjcetIds.Add(id);
-                BroadCast(player.CurrentPlanetId, despawnpacket);
+
+            if (type == GameObjectType.Player)
+            {
+                Player player;
+                if (true == _playerList.TryGetValue(id, out player))
+                {
+                    Room.Room planet = Map.Rooms.Find(p => p.Id == player.CurrentPlanetId);
+                    planet.Players.Remove(player);
+
+
+                    S_Despawn despawnpacket = new S_Despawn();
+                    despawnpacket.ObjcetIds.Add(id);
+                    BroadCast(player.CurrentPlanetId, despawnpacket);
+                }
             }
+            else if(type == GameObjectType.Monster)
+            {
+                Monster monster;
+                if (true == _MonsterList.TryGetValue(id, out monster))
+                {
+                    Room.Room room = Map.Rooms.Find(p => p.Id == monster.CurrentPlanetId);
+                    room.Objects.Remove(monster);
 
+
+                    S_Despawn despawnpacket = new S_Despawn();
+                    despawnpacket.ObjcetIds.Add(id);
+                    BroadCast(monster.CurrentPlanetId, despawnpacket);
+                }
+            }
+            else if(type == GameObjectType.Projectile)
+            {
+                Projectile projectile;
+                if (true == _projectilList.TryGetValue(id, out projectile))
+                {
+                    Room.Room room = Map.Rooms.Find(p => p.Id == projectile.CurrentPlanetId);
+                    room.Objects.Remove(projectile);
+
+                    S_Despawn despawnpacket = new S_Despawn();
+                    despawnpacket.ObjcetIds.Add(id);
+                    BroadCast(projectile.CurrentPlanetId, despawnpacket);
+                }
+            }
         }
 
 
+        public Player FindCloestPlayer(GameObject go)
+        {
+            Player player = null;
+
+            List<Player> players =  Map.GetPlanetPlayers(go.CurrentPlanetId);
+            if (players == null)
+                return player;
+
+            Vector2 t = new Vector2() { X = 99, Y=99 };
+            foreach (Player p in players.Where(p => p.Side == go.Side))
+            {
+                Vector2 temp = p.CellPos - go.CellPos;
+                if(t.Length() > temp.Length())
+                {
+                    t = temp;
+                    player = p;
+                }
+            }
+
+            return player;
+        }
+
         private void SetPosAndPlanetsId(Player player)
         {
-            List<Planet> _planets =  Map.Planets.FindAll(p => p.isSpawnPoint);
+            List<Room.Room> _rooms =  Map.Rooms.FindAll(p => p.isSpawnPoint);
             //임시
-            player.CellPos = new Vector2(_planets[0].PosX , _planets[0].PosY + _planets[0].Round / 2 + 1);
-            player.CurrentPlanetId = _planets[0].Id;
+            player.CellPos = new Vector2(_rooms[0].PosX , _rooms[0].PosY);
+            player.CurrentPlanetId = _rooms[0].Id;
 
         }
 

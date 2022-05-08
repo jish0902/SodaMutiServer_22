@@ -63,6 +63,7 @@ namespace Server.Session
             Array.Copy(BitConverter.GetBytes((ushort)(size + 4)), 0, sendBuffer, 0, sizeof(ushort));
             Array.Copy(BitConverter.GetBytes((ushort)msgId), 0, sendBuffer, sizeof(ushort), sizeof(ushort));
             Array.Copy(packet.ToByteArray(), 0, sendBuffer,  2 * sizeof(ushort), size);
+            
             lock (_lock)
             {
                 _reserveQueue.Add(sendBuffer);

@@ -33,27 +33,35 @@ class PacketHandler
 
     public static void C_MoveHandler(PacketSession session, IMessage packet)
     {
-        ClientSession clientSession = (ClientSession)session;
-        C_Move _packet = (C_Move)packet;
 
-        Console.WriteLine($"x= {_packet.PositionInfo.PosX}y ={_packet.PositionInfo.PosY}");
+        //Console.WriteLine($"x= {_packet.PositionInfo.PosX}y ={_packet.PositionInfo.PosY} z={_packet.PositionInfo.RotZ}");
+
+        
+         ClientSession clientSession = (ClientSession)session;
+         C_Move _packet = (C_Move)packet;
+        
 
         Player player = clientSession.MyPlayer; //나중에 null로 바꿔도 참조가능
         if (player == null)
-            return;
+            return; 
 
         GameRoom room = player.Room; //나중에 null로 바꿔도 참조가능
         if (room == null)
             return;
 
         room.Push(room.HandleMove, player, _packet);
+        
+
     }
 
     internal static void C_SkillHandler(PacketSession session, IMessage message)
     {
+        
+        
         ClientSession clientSession = (ClientSession)session;
         C_Skill skillPacket = (C_Skill)message;
 
+        //Console.WriteLine($"{skillPacket.Info.SkillId}");
         Player player = clientSession.MyPlayer; ;
         if (player == null)
             return;
@@ -64,6 +72,7 @@ class PacketHandler
 
         room.Push(room.HandleSkill, player, skillPacket);
 
+        //Console.WriteLine($"Skill{skillPacket.Info.SkillId}");
     }
 }
 

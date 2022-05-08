@@ -15,6 +15,11 @@ namespace Server.Game
             get { return info.PositionInfo.CurrentPlanetId; }
             set { info.PositionInfo.CurrentPlanetId = value; }
         }
+        public int Side
+        {
+            get { return info.PositionInfo.Side; }
+            set { info.PositionInfo.Side = value; }
+        }
 
         public int Id
         {
@@ -31,11 +36,11 @@ namespace Server.Game
         
         public Vector2 Dir
         {
-            get { return new Vector2(PosInfo.DirX / 100,PosInfo.DirY / 100); }
+            get { return new Vector2(PosInfo.DirX ,PosInfo.DirY); }
             set 
             { 
-                PosInfo.DirX = (int)value.X * 100; 
-                PosInfo.DirY = (int)value.Y * 100; 
+                PosInfo.DirX = value.X ; 
+                PosInfo.DirY = value.Y ; 
             }
         }
 
@@ -89,7 +94,7 @@ namespace Server.Game
 
         public Vector2 GetFrontCellPos()
         {
-            return GetFrontCellPos(new Vector2((int)Dir.X, (int)Dir.Y));
+            return GetFrontCellPos(new Vector2(Dir.X, Dir.Y));
         }
 
         public Vector2 GetFrontCellPos(Vector2 dir)
@@ -151,6 +156,7 @@ namespace Server.Game
         {
             return this;
         }
+       
 
     }// class
 
@@ -180,4 +186,32 @@ namespace Server.Game
 
         public int cellDistFromZero { get { return Math.Abs(x) + Math.Abs(y); } }
     }
+
+    //public struct Vector2
+    //{
+    //    public float x;
+    //    public float y;
+
+    //    public Vector2(float x, float y) { this.x = x; this.y = y; }
+
+    //    public static Vector2 up { get { return new Vector2(0, 1); } }
+    //    public static Vector2 down { get { return new Vector2(0, -1); } }
+    //    public static Vector2 left { get { return new Vector2(-1, 0); } }
+    //    public static Vector2 right { get { return new Vector2(1, 0); } }
+
+    //    public static Vector2 operator +(Vector2 a, Vector2 b)
+    //    {
+    //        return new Vector2(a.x + b.x, a.y + b.y);
+    //    }
+    //    public static Vector2 operator -(Vector2 a, Vector2 b)
+    //    {
+    //        return new Vector2(a.x - b.x, a.y - b.y);
+    //    }
+
+    //    public float magnitude { get { return (float)MathF.Sqrt(sqrMagnitude); } }
+    //    public float sqrMagnitude { get { return (x * x + y * y); } }
+
+    //    //public int cellDistFromZero { get { return Math.Abs(x) + Math.Abs(y); } }
+    //}
+
 }

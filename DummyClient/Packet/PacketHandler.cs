@@ -66,5 +66,10 @@ class PacketHandler
         Console.WriteLine("S_SkillHandler");
 
     }
+
+    internal static void S_StatChangeHandler(PacketSession arg1, IMessage arg2)
+    {
+        throw new NotImplementedException();
+    }
 }
 
