@@ -71,5 +71,10 @@ class PacketHandler
     {
         throw new NotImplementedException();
     }
+
+    internal static void S_RoomInfoHandler(PacketSession arg1, IMessage arg2)
+    {
+        throw new NotImplementedException();
+    }
 }
 

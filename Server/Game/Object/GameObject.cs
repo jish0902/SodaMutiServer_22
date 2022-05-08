@@ -10,17 +10,12 @@ namespace Server.Game
     {
         public GameObjectType ObjectType { get; protected set; } = GameObjectType.None;
         public ObjectInfo info { get; set; } = new ObjectInfo();
-        public int CurrentPlanetId
+        public int CurrentRoomId
         {
-            get { return info.PositionInfo.CurrentPlanetId; }
-            set { info.PositionInfo.CurrentPlanetId = value; }
+            get { return info.PositionInfo.CurrentRoomId; }
+            set { info.PositionInfo.CurrentRoomId = value; }
         }
-        public int Side
-        {
-            get { return info.PositionInfo.Side; }
-            set { info.PositionInfo.Side = value; }
-        }
-
+       
         public int Id
         {
             get { return info.ObjectId; }
@@ -120,7 +115,7 @@ namespace Server.Game
             S_ChangeHp ChangePacket = new S_ChangeHp();
             ChangePacket.ObjectId = Id;
             ChangePacket.Hp = stat.Hp;
-            Room.BroadCast(CurrentPlanetId, ChangePacket);
+            Room.BroadCast(CurrentRoomId, ChangePacket);
 
             if (stat.Hp <= 0)
             {
@@ -138,7 +133,7 @@ namespace Server.Game
             diePacket.ObjectId = Id;
             diePacket.AttackerId = attacker.Id;
 
-            Room.BroadCast(CurrentPlanetId, diePacket);
+            Room.BroadCast(CurrentRoomId, diePacket);
 
             GameRoom room = Room;
             room.Push(room.LeaveGame, Id);

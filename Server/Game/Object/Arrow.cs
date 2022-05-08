@@ -42,10 +42,10 @@ namespace Server.Game
             S_Move movePacket = new S_Move();
             movePacket.ObjectId = Id;
             movePacket.PositionInfo = PosInfo;
-            Console.WriteLine("-------" + PosInfo.PosX + "-------" + PosInfo.PosY);
+            //Console.WriteLine("-------" + PosInfo.PosX + "-------" + PosInfo.PosY);
 
 
-            Room.BroadCast(CurrentPlanetId, movePacket);
+            Room.BroadCast(CurrentRoomId, movePacket);
             
            
         }

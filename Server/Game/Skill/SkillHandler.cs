@@ -37,13 +37,13 @@ public class SkillHandler
         skillPacket.ObjectId = obj.Id;
         skillPacket.Info.SkillId = 100;
         //obj.Room.Push(() => { obj.Room.BroadCast(obj.CurrentPlanetId, skillPacket); });
-        obj.Room.Push(obj.Room.BroadCast, obj.CurrentPlanetId, skillPacket);
+        obj.Room.Push(obj.Room.BroadCast, obj.CurrentRoomId, skillPacket);
 
 
         S_StatChange statPacket = new S_StatChange();
         statPacket.ObjectId = obj.Id;
         statPacket.StatInfo = obj.stat;
-        obj.Room.Push(obj.Room.BroadCast,obj.CurrentPlanetId, statPacket);
+        obj.Room.Push(obj.Room.BroadCast,obj.CurrentRoomId, statPacket);
 
 
         Console.WriteLine("Skill100____________");
@@ -77,13 +77,13 @@ public class SkillHandler
         skillPacket.ObjectId = obj.Id;
         skillPacket.Info.SkillId = 501;
 
-        p.Room.Push(p.Room.BroadCast, p.CurrentPlanetId, skillPacket);
+        p.Room.Push(p.Room.BroadCast, p.CurrentRoomId, skillPacket);
 
 
         Arrow arrow = ObjectManager.Instance.Add<Arrow>();
         if (arrow == null)
             return;
-        arrow.CurrentPlanetId = p.CurrentPlanetId;
+        arrow.CurrentRoomId = p.CurrentRoomId;
         arrow.info.Name = "Arrow";
         arrow.Owner = p;
         arrow.Data = skill;

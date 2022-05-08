@@ -24,14 +24,14 @@ namespace Server.Game
             player.info.PositionInfo.PosX = movePosInfo.PosX;
             player.info.PositionInfo.PosY = movePosInfo.PosY;
             player.info.PositionInfo.RotZ = movePosInfo.RotZ;
-            player.info.PositionInfo.Side = movePosInfo.Side;
+            
             
             //다른플레이어에게 알려줌
             S_Move resMovePacket = new S_Move();
             resMovePacket.ObjectId = player.info.ObjectId;
             resMovePacket.PositionInfo = packet.PositionInfo;
 
-            BroadCast(player.CurrentPlanetId, resMovePacket);
+            BroadCast(player.CurrentRoomId, resMovePacket);
         }
 
         public void HandleSkill(Player player, C_Skill packet)
@@ -51,6 +51,41 @@ namespace Server.Game
                 player.SkillDir = new System.Numerics.Vector2(packet.Info.DirX, packet.Info.DirY);
             }
             SkillManager.Instance.UseSkill(player, packet.Info.SkillId);
+
+        }
+
+        public void HandleHit(Player player, C_Hit packet)
+        {
+            int attackId = packet.AttackId;
+            int hitId = packet.HitId;
+
+            if(attackId == hitId || attackId == 0 || hitId == 0 || attackId == player.Id)
+            { 
+                Console.WriteLine("----------공격 오류-----------");
+                return;
+            }
+
+            if(player.Id == hitId) //본인이 맞았는데 본인이 보고할경우
+            {
+                Projectile projectile = null;
+                if(_projectilList.TryGetValue(hitId, out projectile) == true)
+                {
+                    player.OnDamaged(projectile.GetOwner(), projectile.Attack);
+                }
+
+                //player.Hp -= 
+
+            }
+            else //다른사람이 맞은걸 보고할경우
+            {
+               //Todo:
+            }
+
+            
+
+
+
+
 
         }
     }

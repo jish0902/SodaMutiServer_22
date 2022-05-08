@@ -116,7 +116,7 @@ namespace Server.Game
 
                 S_Spawn spawnpacket = new S_Spawn();
                 spawnpacket.Objects.Add(gameObject.info);
-                BroadCast(gameObject.CurrentPlanetId, spawnpacket);
+                BroadCast(gameObject.CurrentRoomId, spawnpacket);
             }
 
 
@@ -132,13 +132,14 @@ namespace Server.Game
                 Player player;
                 if (true == _playerList.TryGetValue(id, out player))
                 {
-                    Room.Room planet = Map.Rooms.Find(p => p.Id == player.CurrentPlanetId);
-                    planet.Players.Remove(player);
+                    Room.Room room = Map.Rooms.Find(p => p.Id == player.CurrentRoomId);
+                    room.Players.Remove(player);
 
+                    Map.RemoveObject(player);
 
                     S_Despawn despawnpacket = new S_Despawn();
                     despawnpacket.ObjcetIds.Add(id);
-                    BroadCast(player.CurrentPlanetId, despawnpacket);
+                    BroadCast(player.CurrentRoomId, despawnpacket);
                 }
             }
             else if(type == GameObjectType.Monster)
@@ -146,13 +147,14 @@ namespace Server.Game
                 Monster monster;
                 if (true == _MonsterList.TryGetValue(id, out monster))
                 {
-                    Room.Room room = Map.Rooms.Find(p => p.Id == monster.CurrentPlanetId);
+                    Room.Room room = Map.Rooms.Find(p => p.Id == monster.CurrentRoomId);
                     room.Objects.Remove(monster);
-
+                    
+                    Map.RemoveObject(monster);
 
                     S_Despawn despawnpacket = new S_Despawn();
                     despawnpacket.ObjcetIds.Add(id);
-                    BroadCast(monster.CurrentPlanetId, despawnpacket);
+                    BroadCast(monster.CurrentRoomId, despawnpacket);
                 }
             }
             else if(type == GameObjectType.Projectile)
@@ -160,12 +162,14 @@ namespace Server.Game
                 Projectile projectile;
                 if (true == _projectilList.TryGetValue(id, out projectile))
                 {
-                    Room.Room room = Map.Rooms.Find(p => p.Id == projectile.CurrentPlanetId);
+                    Room.Room room = Map.Rooms.Find(p => p.Id == projectile.CurrentRoomId);
                     room.Objects.Remove(projectile);
+
+                    Map.RemoveObject(projectile);
 
                     S_Despawn despawnpacket = new S_Despawn();
                     despawnpacket.ObjcetIds.Add(id);
-                    BroadCast(projectile.CurrentPlanetId, despawnpacket);
+                    BroadCast(projectile.CurrentRoomId, despawnpacket);
                 }
             }
         }
@@ -175,12 +179,12 @@ namespace Server.Game
         {
             Player player = null;
 
-            List<Player> players =  Map.GetPlanetPlayers(go.CurrentPlanetId);
+            List<Player> players =  Map.GetPlanetPlayers(go.CurrentRoomId);
             if (players == null)
                 return player;
 
             Vector2 t = new Vector2() { X = 99, Y=99 };
-            foreach (Player p in players.Where(p => p.Side == go.Side))
+            foreach (Player p in players)
             {
                 Vector2 temp = p.CellPos - go.CellPos;
                 if(t.Length() > temp.Length())
@@ -198,7 +202,7 @@ namespace Server.Game
             List<Room.Room> _rooms =  Map.Rooms.FindAll(p => p.isSpawnPoint);
             //임시
             player.CellPos = new Vector2(_rooms[0].PosX , _rooms[0].PosY);
-            player.CurrentPlanetId = _rooms[0].Id;
+            player.CurrentRoomId = _rooms[0].Id;
 
         }
 

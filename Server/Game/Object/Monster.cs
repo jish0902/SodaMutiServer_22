@@ -32,8 +32,6 @@ namespace Server.Game
             State = CreatureState.Idle;
 
             Random r = new Random();
-            Side = (r.Next(0, 4));
-
         }
 
         IJob _job;
@@ -70,8 +68,8 @@ namespace Server.Game
         Vector2 test = new Vector2(-9999, -9999);
         protected virtual void UpdateIdle()
         {
-            if((CurrentPlanetId) == 1)
-                Console.WriteLine($"Idle = {CellPos}");
+            //if((CurrentRoomId) == 1)
+            //    Console.WriteLine($"Idle = {CellPos}");
             //if ((CurrentPlanetId) == 1)
             //{
 
@@ -92,7 +90,7 @@ namespace Server.Game
                 return;
             }
 
-            Game.Room.Room planet = Room.Map.Rooms.Find(p => p.Id == (CurrentPlanetId));
+            Game.Room.Room planet = Room.Map.Rooms.Find(p => p.Id == (CurrentRoomId));
             //int minx = planet.PosX - planet.Round / 2 + 1;
             //int maxX = planet.PosX + planet.Round / 2 - 1;
 
@@ -140,7 +138,8 @@ namespace Server.Game
                 ObjectId = Id,
                 PositionInfo = PosInfo,
             };
-            Room.BroadCast(CurrentPlanetId, movepacket);
+
+            //Room.BroadCast(CurrentRoomId, movepacket);
 
 
             //BroadCastMove();
@@ -165,7 +164,7 @@ namespace Server.Game
             S_Move movepacket = new S_Move();
             movepacket.ObjectId = Id;
             movepacket.PositionInfo = PosInfo;
-            Room.BroadCast(CurrentPlanetId, movepacket);
+            Room.BroadCast(CurrentRoomId, movepacket);
         }
     }
 

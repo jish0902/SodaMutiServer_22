@@ -54,9 +54,26 @@ class PacketHandler
 
     }
 
+    internal static void C_HitHandler(PacketSession session, IMessage message)
+    {
+        ClientSession clientSession = (ClientSession)session;
+        C_Hit hitpacket = (C_Hit)message;
+
+        Player player = clientSession.MyPlayer; 
+        if (player == null)
+            return;
+
+        GameRoom room = player.Room;
+        if (room == null)
+            return;
+
+        room.Push(room.HandleHit, player, hitpacket);
+
+
+    }
+
     internal static void C_SkillHandler(PacketSession session, IMessage message)
     {
-        
         
         ClientSession clientSession = (ClientSession)session;
         C_Skill skillPacket = (C_Skill)message;

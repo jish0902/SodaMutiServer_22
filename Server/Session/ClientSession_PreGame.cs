@@ -46,12 +46,12 @@ namespace Server.Session
             MyPlayer = ObjectManager.Instance.Add<Player>();
             {
                 MyPlayer.Session = this;
-                MyPlayer.CurrentPlanetId = -1;
+                MyPlayer.CurrentRoomId = -1;
                 MyPlayer.info.Name = enterGamePacket.Name+ SessionId.ToString();
                 MyPlayer.info.PositionInfo.State = CreatureState.Idle;
                 MyPlayer.info.PositionInfo.PosX = 0;
                 MyPlayer.info.PositionInfo.PosY = 0;
-                MyPlayer.Side = 0;
+                
 
                 StatInfo info;
                 if(Data.DataManager.StatDict.TryGetValue(1001,out info) == true)

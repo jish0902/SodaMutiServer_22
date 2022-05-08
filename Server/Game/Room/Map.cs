@@ -24,10 +24,15 @@ namespace Server.Game.Room
 
 	public class Room
 	{
+		/*$"{tr.position.x}/{tr.position.y}/1/{room.RoomTypeId}/{room.RoomId}";
+		 x,y,roomtype,roomtempletType  roomttype 1:스폰 2:일반 3:통로
+		roomtempletType 1:1번형태의 방 2:2번형태
+
+		 */
 		public bool[,] Collisions { get; set; }
 		public int PosX { get; set; }
 		public int PosY { get; set; }
-		public int RoomType { get; set; }
+		public int RoomType { get; set; }          
 		public int RoomTempletId { get; set; }
 		public int Id { get; set; }
 		public bool isSpawnPoint { get; set; }
@@ -143,6 +148,34 @@ namespace Server.Game.Room
 
 		public void SetMonster(GameRoom room,int monsterCount)
         {
+
+			foreach (Room r in Rooms)
+			{
+				if (r.RoomType == 3)
+					continue;
+
+				for (int i = 0; i < monsterCount; i++)
+				{
+					Random rand = new Random();
+					int rint = rand.Next(1, DataManager.MonsterDict.Count + 1);
+					Monster monster = ObjectManager.Instance.Add<Monster>();
+					{
+						monster.CurrentRoomId = r.Id;
+						monster.Init(rint); //side , posinfo
+
+						int Round = 10; //temp 나중에 받아와야함
+
+						monster.PosInfo.PosX = r.PosX + rand.Next(-Round, Round);
+						monster.PosInfo.PosY = r.PosY + rand.Next(-Round, Round);
+
+					}
+
+					room.Push(room.EnterGame, monster, false);
+
+				} //갯수마다
+
+			}//	방마다
+
             //foreach (Room p in Rooms)
             //{
             //    for (int i = 0; i < monsterCount; i++)
@@ -202,17 +235,17 @@ namespace Server.Game.Room
         {
             if (go.ObjectType == GameObjectType.Player)
             {
-				Room planet = Rooms.Find(p => { return p.Id == (go.CurrentPlanetId); });
-				if(planet == null || planet.Players.Contains((Player)go))
+				Room room = Rooms.Find(p => { return p.Id == (go.CurrentRoomId); });
+				if(room == null || room.Players.Contains((Player)go))
 					return;
-				planet.Players.Add((Player)go);
+				room.Players.Add((Player)go);
 			}
 			else 
             {
-				Room planet = Rooms.Find(p => { return p.Id == (go.CurrentPlanetId); });
-				if (planet == null || planet.Objects.Contains(go))
+				Room room = Rooms.Find(p => { return p.Id == (go.CurrentRoomId); });
+				if (room == null || room.Objects.Contains(go))
 					return;
-				planet.Objects.Add(go);
+				room.Objects.Add(go);
 			}
         }
    
@@ -221,7 +254,7 @@ namespace Server.Game.Room
         {
 			if (go.ObjectType == GameObjectType.Player)
 			{
-				Room plant = Rooms.Find(p => { return p.Id == go.CurrentPlanetId; });
+				Room plant = Rooms.Find(p => { return p.Id == go.CurrentRoomId; });
 				if (plant == null || plant.Players.Contains((Player)go))
 					return -1;
 
@@ -230,7 +263,7 @@ namespace Server.Game.Room
 			}
 			else
 			{
-				Room plant = Rooms.Find(p => { return p.Id == go.CurrentPlanetId; });
+				Room plant = Rooms.Find(p => { return p.Id == go.CurrentRoomId; });
 				if (plant == null || plant.Objects.Contains(go))
 					return -1;
 
