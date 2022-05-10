@@ -92,8 +92,10 @@ public class SkillHandler
         arrow.PosInfo.DirY  = p.SkillDir.Y;
         arrow.PosInfo.PosX = p.PosInfo.PosX;
         arrow.PosInfo.PosY = p.PosInfo.PosY;
-        Console.WriteLine($"pos : {p.PosInfo.PosX},{p.PosInfo.PosY}");
         arrow.Speed = skill.projectile.speed;
+
+        Console.WriteLine($"P pos : {p.PosInfo.PosX},{p.PosInfo.PosY}");
+        Console.WriteLine($"arrow pos : {arrow.PosInfo.PosX},{arrow.PosInfo.PosY}");
         p.Room.Push(p.Room.EnterGame, arrow, false);
 
         

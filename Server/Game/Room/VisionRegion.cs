@@ -76,7 +76,7 @@ namespace Server.Game.Room
 
             PreviousObjects = currentObject;
 
-            Owner.Room.PushAfter(250, Update); // .25초
+            Owner.Room.PushAfter(Program.ServerTick, Update); // .2초
         }//update
 
     }

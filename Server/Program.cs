@@ -14,10 +14,11 @@ namespace Server
     // 만드는중
 
 
-
+    
 
     class Program
     {
+        public static int ServerTick = 200; //0.2sec
         static Listener _listener = new Listener();
 
         public static string IpAddress { get; set; }
@@ -44,26 +45,14 @@ namespace Server
         }
 
 
-
+        
 
         static void Main(string[] args)
         {
-
-            
-
-
-
-
-
-
-
             ConfingManager.LoadConfig();
             DataManager.LoadData();
             
-
             GameLogic.Instance.Push(() => { GameLogic.Instance.Add(9); }); //방하나 추가
-
-
 
 
             // DNS (Domain Name System)

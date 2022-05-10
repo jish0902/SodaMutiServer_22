@@ -59,7 +59,7 @@ namespace Server.Game
             }
             if (Room != null)
             {
-                _job = Room.PushAfter(200, Update);
+                _job = Room.PushAfter(Program.ServerTick, Update);
             }
 
 
@@ -129,17 +129,20 @@ namespace Server.Game
                 State = CreatureState.Idle;
                 return;
             }
-            Console.WriteLine("UpdateMoving : " + CellPos + "targetPos" + targetPos);
+            //Console.WriteLine("UpdateMoving : " + CellPos + "targetPos" + targetPos);
 
-            Vector2 t =  Vector2.Lerp(CellPos, targetPos, 0.1f * Speed);
-            CellPos = t;
+            Dir = Vector2.Normalize(p.CellPos - CellPos);
+
+            CellPos += Speed * Program.ServerTick / 1000 * Dir;
+
+
             S_Move movepacket = new S_Move()
             {
                 ObjectId = Id,
                 PositionInfo = PosInfo,
             };
 
-            //Room.BroadCast(CurrentRoomId, movepacket);
+            Room.BroadCast(CurrentRoomId, movepacket);
 
 
             //BroadCastMove();
