@@ -6,9 +6,31 @@ using Google.Protobuf.Protocol;
 namespace Server.Data
 {
 
-	#region Stat
+    #region Stat
 
-	[Serializable]
+    /*message StatInfo{
+	int32 class = 1;
+	int32 level = 2;
+	int32 hp = 3;
+	int32 maxHp = 4;
+	int32 mp = 5;
+	int32 maxMp = 6;
+	int32 attackRange = 7;
+	int32 attack = 8;
+	int32 defence = 9;
+	int32 critical = 10;
+	int32 exp = 11;
+	int32 faith = 12;
+	int32 will = 13;
+	int32 friendly = 14;
+	int32 karma = 15;
+	int32 frame = 16;
+	int32 credit = 17;
+	float speed = 18;
+	int32 totalExp = 19;
+}*/
+
+    [Serializable]
 	public class StatData : ILoader<int, StatInfo>
 	{
 		public List<StatInfo> stats = new List<StatInfo>();
@@ -40,16 +62,33 @@ namespace Server.Data
 		public string name;
 		public float level_add;
 		public string description;
-		public float cooldown;
+        public float castTime;
+        public float duration;
+        public float cooldown;
 		public int skilltype;
-		public int amount;
-		public float attackbuff; //퍼센트
+        public int cost;
+        public int amount;
+        public float attackbuff; //퍼센트
 		public float defencebuff;
 		public int damage;
 		public int hp;
-		
 		public ProjectileInfo projectile;
+		public Creature creature;
 	}
+
+    public class Creature
+    {
+        public string name;
+        public int attack;
+        public float attackSpeed; //초당 공격속도
+        public string attackRange; //1이면 근접
+        public int hp;
+        public int mp;
+        public float speed;
+        public int defence;
+        public int exp;
+        
+    }
 
 	public class ProjectileInfo
 	{

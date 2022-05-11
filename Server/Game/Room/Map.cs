@@ -341,7 +341,23 @@ namespace Server.Game.Room
 
 		}
 
+		public GameObject Map(GameObject go)
+        {
+			GameObject target = null;
 
+			if (go == null)
+				return null;
+			Player p = go as Player;
+			if (p == null)
+				return null;
+
+
+
+
+
+			return target;
+
+		}
 
 
 

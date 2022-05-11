@@ -19,11 +19,23 @@ public class SkillManager
 
     public void Register()
     {
-		_handler.Add(10, SkillHandler.Skill10);
-		_handler.Add(11, SkillHandler.Skill11);
 		_handler.Add(100, SkillHandler.Skill100);
-		_handler.Add(500, SkillHandler.Skill500);
-		_handler.Add(501, SkillHandler.Skill501);
+		_handler.Add(101, SkillHandler.Skill101);
+		_handler.Add(102, SkillHandler.Skill102);
+		_handler.Add(103, SkillHandler.Skill103);
+		_handler.Add(104, SkillHandler.Skill104);
+		_handler.Add(110, SkillHandler.Skill110);
+		_handler.Add(200, SkillHandler.Skill200);
+		_handler.Add(201, SkillHandler.Skill201);
+		_handler.Add(202, SkillHandler.Skill202);
+		_handler.Add(203, SkillHandler.Skill203);
+		_handler.Add(204, SkillHandler.Skill204);
+		_handler.Add(205, SkillHandler.Skill205);
+		_handler.Add(300, SkillHandler.Skill300);
+		_handler.Add(301, SkillHandler.Skill301);
+		_handler.Add(302, SkillHandler.Skill302);
+		_handler.Add(303, SkillHandler.Skill303);
+		_handler.Add(304, SkillHandler.Skill304);
 
     }
 

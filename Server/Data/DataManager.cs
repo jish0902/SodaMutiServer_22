@@ -46,6 +46,7 @@ namespace Server.Data
 
             JsonSerializerSettings settings = new JsonSerializerSettings()
             {
+                Culture = new System.Globalization.CultureInfo("en-US"),
                 NullValueHandling = NullValueHandling.Ignore
             };
             return Newtonsoft.Json.JsonConvert.DeserializeObject<Loader>(text, settings);
