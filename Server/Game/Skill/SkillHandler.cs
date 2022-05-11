@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Google.Protobuf.Protocol;
 using Google.Protobuf;
+using Server.Game.Room;
 
 public class SkillHandler
 {
@@ -45,7 +46,7 @@ public class SkillHandler
        //------------ 
        Console.WriteLine("Skill____________");
      */
-    internal static void Skill100(GameObject obj)
+    internal static void Skill100(GameObject obj) //성기사 기본 공격
     {
         //스킬 찾기
         Skill _skill;
@@ -76,9 +77,14 @@ public class SkillHandler
 
         #endregion
         //------------ 통과 --------------
+        if(p.Targets == null|| p.Targets.Count == 0)
+            return;
 
-
-
+        foreach (GameObject go in p.Targets)
+        {
+            if(go != null || go.Room != null || p.Room != null|| go.Room == p.Room || go.State != CreatureState.Dead)
+                go.OnDamaged(p, _skill.damage + p.Attack);
+        }
 
         //---------------- 후처리 --------------
 
@@ -87,7 +93,7 @@ public class SkillHandler
         Console.WriteLine("Skill100____________");
     }
 
-    internal static void Skill101(GameObject obj)
+    internal static void Skill101(GameObject obj) //성기사 버프를 준다
     {
         Skill _skill;
         if (DataManager.SkillDict.TryGetValue(101, out _skill) == false)

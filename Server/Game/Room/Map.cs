@@ -341,23 +341,20 @@ namespace Server.Game.Room
 
 		}
 
-		public GameObject Map(GameObject go)
-        {
-			GameObject target = null;
+		//public GameObject FindByDir(GameObject go)
+  //      {
+		//	GameObject target = null;
 
-			if (go == null)
-				return null;
-			Player p = go as Player;
-			if (p == null)
-				return null;
-
-
+		//	if (go == null)
+		//		return null;
+		//	Player p = go as Player;
+		//	if (p == null || p.Room == null)
+		//		return null;
 
 
+		//	return target;
 
-			return target;
-
-		}
+		//}
 
 
 

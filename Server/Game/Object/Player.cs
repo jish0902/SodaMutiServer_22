@@ -16,6 +16,7 @@ namespace Server.Game
         public SkillCoolDown SkillCoolDown  = new SkillCoolDown();
 
         public Vector2 SkillDir { get; set; }
+        public List<GameObject> Targets { get; set; }
 
 
         public Player()

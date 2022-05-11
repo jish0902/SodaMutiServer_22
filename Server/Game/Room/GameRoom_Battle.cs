@@ -50,6 +50,23 @@ namespace Server.Game
             {
                 player.SkillDir = new System.Numerics.Vector2(packet.Info.DirX, packet.Info.DirY);
             }
+
+            if(packet.TargetIds.Count > 0)
+            {
+                List<GameObject> targets = new List<GameObject>();
+                foreach (int target in packet.TargetIds)
+                {
+                    Player p;
+                    if (_playerList.TryGetValue(target, out p) == true)
+                        targets.Add(p);
+
+                    Monster m;
+                    if (_MonsterList.TryGetValue(target, out m) == true)
+                        targets.Add(m);
+                }
+                player.Targets = targets;
+            }
+
             SkillManager.Instance.UseSkill(player, packet.Info.SkillId);
 
         }
