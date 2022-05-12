@@ -140,7 +140,9 @@ namespace Server.Game
                     S_Despawn despawnpacket = new S_Despawn();
                     despawnpacket.ObjcetIds.Add(id);
                     BroadCast(player.CurrentRoomId, despawnpacket);
+                    _playerList.Remove(id);
                 }
+
             }
             else if(type == GameObjectType.Monster)
             {
@@ -155,7 +157,9 @@ namespace Server.Game
                     S_Despawn despawnpacket = new S_Despawn();
                     despawnpacket.ObjcetIds.Add(id);
                     BroadCast(monster.CurrentRoomId, despawnpacket);
+                    _MonsterList.Remove(id);
                 }
+
             }
             else if(type == GameObjectType.Projectile)
             {
@@ -170,8 +174,10 @@ namespace Server.Game
                     S_Despawn despawnpacket = new S_Despawn();
                     despawnpacket.ObjcetIds.Add(id);
                     BroadCast(projectile.CurrentRoomId, despawnpacket);
+                    _projectilList.Remove(id);
                 }
             }
+
         }
 
 

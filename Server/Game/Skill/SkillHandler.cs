@@ -68,7 +68,8 @@ public class SkillHandler
 
 
         //----------------- 코스트 ---------------
-
+       
+        //Todo : 거리 채ㅔ크
 
 
 
@@ -80,17 +81,19 @@ public class SkillHandler
         if(p.Targets == null|| p.Targets.Count == 0)
             return;
 
-        foreach (GameObject go in p.Targets)
+        foreach (GameObject go in p.Targets)  //아마 상관 없음
         {
             if(go != null || go.Room != null || p.Room != null|| go.Room == p.Room || go.State != CreatureState.Dead)
                 go.OnDamaged(p, _skill.damage + p.Attack);
+            Console.WriteLine($"{p.info.Name}이 {go.info.Name}에게 {_skill.damage + p.Attack}데미지 줌  남은 피: {go.Hp}");
         }
+
 
         //---------------- 후처리 --------------
 
 
         //------------ 
-        Console.WriteLine("Skill100____________");
+        
     }
 
     internal static void Skill101(GameObject obj) //성기사 버프를 준다
