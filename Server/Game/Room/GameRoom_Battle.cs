@@ -29,7 +29,7 @@ namespace Server.Game
                 Room.Room nextRoom = nowRoom.TouarableRooms.Find(t=> t.Id == next);
                 if (nextRoom == null)
                 {
-                    Console.WriteLine("이동 오류");
+                    Console.WriteLine($"이동 오류{nowRoom.TouarableRooms}");
                     return;
                 }
 

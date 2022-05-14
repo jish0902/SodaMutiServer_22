@@ -61,7 +61,7 @@ namespace Google.Protobuf.Protocol {
             "bGUSEgoKcGxheWVyRGJJZBgBIAEoBRIMCgRuYW1lGAIgASgJEhMKC2NoYXJh",
             "Y3RlcklEGAMgAygFEg0KBUNvaW5zGAQgAygFIlsKCFJvb21JbmZvEg4KBnJv",
             "b21JZBgBIAEoBRIRCglyb29tTGV2ZWwYAiABKAUSEAoIcm9vbVR5cGUYAyAB",
-            "KAUSDAoEcG9zWBgEIAEoBRIMCgRwb3NZGAUgASgFKpICCgVNc2dJZBIQCgxT",
+            "KAUSDAoEcG9zWBgEIAEoAhIMCgRwb3NZGAUgASgCKpICCgVNc2dJZBIQCgxT",
             "X0VOVEVSX0dBTUUQABIQCgxTX0xFQVZFX0dBTUUQARILCgdTX1NQQVdOEAIS",
             "DQoJU19ERVNQQVdOEAMSCgoGQ19NT1ZFEAQSCgoGU19NT1ZFEAUSDwoLU19D",
             "T05ORUNURUQQBhIPCgtTX0NIQU5HRV9IUBAHEgkKBVNfRElFEAgSEAoMQ19F",
@@ -5832,10 +5832,10 @@ namespace Google.Protobuf.Protocol {
 
     /// <summary>Field number for the "posX" field.</summary>
     public const int PosXFieldNumber = 4;
-    private int posX_;
+    private float posX_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int PosX {
+    public float PosX {
       get { return posX_; }
       set {
         posX_ = value;
@@ -5844,10 +5844,10 @@ namespace Google.Protobuf.Protocol {
 
     /// <summary>Field number for the "posY" field.</summary>
     public const int PosYFieldNumber = 5;
-    private int posY_;
+    private float posY_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int PosY {
+    public float PosY {
       get { return posY_; }
       set {
         posY_ = value;
@@ -5872,8 +5872,8 @@ namespace Google.Protobuf.Protocol {
       if (RoomId != other.RoomId) return false;
       if (RoomLevel != other.RoomLevel) return false;
       if (RoomType != other.RoomType) return false;
-      if (PosX != other.PosX) return false;
-      if (PosY != other.PosY) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PosX, other.PosX)) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PosY, other.PosY)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -5884,8 +5884,8 @@ namespace Google.Protobuf.Protocol {
       if (RoomId != 0) hash ^= RoomId.GetHashCode();
       if (RoomLevel != 0) hash ^= RoomLevel.GetHashCode();
       if (RoomType != 0) hash ^= RoomType.GetHashCode();
-      if (PosX != 0) hash ^= PosX.GetHashCode();
-      if (PosY != 0) hash ^= PosY.GetHashCode();
+      if (PosX != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PosX);
+      if (PosY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PosY);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -5916,13 +5916,13 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(24);
         output.WriteInt32(RoomType);
       }
-      if (PosX != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(PosX);
+      if (PosX != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(PosX);
       }
-      if (PosY != 0) {
-        output.WriteRawTag(40);
-        output.WriteInt32(PosY);
+      if (PosY != 0F) {
+        output.WriteRawTag(45);
+        output.WriteFloat(PosY);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -5946,13 +5946,13 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(24);
         output.WriteInt32(RoomType);
       }
-      if (PosX != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(PosX);
+      if (PosX != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(PosX);
       }
-      if (PosY != 0) {
-        output.WriteRawTag(40);
-        output.WriteInt32(PosY);
+      if (PosY != 0F) {
+        output.WriteRawTag(45);
+        output.WriteFloat(PosY);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -5973,11 +5973,11 @@ namespace Google.Protobuf.Protocol {
       if (RoomType != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoomType);
       }
-      if (PosX != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PosX);
+      if (PosX != 0F) {
+        size += 1 + 4;
       }
-      if (PosY != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PosY);
+      if (PosY != 0F) {
+        size += 1 + 4;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -6000,10 +6000,10 @@ namespace Google.Protobuf.Protocol {
       if (other.RoomType != 0) {
         RoomType = other.RoomType;
       }
-      if (other.PosX != 0) {
+      if (other.PosX != 0F) {
         PosX = other.PosX;
       }
-      if (other.PosY != 0) {
+      if (other.PosY != 0F) {
         PosY = other.PosY;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -6033,12 +6033,12 @@ namespace Google.Protobuf.Protocol {
             RoomType = input.ReadInt32();
             break;
           }
-          case 32: {
-            PosX = input.ReadInt32();
+          case 37: {
+            PosX = input.ReadFloat();
             break;
           }
-          case 40: {
-            PosY = input.ReadInt32();
+          case 45: {
+            PosY = input.ReadFloat();
             break;
           }
         }
@@ -6068,12 +6068,12 @@ namespace Google.Protobuf.Protocol {
             RoomType = input.ReadInt32();
             break;
           }
-          case 32: {
-            PosX = input.ReadInt32();
+          case 37: {
+            PosX = input.ReadFloat();
             break;
           }
-          case 40: {
-            PosY = input.ReadInt32();
+          case 45: {
+            PosY = input.ReadFloat();
             break;
           }
         }

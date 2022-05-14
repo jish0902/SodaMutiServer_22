@@ -29,8 +29,8 @@ namespace Server.Game.Room
 
 		 */
 		public bool[,] Collisions { get; set; }
-		public int PosX { get; set; }
-		public int PosY { get; set; }
+		public float PosX { get; set; }
+		public float PosY { get; set; }
 		public int Id { get; set; }
 		public RoomType RoomType { get; set; }      
 		public int RoomLevel { get; set; } = 0;
@@ -85,8 +85,8 @@ namespace Server.Game.Room
                 {
 					Room room = new Room();
 
-					room.PosX = int.Parse(rInfo[0]);
-					room.PosY = int.Parse(rInfo[1]);
+					room.PosX = float.Parse(rInfo[0]);
+					room.PosY = float.Parse(rInfo[1]);
 					room.RoomType = (RoomType)Enum.Parse(typeof(RoomType), rInfo[2]);
 					room.Id = int.Parse(rInfo[3]);
 
@@ -100,6 +100,7 @@ namespace Server.Game.Room
 
             foreach (Room r in Rooms)
             {
+				
 				Vector2 main = new Vector2(r.PosX, r.PosY);
 				foreach (Room next in Rooms)
 				{
