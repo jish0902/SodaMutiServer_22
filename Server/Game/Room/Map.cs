@@ -9,18 +9,17 @@ using System.Text;
 
 namespace Server.Game.Room
 {
-	//public class Planet
-	//   {
-	//	public int Count;
-	//	public int PosX { get; set; }
-	//	public int PosY { get; set; }
-	//	public int Round { get; set; }
-	//	public int Id { get; set; }
-	//	public bool isSpawnPoint { get; set; }
-	//	public List<int> TouarableIds { get; set; } = new List<int>();
-	//	public List<Player> Players { get; set; } = new List<Player>();
-	//	public HashSet<GameObject> Objects { get; set; } = new HashSet<GameObject>();
-	//}
+	public enum RoomType  //TODO : 서보와 자동화
+	{
+		SPAWN = 0,
+		ROOM = 1,
+		PATH = 2,
+		BOSSROOM = 3,
+		PLAYEROWNROOM = 4,
+
+	}
+
+
 
 	public class Room
 	{
@@ -32,10 +31,10 @@ namespace Server.Game.Room
 		public bool[,] Collisions { get; set; }
 		public int PosX { get; set; }
 		public int PosY { get; set; }
-		public int RoomType { get; set; }          
-		public int RoomTempletId { get; set; }
+		public RoomType RoomType { get; set; }          
+		public int RoomskinId { get; set; }
 		public int Id { get; set; }
-		public bool isSpawnPoint { get; set; }
+		public bool isSpawnPoint { get { return RoomType == RoomType.SPAWN; } }
 		public List<Player> Players { get; set; } = new List<Player>();
 		public List<Room> TouarableRooms { get; set; } = new List<Room>();
 		public HashSet<GameObject> Objects { get; set; } = new HashSet<GameObject>();
@@ -50,7 +49,7 @@ namespace Server.Game.Room
 
 		public void LoadMap(int mapId, string pathPrefix = "../../../../../Common/MapData")
 		{
-			int Distance = 44;
+			int Distance = 22;
 
 
 			//----------------------------------------
@@ -69,17 +68,17 @@ namespace Server.Game.Room
 				
 				if (rInfo.Length == 5)                               
 				{
-					Room room = new Room();
+					//Room room = new Room();
 
-					room.PosX = int.Parse(rInfo[0]);
-					room.PosY = int.Parse(rInfo[1]);
+					//room.PosX = int.Parse(rInfo[0]);
+					//room.PosY = int.Parse(rInfo[1]);
 
-					if (int.Parse(rInfo[2]) == 1)
-						room.isSpawnPoint = true;
-					room.RoomType = int.Parse(rInfo[2]); // 1,2 방 3 길
-					room.RoomTempletId = int.Parse(rInfo[3]); //1 기본 2 특수
-					room.Id = int.Parse(rInfo[4]);
-					Rooms.Add(room);   
+					//if (int.Parse(rInfo[2]) == 1)
+					//	room.isSpawnPoint = true;
+					//room.RoomTypeId = int.Parse(rInfo[2]); // 1,2 방 3 길
+					//room.RoomskinId = int.Parse(rInfo[3]); //1 기본 2 특수
+					//room.Id = int.Parse(rInfo[4]);
+					//Rooms.Add(room);   
 				}
 				else if(rInfo.Length == 4)
                 {
@@ -87,10 +86,7 @@ namespace Server.Game.Room
 
 					room.PosX = int.Parse(rInfo[0]);
 					room.PosY = int.Parse(rInfo[1]);
-
-					if (int.Parse(rInfo[2]) == 1)
-						room.isSpawnPoint = true;
-					room.RoomType = int.Parse(rInfo[2]); // 1,2 방 3 길
+					room.RoomType = (RoomType)Enum.Parse(typeof(RoomType), rInfo[1]);
 					Rooms.Add(room);
 				}
                 else
@@ -105,6 +101,8 @@ namespace Server.Game.Room
 				foreach (Room next in Rooms)
 				{
 					if (r == next)
+						continue;
+					if (r.RoomType == next.RoomType)
 						continue;
 
 					Vector2 sub = new Vector2(next.PosX, next.PosY);
@@ -151,7 +149,7 @@ namespace Server.Game.Room
 
 			foreach (Room r in Rooms)
 			{
-				if (r.RoomType == 3)
+				if (r.RoomType == RoomType.PATH)
 					continue;
 
 				for (int i = 0; i < monsterCount; i++)
