@@ -31,9 +31,10 @@ namespace Server.Game.Room
 		public bool[,] Collisions { get; set; }
 		public int PosX { get; set; }
 		public int PosY { get; set; }
-		public RoomType RoomType { get; set; }          
-		public int RoomskinId { get; set; }
 		public int Id { get; set; }
+		public RoomType RoomType { get; set; }      
+		public int RoomLevel { get; set; } = 0;
+		public int RoomskinId { get; set; } = 0;
 		public bool isSpawnPoint { get { return RoomType == RoomType.SPAWN; } }
 		public List<Player> Players { get; set; } = new List<Player>();
 		public List<Room> TouarableRooms { get; set; } = new List<Room>();
@@ -86,7 +87,7 @@ namespace Server.Game.Room
 
 					room.PosX = int.Parse(rInfo[0]);
 					room.PosY = int.Parse(rInfo[1]);
-					room.RoomType = (RoomType)Enum.Parse(typeof(RoomType), rInfo[1]);
+					room.RoomType = (RoomType)Enum.Parse(typeof(RoomType), rInfo[2]);
 					room.Id = int.Parse(rInfo[3]);
 
 					Rooms.Add(room);
@@ -354,6 +355,28 @@ namespace Server.Game.Room
 		//	return target;
 
 		//}
+
+
+		public void SendMapInfo(Player p)
+        {
+			S_RoomInfo roomPacket = new S_RoomInfo();
+            foreach (Room room in Rooms)
+            {
+				RoomInfo roomInfo = new RoomInfo();
+				roomInfo.RoomId = room.Id;
+				roomInfo.RoomLevel = room.RoomLevel;
+				roomInfo.RoomType = (int)room.RoomType;
+				roomInfo.PosX = room.PosX;
+				roomInfo.PosY = room.PosY;
+				roomPacket.RoomInfos.Add(roomInfo);
+			}
+
+			p.Session.Send(roomPacket);
+        }
+
+
+
+
 
 
 

@@ -56,6 +56,9 @@ namespace Server.Game.Room
                 S_Spawn spawnPacket = new S_Spawn();
                 foreach (GameObject go in added)
                 {
+                    if (go == Owner)
+                        continue;
+
                     ObjectInfo info = new ObjectInfo();
                     info.MergeFrom(go.info);
                     spawnPacket.Objects.Add(info);//gameObject.info가 아니고 새로 만드는 이유 값이 계속 변경됨
@@ -69,6 +72,8 @@ namespace Server.Game.Room
                 S_Despawn despawnPacket = new S_Despawn();
                 foreach (GameObject go in removed)
                 {
+                    if (go == Owner)
+                        continue;
                     despawnPacket.ObjcetIds.Add(go.Id);
                 }
                 Owner.Session.Send(despawnPacket);

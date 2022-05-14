@@ -47,15 +47,12 @@ namespace Server.Game
                     break;
                 case CreatureState.Moving:
                     UpdateMoving();
-
                     break;
                 case CreatureState.Skill:
                     UpdatSkill();
-
                     break;
                 case CreatureState.Dead:
                     UpdateDead();
-
                     break;
                 default:
                     break;
@@ -94,25 +91,9 @@ namespace Server.Game
             }
 
             Game.Room.Room planet = Room.Map.Rooms.Find(p => p.Id == (CurrentRoomId));
-            //int minx = planet.PosX - planet.Round / 2 + 1;
-            //int maxX = planet.PosX + planet.Round / 2 - 1;
-
-            //float t = CellPos.X - p.CellPos.X;
-            //if (t > 0 || t < maxX)
-            //{
-            //    targetPos = CellPos - new Vector2(1, 0);
-            //}
-            //else if (t <= 0 || t > minx)
-            //{
-            //    targetPos = CellPos + new Vector2(1, 0);
-            //}
-
+           
             State = CreatureState.Moving;
           
-
-
-           
-
         }
 
         //long _nextMoveTick = 0;
@@ -165,7 +146,7 @@ namespace Server.Game
 
             State = CreatureState.Dead;
             GameRoom room = Room;
-            room.PushAfter(3000,room.LeaveGame, Id);
+            room.Push(room.LeaveGame, Id);
 
             room.PushAfter(3000,new Job(() => {
                 stat.Hp = stat.MaxHp;
@@ -186,6 +167,8 @@ namespace Server.Game
         {
 
         }
+
+
         void BroadCastMove()
         {
             //다른플레이어에게도 알려준다

@@ -89,6 +89,9 @@ namespace Server.Game
                     player.Session.Send(enterPacket);
 
                     player.Vision.Update();
+
+                    //--------------------------------------------
+                    Map.SendMapInfo(player);
                 }
             }
             else if (type == GameObjectType.Monster)

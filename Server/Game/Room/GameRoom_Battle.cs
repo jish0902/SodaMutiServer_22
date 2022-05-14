@@ -15,7 +15,35 @@ namespace Server.Game
             if (player == null)
                 return;
 
-            //검사
+            //검사--------------------
+            int next = packet.PositionInfo.CurrentRoomId;
+            int now = player.CurrentRoomId;
+            if (next != now)
+            {
+                Room.Room nowRoom =  Map.Rooms.Find(r => r.Id == now);
+                if (nowRoom == null)
+                {
+                    Console.WriteLine("방 오류");
+                    return;
+                }
+                Room.Room nextRoom = nowRoom.TouarableRooms.Find(t=> t.Id == next);
+                if (nextRoom == null)
+                {
+                    Console.WriteLine("이동 오류");
+                    return;
+                }
+
+                player.CurrentRoomId = next;
+                Console.WriteLine($"{player.info.Name}이 {now}에서 {next}로 이동");
+                Console.WriteLine($"{nextRoom.Objects.Count}");
+                foreach (GameObject go in nextRoom.Objects)
+                {
+                    Console.WriteLine($"{go.CellPos}{go.CurrentRoomId}{go.State}");
+                }
+            }
+
+
+
             PositionInfo movePosInfo = packet.PositionInfo; //C요청
             
             player.info.PositionInfo.State = movePosInfo.State;
@@ -26,10 +54,23 @@ namespace Server.Game
             player.info.PositionInfo.RotZ = movePosInfo.RotZ;
             
             
+
+
+
+
+
+
+
+
+
             //다른플레이어에게 알려줌
             S_Move resMovePacket = new S_Move();
             resMovePacket.ObjectId = player.info.ObjectId;
             resMovePacket.PositionInfo = packet.PositionInfo;
+
+
+
+
 
             BroadCast(player.CurrentRoomId, resMovePacket);
         }

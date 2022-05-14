@@ -40,39 +40,42 @@ namespace Google.Protobuf.Protocol {
             "ZBgBIAEoBRIKCgJocBgCIAEoBSIbCgtDX0VudGVyR2FtZRIMCgRuYW1lGAEg",
             "ASgJIh8KC0NfTG9iYnlJbmZvEhAKCGRldmljZUlkGAEgASgJIkYKDFNfU3Rh",
             "dENoYW5nZRIQCghvYmplY3RJZBgBIAEoBRIkCghzdGF0SW5mbxgCIAEoCzIS",
-            "LlByb3RvY29sLlN0YXRJbmZvIhwKClNfUm9vbUluZm8SDgoGcm9vbUlkGAEg",
-            "ASgFIigKBUNfSGl0EhAKCGF0dGFja0lkGAEgASgFEg0KBWhpdElkGAIgASgF",
-            "IoABCgpPYmplY3RJbmZvEhAKCG9iamVjdElkGAEgASgFEgwKBG5hbWUYAiAB",
-            "KAkSLAoMcG9zaXRpb25JbmZvGAMgASgLMhYuUHJvdG9jb2wuUG9zaXRpb25J",
-            "bmZvEiQKCHN0YXRJbmZvGAQgASgLMhIuUHJvdG9jb2wuU3RhdEluZm8iWwoJ",
-            "U2tpbGxJbmZvEg8KB3NraWxsSWQYASABKAUSIQoEdHlwZRgCIAEoDjITLlBy",
-            "b3RvY29sLlNraWxsVHlwZRIMCgRkaXJYGAMgASgCEgwKBGRpclkYBCABKAIi",
-            "kwEKDFBvc2l0aW9uSW5mbxImCgVzdGF0ZRgBIAEoDjIXLlByb3RvY29sLkNy",
-            "ZWF0dXJlU3RhdGUSFQoNY3VycmVudFJvb21JZBgCIAEoBRIMCgRkaXJYGAMg",
-            "ASgCEgwKBGRpclkYBCABKAISDAoEcG9zWBgFIAEoAhIMCgRwb3NZGAYgASgC",
-            "EgwKBHJvdFoYByABKAIisQIKCFN0YXRJbmZvEg0KBWNsYXNzGAEgASgFEg0K",
-            "BWxldmVsGAIgASgFEgoKAmhwGAMgASgFEg0KBW1heEhwGAQgASgFEgoKAm1w",
-            "GAUgASgFEg0KBW1heE1wGAYgASgFEhMKC2F0dGFja1JhbmdlGAcgASgFEg4K",
-            "BmF0dGFjaxgIIAEoBRIPCgdkZWZlbmNlGAkgASgFEhAKCGNyaXRpY2FsGAog",
-            "ASgFEgsKA2V4cBgLIAEoBRINCgVmYWl0aBgMIAEoBRIMCgR3aWxsGA0gASgF",
-            "EhAKCGZyaWVuZGx5GA4gASgFEg0KBWthcm1hGA8gASgFEg0KBWZyYW1lGBAg",
-            "ASgFEg4KBmNyZWRpdBgRIAEoBRINCgVzcGVlZBgSIAEoAhIQCgh0b3RhbEV4",
-            "cBgTIAEoBSJVCg1QbGF5ZXJQcm9maWxlEhIKCnBsYXllckRiSWQYASABKAUS",
-            "DAoEbmFtZRgCIAEoCRITCgtjaGFyYWN0ZXJJRBgDIAMoBRINCgVDb2lucxgE",
-            "IAMoBSqSAgoFTXNnSWQSEAoMU19FTlRFUl9HQU1FEAASEAoMU19MRUFWRV9H",
-            "QU1FEAESCwoHU19TUEFXThACEg0KCVNfREVTUEFXThADEgoKBkNfTU9WRRAE",
-            "EgoKBlNfTU9WRRAFEg8KC1NfQ09OTkVDVEVEEAYSDwoLU19DSEFOR0VfSFAQ",
-            "BxIJCgVTX0RJRRAIEhAKDENfRU5URVJfR0FNRRAJEhcKE1NfTE9CQllfUExB",
-            "WUVSX0lORk8QCxIQCgxDX0xPQkJZX0lORk8QDBILCgdDX1NLSUxMEA0SCwoH",
-            "U19TS0lMTBAOEhEKDVNfU1RBVF9DSEFOR0UQDxIPCgtTX1JPT01fSU5GTxAQ",
-            "EgkKBUNfSElUEBEqQwoOR2FtZU9iamVjdFR5cGUSCAoETk9ORRAAEgoKBlBM",
-            "QVlFUhABEgsKB01PTlNURVIQAhIOCgpQUk9KRUNUSUxFEAMqQAoJU2tpbGxU",
-            "eXBlEggKBE5vbmUQABIJCgVNZWxlZRABEgkKBVJhbmdlEAISCAoEQnVmZhAD",
-            "EgkKBVNwYXduEAQqOgoNQ3JlYXR1cmVTdGF0ZRIICgRJRExFEAASCgoGTU9W",
-            "SU5HEAESCQoFU0tJTEwQAhIICgRERUFEEAMqWgoRUGxheWVyU2VydmVyU3Rh",
-            "dGUSFgoSU0VSVkVSX1NUQVRFX0xPR0lOEAASFgoSU0VSVkVSX1NUQVRFX0xP",
-            "QkJZEAESFQoRU0VSVkVSX1NUQVRFX0dBTUUQAkIbqgIYR29vZ2xlLlByb3Rv",
-            "YnVmLlByb3RvY29sYgZwcm90bzM="));
+            "LlByb3RvY29sLlN0YXRJbmZvIjMKClNfUm9vbUluZm8SJQoJcm9vbUluZm9z",
+            "GAEgAygLMhIuUHJvdG9jb2wuUm9vbUluZm8iKAoFQ19IaXQSEAoIYXR0YWNr",
+            "SWQYASABKAUSDQoFaGl0SWQYAiABKAUigAEKCk9iamVjdEluZm8SEAoIb2Jq",
+            "ZWN0SWQYASABKAUSDAoEbmFtZRgCIAEoCRIsCgxwb3NpdGlvbkluZm8YAyAB",
+            "KAsyFi5Qcm90b2NvbC5Qb3NpdGlvbkluZm8SJAoIc3RhdEluZm8YBCABKAsy",
+            "Ei5Qcm90b2NvbC5TdGF0SW5mbyJbCglTa2lsbEluZm8SDwoHc2tpbGxJZBgB",
+            "IAEoBRIhCgR0eXBlGAIgASgOMhMuUHJvdG9jb2wuU2tpbGxUeXBlEgwKBGRp",
+            "clgYAyABKAISDAoEZGlyWRgEIAEoAiKTAQoMUG9zaXRpb25JbmZvEiYKBXN0",
+            "YXRlGAEgASgOMhcuUHJvdG9jb2wuQ3JlYXR1cmVTdGF0ZRIVCg1jdXJyZW50",
+            "Um9vbUlkGAIgASgFEgwKBGRpclgYAyABKAISDAoEZGlyWRgEIAEoAhIMCgRw",
+            "b3NYGAUgASgCEgwKBHBvc1kYBiABKAISDAoEcm90WhgHIAEoAiKxAgoIU3Rh",
+            "dEluZm8SDQoFY2xhc3MYASABKAUSDQoFbGV2ZWwYAiABKAUSCgoCaHAYAyAB",
+            "KAUSDQoFbWF4SHAYBCABKAUSCgoCbXAYBSABKAUSDQoFbWF4TXAYBiABKAUS",
+            "EwoLYXR0YWNrUmFuZ2UYByABKAUSDgoGYXR0YWNrGAggASgFEg8KB2RlZmVu",
+            "Y2UYCSABKAUSEAoIY3JpdGljYWwYCiABKAUSCwoDZXhwGAsgASgFEg0KBWZh",
+            "aXRoGAwgASgFEgwKBHdpbGwYDSABKAUSEAoIZnJpZW5kbHkYDiABKAUSDQoF",
+            "a2FybWEYDyABKAUSDQoFZnJhbWUYECABKAUSDgoGY3JlZGl0GBEgASgFEg0K",
+            "BXNwZWVkGBIgASgCEhAKCHRvdGFsRXhwGBMgASgFIlUKDVBsYXllclByb2Zp",
+            "bGUSEgoKcGxheWVyRGJJZBgBIAEoBRIMCgRuYW1lGAIgASgJEhMKC2NoYXJh",
+            "Y3RlcklEGAMgAygFEg0KBUNvaW5zGAQgAygFIlsKCFJvb21JbmZvEg4KBnJv",
+            "b21JZBgBIAEoBRIRCglyb29tTGV2ZWwYAiABKAUSEAoIcm9vbVR5cGUYAyAB",
+            "KAUSDAoEcG9zWBgEIAEoBRIMCgRwb3NZGAUgASgFKpICCgVNc2dJZBIQCgxT",
+            "X0VOVEVSX0dBTUUQABIQCgxTX0xFQVZFX0dBTUUQARILCgdTX1NQQVdOEAIS",
+            "DQoJU19ERVNQQVdOEAMSCgoGQ19NT1ZFEAQSCgoGU19NT1ZFEAUSDwoLU19D",
+            "T05ORUNURUQQBhIPCgtTX0NIQU5HRV9IUBAHEgkKBVNfRElFEAgSEAoMQ19F",
+            "TlRFUl9HQU1FEAkSFwoTU19MT0JCWV9QTEFZRVJfSU5GTxALEhAKDENfTE9C",
+            "QllfSU5GTxAMEgsKB0NfU0tJTEwQDRILCgdTX1NLSUxMEA4SEQoNU19TVEFU",
+            "X0NIQU5HRRAPEg8KC1NfUk9PTV9JTkZPEBASCQoFQ19ISVQQESpDCg5HYW1l",
+            "T2JqZWN0VHlwZRIICgROT05FEAASCgoGUExBWUVSEAESCwoHTU9OU1RFUhAC",
+            "Eg4KClBST0pFQ1RJTEUQAypACglTa2lsbFR5cGUSCAoETm9uZRAAEgkKBU1l",
+            "bGVlEAESCQoFUmFuZ2UQAhIICgRCdWZmEAMSCQoFU3Bhd24QBCo6Cg1DcmVh",
+            "dHVyZVN0YXRlEggKBElETEUQABIKCgZNT1ZJTkcQARIJCgVTS0lMTBACEggK",
+            "BERFQUQQAypaChFQbGF5ZXJTZXJ2ZXJTdGF0ZRIWChJTRVJWRVJfU1RBVEVf",
+            "TE9HSU4QABIWChJTRVJWRVJfU1RBVEVfTE9CQlkQARIVChFTRVJWRVJfU1RB",
+            "VEVfR0FNRRACQhuqAhhHb29nbGUuUHJvdG9idWYuUHJvdG9jb2xiBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.MsgId), typeof(global::Google.Protobuf.Protocol.GameObjectType), typeof(global::Google.Protobuf.Protocol.SkillType), typeof(global::Google.Protobuf.Protocol.CreatureState), typeof(global::Google.Protobuf.Protocol.PlayerServerState), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -91,13 +94,14 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_EnterGame), global::Google.Protobuf.Protocol.C_EnterGame.Parser, new[]{ "Name" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_LobbyInfo), global::Google.Protobuf.Protocol.C_LobbyInfo.Parser, new[]{ "DeviceId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_StatChange), global::Google.Protobuf.Protocol.S_StatChange.Parser, new[]{ "ObjectId", "StatInfo" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_RoomInfo), global::Google.Protobuf.Protocol.S_RoomInfo.Parser, new[]{ "RoomId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_RoomInfo), global::Google.Protobuf.Protocol.S_RoomInfo.Parser, new[]{ "RoomInfos" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_Hit), global::Google.Protobuf.Protocol.C_Hit.Parser, new[]{ "AttackId", "HitId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ObjectInfo), global::Google.Protobuf.Protocol.ObjectInfo.Parser, new[]{ "ObjectId", "Name", "PositionInfo", "StatInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.SkillInfo), global::Google.Protobuf.Protocol.SkillInfo.Parser, new[]{ "SkillId", "Type", "DirX", "DirY" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.PositionInfo), global::Google.Protobuf.Protocol.PositionInfo.Parser, new[]{ "State", "CurrentRoomId", "DirX", "DirY", "PosX", "PosY", "RotZ" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.StatInfo), global::Google.Protobuf.Protocol.StatInfo.Parser, new[]{ "Class", "Level", "Hp", "MaxHp", "Mp", "MaxMp", "AttackRange", "Attack", "Defence", "Critical", "Exp", "Faith", "Will", "Friendly", "Karma", "Frame", "Credit", "Speed", "TotalExp" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.PlayerProfile), global::Google.Protobuf.Protocol.PlayerProfile.Parser, new[]{ "PlayerDbId", "Name", "CharacterID", "Coins" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.PlayerProfile), global::Google.Protobuf.Protocol.PlayerProfile.Parser, new[]{ "PlayerDbId", "Name", "CharacterID", "Coins" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.RoomInfo), global::Google.Protobuf.Protocol.RoomInfo.Parser, new[]{ "RoomId", "RoomLevel", "RoomType", "PosX", "PosY" }, null, null, null, null)
           }));
     }
     #endregion
@@ -3206,7 +3210,7 @@ namespace Google.Protobuf.Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public S_RoomInfo(S_RoomInfo other) : this() {
-      roomId_ = other.roomId_;
+      roomInfos_ = other.roomInfos_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -3216,16 +3220,15 @@ namespace Google.Protobuf.Protocol {
       return new S_RoomInfo(this);
     }
 
-    /// <summary>Field number for the "roomId" field.</summary>
-    public const int RoomIdFieldNumber = 1;
-    private int roomId_;
+    /// <summary>Field number for the "roomInfos" field.</summary>
+    public const int RoomInfosFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::Google.Protobuf.Protocol.RoomInfo> _repeated_roomInfos_codec
+        = pb::FieldCodec.ForMessage(10, global::Google.Protobuf.Protocol.RoomInfo.Parser);
+    private readonly pbc::RepeatedField<global::Google.Protobuf.Protocol.RoomInfo> roomInfos_ = new pbc::RepeatedField<global::Google.Protobuf.Protocol.RoomInfo>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int RoomId {
-      get { return roomId_; }
-      set {
-        roomId_ = value;
-      }
+    public pbc::RepeatedField<global::Google.Protobuf.Protocol.RoomInfo> RoomInfos {
+      get { return roomInfos_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3243,7 +3246,7 @@ namespace Google.Protobuf.Protocol {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (RoomId != other.RoomId) return false;
+      if(!roomInfos_.Equals(other.roomInfos_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3251,7 +3254,7 @@ namespace Google.Protobuf.Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (RoomId != 0) hash ^= RoomId.GetHashCode();
+      hash ^= roomInfos_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3270,10 +3273,7 @@ namespace Google.Protobuf.Protocol {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (RoomId != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(RoomId);
-      }
+      roomInfos_.WriteTo(output, _repeated_roomInfos_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -3284,10 +3284,7 @@ namespace Google.Protobuf.Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (RoomId != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(RoomId);
-      }
+      roomInfos_.WriteTo(ref output, _repeated_roomInfos_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -3298,9 +3295,7 @@ namespace Google.Protobuf.Protocol {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (RoomId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoomId);
-      }
+      size += roomInfos_.CalculateSize(_repeated_roomInfos_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -3313,9 +3308,7 @@ namespace Google.Protobuf.Protocol {
       if (other == null) {
         return;
       }
-      if (other.RoomId != 0) {
-        RoomId = other.RoomId;
-      }
+      roomInfos_.Add(other.roomInfos_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -3331,8 +3324,8 @@ namespace Google.Protobuf.Protocol {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            RoomId = input.ReadInt32();
+          case 10: {
+            roomInfos_.AddEntriesFrom(input, _repeated_roomInfos_codec);
             break;
           }
         }
@@ -3350,8 +3343,8 @@ namespace Google.Protobuf.Protocol {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8: {
-            RoomId = input.ReadInt32();
+          case 10: {
+            roomInfos_.AddEntriesFrom(ref input, _repeated_roomInfos_codec);
             break;
           }
         }
@@ -5744,6 +5737,343 @@ namespace Google.Protobuf.Protocol {
           case 34:
           case 32: {
             coins_.AddEntriesFrom(ref input, _repeated_coins_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class RoomInfo : pb::IMessage<RoomInfo>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<RoomInfo> _parser = new pb::MessageParser<RoomInfo>(() => new RoomInfo());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<RoomInfo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Google.Protobuf.Protocol.ProtocolReflection.Descriptor.MessageTypes[22]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public RoomInfo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public RoomInfo(RoomInfo other) : this() {
+      roomId_ = other.roomId_;
+      roomLevel_ = other.roomLevel_;
+      roomType_ = other.roomType_;
+      posX_ = other.posX_;
+      posY_ = other.posY_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public RoomInfo Clone() {
+      return new RoomInfo(this);
+    }
+
+    /// <summary>Field number for the "roomId" field.</summary>
+    public const int RoomIdFieldNumber = 1;
+    private int roomId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int RoomId {
+      get { return roomId_; }
+      set {
+        roomId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "roomLevel" field.</summary>
+    public const int RoomLevelFieldNumber = 2;
+    private int roomLevel_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int RoomLevel {
+      get { return roomLevel_; }
+      set {
+        roomLevel_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "roomType" field.</summary>
+    public const int RoomTypeFieldNumber = 3;
+    private int roomType_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int RoomType {
+      get { return roomType_; }
+      set {
+        roomType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "posX" field.</summary>
+    public const int PosXFieldNumber = 4;
+    private int posX_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int PosX {
+      get { return posX_; }
+      set {
+        posX_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "posY" field.</summary>
+    public const int PosYFieldNumber = 5;
+    private int posY_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int PosY {
+      get { return posY_; }
+      set {
+        posY_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as RoomInfo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(RoomInfo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (RoomId != other.RoomId) return false;
+      if (RoomLevel != other.RoomLevel) return false;
+      if (RoomType != other.RoomType) return false;
+      if (PosX != other.PosX) return false;
+      if (PosY != other.PosY) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (RoomId != 0) hash ^= RoomId.GetHashCode();
+      if (RoomLevel != 0) hash ^= RoomLevel.GetHashCode();
+      if (RoomType != 0) hash ^= RoomType.GetHashCode();
+      if (PosX != 0) hash ^= PosX.GetHashCode();
+      if (PosY != 0) hash ^= PosY.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (RoomId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(RoomId);
+      }
+      if (RoomLevel != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(RoomLevel);
+      }
+      if (RoomType != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(RoomType);
+      }
+      if (PosX != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(PosX);
+      }
+      if (PosY != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(PosY);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (RoomId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(RoomId);
+      }
+      if (RoomLevel != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(RoomLevel);
+      }
+      if (RoomType != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(RoomType);
+      }
+      if (PosX != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(PosX);
+      }
+      if (PosY != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(PosY);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (RoomId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoomId);
+      }
+      if (RoomLevel != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoomLevel);
+      }
+      if (RoomType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoomType);
+      }
+      if (PosX != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PosX);
+      }
+      if (PosY != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PosY);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(RoomInfo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.RoomId != 0) {
+        RoomId = other.RoomId;
+      }
+      if (other.RoomLevel != 0) {
+        RoomLevel = other.RoomLevel;
+      }
+      if (other.RoomType != 0) {
+        RoomType = other.RoomType;
+      }
+      if (other.PosX != 0) {
+        PosX = other.PosX;
+      }
+      if (other.PosY != 0) {
+        PosY = other.PosY;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            RoomId = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            RoomLevel = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            RoomType = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            PosX = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            PosY = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            RoomId = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            RoomLevel = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            RoomType = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            PosX = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            PosY = input.ReadInt32();
             break;
           }
         }
