@@ -37,6 +37,9 @@ namespace Server.Game
         IJob _job;
         public override void Update()
         {
+
+
+
             switch (State)
             {
                 case CreatureState.Idle:
@@ -124,7 +127,7 @@ namespace Server.Game
             //_nextMoveTick = Environment.TickCount64 + moveTick;
             Player p = Room.FindCloestPlayer(this);
 
-            if (p == null || p.Room != Room || p.Hp == 0 || (targetPos - CellPos).Length() <= 0.1)
+            if (p == null || p.Room != Room || p.Hp == 0 || (targetPos - CellPos).Length() <= 0.1 || p.CurrentRoomId != CurrentRoomId)
             {
                 State = CreatureState.Idle;
                 return;
@@ -148,7 +151,29 @@ namespace Server.Game
             //BroadCastMove();
         }
 
+        public override void OnDead(GameObject attacker)
+        {
+            if (Room == null)
+                return;
 
+
+            S_Die diePacket = new S_Die();
+            diePacket.ObjectId = Id;
+            diePacket.AttackerId = attacker.Id;
+
+            Room.BroadCast(CurrentRoomId, diePacket);
+
+            State = CreatureState.Dead;
+            GameRoom room = Room;
+            room.PushAfter(3000,room.LeaveGame, Id);
+
+            room.PushAfter(3000,new Job(() => {
+                stat.Hp = stat.MaxHp;
+                PosInfo.State = CreatureState.Idle;
+            }));
+
+            room.PushAfter(3000,room.EnterGame, this, true);
+        }
 
         protected virtual void UpdatSkill()
         {

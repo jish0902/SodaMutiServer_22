@@ -87,6 +87,8 @@ namespace Server.Game.Room
 					room.PosX = int.Parse(rInfo[0]);
 					room.PosY = int.Parse(rInfo[1]);
 					room.RoomType = (RoomType)Enum.Parse(typeof(RoomType), rInfo[1]);
+					room.Id = int.Parse(rInfo[3]);
+
 					Rooms.Add(room);
 				}
                 else
@@ -165,7 +167,6 @@ namespace Server.Game.Room
 
 						monster.PosInfo.PosX = r.PosX + rand.Next(-Round, Round);
 						monster.PosInfo.PosY = r.PosY + rand.Next(-Round, Round);
-
 					}
 
 					room.Push(room.EnterGame, monster, false);

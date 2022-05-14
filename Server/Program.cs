@@ -52,7 +52,7 @@ namespace Server
             ConfingManager.LoadConfig();
             DataManager.LoadData();
             
-            GameLogic.Instance.Push(() => { GameLogic.Instance.Add(9); }); //방하나 추가
+            GameLogic.Instance.Push(() => { GameLogic.Instance.Add(21); }); //방하나 추가
 
 
             // DNS (Domain Name System)
