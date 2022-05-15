@@ -278,15 +278,15 @@ namespace Server.Game.Room
 			if (id == -1)
 				return null;
 
-			Room plant = Rooms.Find(p => { return p.Id == id; });
+			Room room = Rooms.Find(r => { return r.Id == id; });
 
-			if (plant == null)
+			if (room == null)
 			{
 				Console.WriteLine("행성 아이디 없음 오류");
 				return null;
 			}
 
-			List<Player> _players = plant.Players;
+			List<Player> _players = room.Players;
 
 			if (level == 1) //현제의 오브젝트와 가는 중에 오브젝트 가져오기
 			{
@@ -294,7 +294,7 @@ namespace Server.Game.Room
 			}
 			else if (level == 2) //완전히 갈수있는곳의 오브젝트 전부 가져오기
 			{
-				foreach (Room r in plant.TouarableRooms)
+				foreach (Room r in room.TouarableRooms)
 				{
 					Room _room = Rooms.Find(p => { return p.Id == r.Id; });
 					_players.AddRange(_room.Players);

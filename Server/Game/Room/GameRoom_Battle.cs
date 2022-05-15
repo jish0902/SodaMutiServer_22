@@ -16,6 +16,8 @@ namespace Server.Game
                 return;
 
             //검사--------------------
+
+            #region 방이동
             int next = packet.PositionInfo.CurrentRoomId;
             int now = player.CurrentRoomId;
             if (next != now)
@@ -33,7 +35,10 @@ namespace Server.Game
                     return;
                 }
 
+                nowRoom.Players.Remove(player);
+                nextRoom.Players.Add(player);
                 player.CurrentRoomId = next;
+
                 Console.WriteLine($"{player.info.Name}이 {now}에서 {next}로 이동");
                 Console.WriteLine($"{nextRoom.Objects.Count}");
                 foreach (GameObject go in nextRoom.Objects)
@@ -41,7 +46,7 @@ namespace Server.Game
                     Console.WriteLine($"{go.CellPos}{go.CurrentRoomId}{go.State}");
                 }
             }
-
+            #endregion
 
 
             PositionInfo movePosInfo = packet.PositionInfo; //C요청
@@ -54,12 +59,6 @@ namespace Server.Game
             player.info.PositionInfo.RotZ = movePosInfo.RotZ;
             
             
-
-
-
-
-
-
 
 
 

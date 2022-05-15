@@ -50,32 +50,32 @@ namespace Google.Protobuf.Protocol {
             "clgYAyABKAISDAoEZGlyWRgEIAEoAiKTAQoMUG9zaXRpb25JbmZvEiYKBXN0",
             "YXRlGAEgASgOMhcuUHJvdG9jb2wuQ3JlYXR1cmVTdGF0ZRIVCg1jdXJyZW50",
             "Um9vbUlkGAIgASgFEgwKBGRpclgYAyABKAISDAoEZGlyWRgEIAEoAhIMCgRw",
-            "b3NYGAUgASgCEgwKBHBvc1kYBiABKAISDAoEcm90WhgHIAEoAiKxAgoIU3Rh",
+            "b3NYGAUgASgCEgwKBHBvc1kYBiABKAISDAoEcm90WhgHIAEoAiLGAgoIU3Rh",
             "dEluZm8SDQoFY2xhc3MYASABKAUSDQoFbGV2ZWwYAiABKAUSCgoCaHAYAyAB",
             "KAUSDQoFbWF4SHAYBCABKAUSCgoCbXAYBSABKAUSDQoFbWF4TXAYBiABKAUS",
-            "EwoLYXR0YWNrUmFuZ2UYByABKAUSDgoGYXR0YWNrGAggASgFEg8KB2RlZmVu",
-            "Y2UYCSABKAUSEAoIY3JpdGljYWwYCiABKAUSCwoDZXhwGAsgASgFEg0KBWZh",
-            "aXRoGAwgASgFEgwKBHdpbGwYDSABKAUSEAoIZnJpZW5kbHkYDiABKAUSDQoF",
-            "a2FybWEYDyABKAUSDQoFZnJhbWUYECABKAUSDgoGY3JlZGl0GBEgASgFEg0K",
-            "BXNwZWVkGBIgASgCEhAKCHRvdGFsRXhwGBMgASgFIlUKDVBsYXllclByb2Zp",
-            "bGUSEgoKcGxheWVyRGJJZBgBIAEoBRIMCgRuYW1lGAIgASgJEhMKC2NoYXJh",
-            "Y3RlcklEGAMgAygFEg0KBUNvaW5zGAQgAygFIlsKCFJvb21JbmZvEg4KBnJv",
-            "b21JZBgBIAEoBRIRCglyb29tTGV2ZWwYAiABKAUSEAoIcm9vbVR5cGUYAyAB",
-            "KAUSDAoEcG9zWBgEIAEoAhIMCgRwb3NZGAUgASgCKpICCgVNc2dJZBIQCgxT",
-            "X0VOVEVSX0dBTUUQABIQCgxTX0xFQVZFX0dBTUUQARILCgdTX1NQQVdOEAIS",
-            "DQoJU19ERVNQQVdOEAMSCgoGQ19NT1ZFEAQSCgoGU19NT1ZFEAUSDwoLU19D",
-            "T05ORUNURUQQBhIPCgtTX0NIQU5HRV9IUBAHEgkKBVNfRElFEAgSEAoMQ19F",
-            "TlRFUl9HQU1FEAkSFwoTU19MT0JCWV9QTEFZRVJfSU5GTxALEhAKDENfTE9C",
-            "QllfSU5GTxAMEgsKB0NfU0tJTEwQDRILCgdTX1NLSUxMEA4SEQoNU19TVEFU",
-            "X0NIQU5HRRAPEg8KC1NfUk9PTV9JTkZPEBASCQoFQ19ISVQQESpDCg5HYW1l",
-            "T2JqZWN0VHlwZRIICgROT05FEAASCgoGUExBWUVSEAESCwoHTU9OU1RFUhAC",
-            "Eg4KClBST0pFQ1RJTEUQAypACglTa2lsbFR5cGUSCAoETm9uZRAAEgkKBU1l",
-            "bGVlEAESCQoFUmFuZ2UQAhIICgRCdWZmEAMSCQoFU3Bhd24QBCo6Cg1DcmVh",
-            "dHVyZVN0YXRlEggKBElETEUQABIKCgZNT1ZJTkcQARIJCgVTS0lMTBACEggK",
-            "BERFQUQQAypaChFQbGF5ZXJTZXJ2ZXJTdGF0ZRIWChJTRVJWRVJfU1RBVEVf",
-            "TE9HSU4QABIWChJTRVJWRVJfU1RBVEVfTE9CQlkQARIVChFTRVJWRVJfU1RB",
-            "VEVfR0FNRRACQhuqAhhHb29nbGUuUHJvdG9idWYuUHJvdG9jb2xiBnByb3Rv",
-            "Mw=="));
+            "EwoLYXR0YWNrUmFuZ2UYByABKAUSDgoGYXR0YWNrGAggASgFEhMKC2F0dGFj",
+            "a1NwZWVkGAkgASgCEg8KB2RlZmVuY2UYCiABKAUSEAoIY3JpdGljYWwYCyAB",
+            "KAUSCwoDZXhwGAwgASgFEg0KBWZhaXRoGA0gASgFEgwKBHdpbGwYDiABKAUS",
+            "EAoIZnJpZW5kbHkYDyABKAUSDQoFa2FybWEYECABKAUSDQoFZnJhbWUYESAB",
+            "KAUSDgoGY3JlZGl0GBIgASgFEg0KBXNwZWVkGBMgASgCEhAKCHRvdGFsRXhw",
+            "GBQgASgFIlUKDVBsYXllclByb2ZpbGUSEgoKcGxheWVyRGJJZBgBIAEoBRIM",
+            "CgRuYW1lGAIgASgJEhMKC2NoYXJhY3RlcklEGAMgAygFEg0KBUNvaW5zGAQg",
+            "AygFIlsKCFJvb21JbmZvEg4KBnJvb21JZBgBIAEoBRIRCglyb29tTGV2ZWwY",
+            "AiABKAUSEAoIcm9vbVR5cGUYAyABKAUSDAoEcG9zWBgEIAEoAhIMCgRwb3NZ",
+            "GAUgASgCKpICCgVNc2dJZBIQCgxTX0VOVEVSX0dBTUUQABIQCgxTX0xFQVZF",
+            "X0dBTUUQARILCgdTX1NQQVdOEAISDQoJU19ERVNQQVdOEAMSCgoGQ19NT1ZF",
+            "EAQSCgoGU19NT1ZFEAUSDwoLU19DT05ORUNURUQQBhIPCgtTX0NIQU5HRV9I",
+            "UBAHEgkKBVNfRElFEAgSEAoMQ19FTlRFUl9HQU1FEAkSFwoTU19MT0JCWV9Q",
+            "TEFZRVJfSU5GTxALEhAKDENfTE9CQllfSU5GTxAMEgsKB0NfU0tJTEwQDRIL",
+            "CgdTX1NLSUxMEA4SEQoNU19TVEFUX0NIQU5HRRAPEg8KC1NfUk9PTV9JTkZP",
+            "EBASCQoFQ19ISVQQESpDCg5HYW1lT2JqZWN0VHlwZRIICgROT05FEAASCgoG",
+            "UExBWUVSEAESCwoHTU9OU1RFUhACEg4KClBST0pFQ1RJTEUQAypACglTa2ls",
+            "bFR5cGUSCAoETm9uZRAAEgkKBU1lbGVlEAESCQoFUmFuZ2UQAhIICgRCdWZm",
+            "EAMSCQoFU3Bhd24QBCo6Cg1DcmVhdHVyZVN0YXRlEggKBElETEUQABIKCgZN",
+            "T1ZJTkcQARIJCgVTS0lMTBACEggKBERFQUQQAypaChFQbGF5ZXJTZXJ2ZXJT",
+            "dGF0ZRIWChJTRVJWRVJfU1RBVEVfTE9HSU4QABIWChJTRVJWRVJfU1RBVEVf",
+            "TE9CQlkQARIVChFTRVJWRVJfU1RBVEVfR0FNRRACQhuqAhhHb29nbGUuUHJv",
+            "dG9idWYuUHJvdG9jb2xiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.MsgId), typeof(global::Google.Protobuf.Protocol.GameObjectType), typeof(global::Google.Protobuf.Protocol.SkillType), typeof(global::Google.Protobuf.Protocol.CreatureState), typeof(global::Google.Protobuf.Protocol.PlayerServerState), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -99,7 +99,7 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ObjectInfo), global::Google.Protobuf.Protocol.ObjectInfo.Parser, new[]{ "ObjectId", "Name", "PositionInfo", "StatInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.SkillInfo), global::Google.Protobuf.Protocol.SkillInfo.Parser, new[]{ "SkillId", "Type", "DirX", "DirY" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.PositionInfo), global::Google.Protobuf.Protocol.PositionInfo.Parser, new[]{ "State", "CurrentRoomId", "DirX", "DirY", "PosX", "PosY", "RotZ" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.StatInfo), global::Google.Protobuf.Protocol.StatInfo.Parser, new[]{ "Class", "Level", "Hp", "MaxHp", "Mp", "MaxMp", "AttackRange", "Attack", "Defence", "Critical", "Exp", "Faith", "Will", "Friendly", "Karma", "Frame", "Credit", "Speed", "TotalExp" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.StatInfo), global::Google.Protobuf.Protocol.StatInfo.Parser, new[]{ "Class", "Level", "Hp", "MaxHp", "Mp", "MaxMp", "AttackRange", "Attack", "AttackSpeed", "Defence", "Critical", "Exp", "Faith", "Will", "Friendly", "Karma", "Frame", "Credit", "Speed", "TotalExp" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.PlayerProfile), global::Google.Protobuf.Protocol.PlayerProfile.Parser, new[]{ "PlayerDbId", "Name", "CharacterID", "Coins" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.RoomInfo), global::Google.Protobuf.Protocol.RoomInfo.Parser, new[]{ "RoomId", "RoomLevel", "RoomType", "PosX", "PosY" }, null, null, null, null)
           }));
@@ -4651,6 +4651,7 @@ namespace Google.Protobuf.Protocol {
       maxMp_ = other.maxMp_;
       attackRange_ = other.attackRange_;
       attack_ = other.attack_;
+      attackSpeed_ = other.attackSpeed_;
       defence_ = other.defence_;
       critical_ = other.critical_;
       exp_ = other.exp_;
@@ -4767,8 +4768,20 @@ namespace Google.Protobuf.Protocol {
       }
     }
 
+    /// <summary>Field number for the "attackSpeed" field.</summary>
+    public const int AttackSpeedFieldNumber = 9;
+    private float attackSpeed_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float AttackSpeed {
+      get { return attackSpeed_; }
+      set {
+        attackSpeed_ = value;
+      }
+    }
+
     /// <summary>Field number for the "defence" field.</summary>
-    public const int DefenceFieldNumber = 9;
+    public const int DefenceFieldNumber = 10;
     private int defence_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -4780,7 +4793,7 @@ namespace Google.Protobuf.Protocol {
     }
 
     /// <summary>Field number for the "critical" field.</summary>
-    public const int CriticalFieldNumber = 10;
+    public const int CriticalFieldNumber = 11;
     private int critical_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -4792,7 +4805,7 @@ namespace Google.Protobuf.Protocol {
     }
 
     /// <summary>Field number for the "exp" field.</summary>
-    public const int ExpFieldNumber = 11;
+    public const int ExpFieldNumber = 12;
     private int exp_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -4804,7 +4817,7 @@ namespace Google.Protobuf.Protocol {
     }
 
     /// <summary>Field number for the "faith" field.</summary>
-    public const int FaithFieldNumber = 12;
+    public const int FaithFieldNumber = 13;
     private int faith_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -4816,7 +4829,7 @@ namespace Google.Protobuf.Protocol {
     }
 
     /// <summary>Field number for the "will" field.</summary>
-    public const int WillFieldNumber = 13;
+    public const int WillFieldNumber = 14;
     private int will_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -4828,7 +4841,7 @@ namespace Google.Protobuf.Protocol {
     }
 
     /// <summary>Field number for the "friendly" field.</summary>
-    public const int FriendlyFieldNumber = 14;
+    public const int FriendlyFieldNumber = 15;
     private int friendly_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -4840,7 +4853,7 @@ namespace Google.Protobuf.Protocol {
     }
 
     /// <summary>Field number for the "karma" field.</summary>
-    public const int KarmaFieldNumber = 15;
+    public const int KarmaFieldNumber = 16;
     private int karma_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -4852,7 +4865,7 @@ namespace Google.Protobuf.Protocol {
     }
 
     /// <summary>Field number for the "frame" field.</summary>
-    public const int FrameFieldNumber = 16;
+    public const int FrameFieldNumber = 17;
     private int frame_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -4864,7 +4877,7 @@ namespace Google.Protobuf.Protocol {
     }
 
     /// <summary>Field number for the "credit" field.</summary>
-    public const int CreditFieldNumber = 17;
+    public const int CreditFieldNumber = 18;
     private int credit_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -4876,7 +4889,7 @@ namespace Google.Protobuf.Protocol {
     }
 
     /// <summary>Field number for the "speed" field.</summary>
-    public const int SpeedFieldNumber = 18;
+    public const int SpeedFieldNumber = 19;
     private float speed_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -4888,7 +4901,7 @@ namespace Google.Protobuf.Protocol {
     }
 
     /// <summary>Field number for the "totalExp" field.</summary>
-    public const int TotalExpFieldNumber = 19;
+    public const int TotalExpFieldNumber = 20;
     private int totalExp_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
@@ -4922,6 +4935,7 @@ namespace Google.Protobuf.Protocol {
       if (MaxMp != other.MaxMp) return false;
       if (AttackRange != other.AttackRange) return false;
       if (Attack != other.Attack) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(AttackSpeed, other.AttackSpeed)) return false;
       if (Defence != other.Defence) return false;
       if (Critical != other.Critical) return false;
       if (Exp != other.Exp) return false;
@@ -4948,6 +4962,7 @@ namespace Google.Protobuf.Protocol {
       if (MaxMp != 0) hash ^= MaxMp.GetHashCode();
       if (AttackRange != 0) hash ^= AttackRange.GetHashCode();
       if (Attack != 0) hash ^= Attack.GetHashCode();
+      if (AttackSpeed != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(AttackSpeed);
       if (Defence != 0) hash ^= Defence.GetHashCode();
       if (Critical != 0) hash ^= Critical.GetHashCode();
       if (Exp != 0) hash ^= Exp.GetHashCode();
@@ -5009,48 +5024,52 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(64);
         output.WriteInt32(Attack);
       }
+      if (AttackSpeed != 0F) {
+        output.WriteRawTag(77);
+        output.WriteFloat(AttackSpeed);
+      }
       if (Defence != 0) {
-        output.WriteRawTag(72);
+        output.WriteRawTag(80);
         output.WriteInt32(Defence);
       }
       if (Critical != 0) {
-        output.WriteRawTag(80);
+        output.WriteRawTag(88);
         output.WriteInt32(Critical);
       }
       if (Exp != 0) {
-        output.WriteRawTag(88);
+        output.WriteRawTag(96);
         output.WriteInt32(Exp);
       }
       if (Faith != 0) {
-        output.WriteRawTag(96);
+        output.WriteRawTag(104);
         output.WriteInt32(Faith);
       }
       if (Will != 0) {
-        output.WriteRawTag(104);
+        output.WriteRawTag(112);
         output.WriteInt32(Will);
       }
       if (Friendly != 0) {
-        output.WriteRawTag(112);
+        output.WriteRawTag(120);
         output.WriteInt32(Friendly);
       }
       if (Karma != 0) {
-        output.WriteRawTag(120);
+        output.WriteRawTag(128, 1);
         output.WriteInt32(Karma);
       }
       if (Frame != 0) {
-        output.WriteRawTag(128, 1);
+        output.WriteRawTag(136, 1);
         output.WriteInt32(Frame);
       }
       if (Credit != 0) {
-        output.WriteRawTag(136, 1);
+        output.WriteRawTag(144, 1);
         output.WriteInt32(Credit);
       }
       if (Speed != 0F) {
-        output.WriteRawTag(149, 1);
+        output.WriteRawTag(157, 1);
         output.WriteFloat(Speed);
       }
       if (TotalExp != 0) {
-        output.WriteRawTag(152, 1);
+        output.WriteRawTag(160, 1);
         output.WriteInt32(TotalExp);
       }
       if (_unknownFields != null) {
@@ -5095,48 +5114,52 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(64);
         output.WriteInt32(Attack);
       }
+      if (AttackSpeed != 0F) {
+        output.WriteRawTag(77);
+        output.WriteFloat(AttackSpeed);
+      }
       if (Defence != 0) {
-        output.WriteRawTag(72);
+        output.WriteRawTag(80);
         output.WriteInt32(Defence);
       }
       if (Critical != 0) {
-        output.WriteRawTag(80);
+        output.WriteRawTag(88);
         output.WriteInt32(Critical);
       }
       if (Exp != 0) {
-        output.WriteRawTag(88);
+        output.WriteRawTag(96);
         output.WriteInt32(Exp);
       }
       if (Faith != 0) {
-        output.WriteRawTag(96);
+        output.WriteRawTag(104);
         output.WriteInt32(Faith);
       }
       if (Will != 0) {
-        output.WriteRawTag(104);
+        output.WriteRawTag(112);
         output.WriteInt32(Will);
       }
       if (Friendly != 0) {
-        output.WriteRawTag(112);
+        output.WriteRawTag(120);
         output.WriteInt32(Friendly);
       }
       if (Karma != 0) {
-        output.WriteRawTag(120);
+        output.WriteRawTag(128, 1);
         output.WriteInt32(Karma);
       }
       if (Frame != 0) {
-        output.WriteRawTag(128, 1);
+        output.WriteRawTag(136, 1);
         output.WriteInt32(Frame);
       }
       if (Credit != 0) {
-        output.WriteRawTag(136, 1);
+        output.WriteRawTag(144, 1);
         output.WriteInt32(Credit);
       }
       if (Speed != 0F) {
-        output.WriteRawTag(149, 1);
+        output.WriteRawTag(157, 1);
         output.WriteFloat(Speed);
       }
       if (TotalExp != 0) {
-        output.WriteRawTag(152, 1);
+        output.WriteRawTag(160, 1);
         output.WriteInt32(TotalExp);
       }
       if (_unknownFields != null) {
@@ -5173,6 +5196,9 @@ namespace Google.Protobuf.Protocol {
       if (Attack != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Attack);
       }
+      if (AttackSpeed != 0F) {
+        size += 1 + 4;
+      }
       if (Defence != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Defence);
       }
@@ -5192,7 +5218,7 @@ namespace Google.Protobuf.Protocol {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Friendly);
       }
       if (Karma != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Karma);
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(Karma);
       }
       if (Frame != 0) {
         size += 2 + pb::CodedOutputStream.ComputeInt32Size(Frame);
@@ -5241,6 +5267,9 @@ namespace Google.Protobuf.Protocol {
       }
       if (other.Attack != 0) {
         Attack = other.Attack;
+      }
+      if (other.AttackSpeed != 0F) {
+        AttackSpeed = other.AttackSpeed;
       }
       if (other.Defence != 0) {
         Defence = other.Defence;
@@ -5322,47 +5351,51 @@ namespace Google.Protobuf.Protocol {
             Attack = input.ReadInt32();
             break;
           }
-          case 72: {
-            Defence = input.ReadInt32();
+          case 77: {
+            AttackSpeed = input.ReadFloat();
             break;
           }
           case 80: {
-            Critical = input.ReadInt32();
+            Defence = input.ReadInt32();
             break;
           }
           case 88: {
-            Exp = input.ReadInt32();
+            Critical = input.ReadInt32();
             break;
           }
           case 96: {
-            Faith = input.ReadInt32();
+            Exp = input.ReadInt32();
             break;
           }
           case 104: {
-            Will = input.ReadInt32();
+            Faith = input.ReadInt32();
             break;
           }
           case 112: {
-            Friendly = input.ReadInt32();
+            Will = input.ReadInt32();
             break;
           }
           case 120: {
-            Karma = input.ReadInt32();
+            Friendly = input.ReadInt32();
             break;
           }
           case 128: {
-            Frame = input.ReadInt32();
+            Karma = input.ReadInt32();
             break;
           }
           case 136: {
+            Frame = input.ReadInt32();
+            break;
+          }
+          case 144: {
             Credit = input.ReadInt32();
             break;
           }
-          case 149: {
+          case 157: {
             Speed = input.ReadFloat();
             break;
           }
-          case 152: {
+          case 160: {
             TotalExp = input.ReadInt32();
             break;
           }
@@ -5413,47 +5446,51 @@ namespace Google.Protobuf.Protocol {
             Attack = input.ReadInt32();
             break;
           }
-          case 72: {
-            Defence = input.ReadInt32();
+          case 77: {
+            AttackSpeed = input.ReadFloat();
             break;
           }
           case 80: {
-            Critical = input.ReadInt32();
+            Defence = input.ReadInt32();
             break;
           }
           case 88: {
-            Exp = input.ReadInt32();
+            Critical = input.ReadInt32();
             break;
           }
           case 96: {
-            Faith = input.ReadInt32();
+            Exp = input.ReadInt32();
             break;
           }
           case 104: {
-            Will = input.ReadInt32();
+            Faith = input.ReadInt32();
             break;
           }
           case 112: {
-            Friendly = input.ReadInt32();
+            Will = input.ReadInt32();
             break;
           }
           case 120: {
-            Karma = input.ReadInt32();
+            Friendly = input.ReadInt32();
             break;
           }
           case 128: {
-            Frame = input.ReadInt32();
+            Karma = input.ReadInt32();
             break;
           }
           case 136: {
+            Frame = input.ReadInt32();
+            break;
+          }
+          case 144: {
             Credit = input.ReadInt32();
             break;
           }
-          case 149: {
+          case 157: {
             Speed = input.ReadFloat();
             break;
           }
-          case 152: {
+          case 160: {
             TotalExp = input.ReadInt32();
             break;
           }

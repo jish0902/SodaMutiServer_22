@@ -216,7 +216,18 @@ public class SkillHandler
     }
     internal static void Skill301(GameObject obj)
     {
-        throw new NotImplementedException();
+        //시체를 일으켜 망자로 만든다
+
+
+
+
+
+
+
+
+
+
+
     }
 
     internal static void Skill303(GameObject obj)
