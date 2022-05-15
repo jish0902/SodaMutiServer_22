@@ -9,7 +9,7 @@ using Server.Game.Room;
 namespace Server.Game
 {
 
-    enum MonsterType
+    public enum MonsterAttackType
     {
         Melee = 0,
         Range = 1,
@@ -21,9 +21,12 @@ namespace Server.Game
     class Monster : GameObject
     {
         public int TemplateId { get; private set; }
-        Vector2 targetPos = new Vector2(-9999,-9999);
+        
+        public MonsterAttackType AttackType { get; private set; }
+        
         
 
+ 
         public Monster()
         {
             ObjectType = GameObjectType.Monster;
@@ -41,6 +44,7 @@ namespace Server.Game
                 stat.MergeFrom(monsterData.stat);
                 stat.Hp = monsterData.stat.MaxHp;
                 State = CreatureState.Idle;
+                AttackType = MonsterAttackType.Melee; //Todo : 나중에 바꾸기
                 Console.WriteLine(stat.AttackSpeed);
             }
             else
@@ -53,8 +57,6 @@ namespace Server.Game
         IJob _job;
         public override void Update()
         {
-
-
 
             switch (State)
             {
@@ -81,26 +83,43 @@ namespace Server.Game
 
         }
 
-        Vector2 test = new Vector2(-9999, -9999);
+
+        void CheakSkill(GameObject target)
+        {
+            if(target == null || target.Room != Room || target.Hp == 0 || target.CurrentRoomId != CurrentRoomId)
+            {
+                return;
+            }
+            float distance = (target.CellPos - CellPos).Length();
+
+            if (AttackType == MonsterAttackType.Melee)
+            {
+                if(distance < 1)
+                {
+
+                }
+            }
+            else if(AttackType == MonsterAttackType.Range)
+            {
+
+            }
+            else if(AttackType == MonsterAttackType.Explosion)
+            {
+
+            }
+
+
+
+
+        }
+
+        
         protected virtual void UpdateIdle()
         {
-            //if((CurrentRoomId) == 1)
-            //    Console.WriteLine($"Idle = {CellPos}");
-            //if ((CurrentPlanetId) == 1)
-            //{
-
-            //    targetPos = CellPos + new Vector2(1, 0);
-            //    Vector2 a = Vector2.Lerp(CellPos, targetPos, 0.1f * Speed);
-            //    CellPos = a;
-            //    Console.WriteLine("UpdateMoving : " + CellPos + "targetPos" + targetPos + "t : " + a);
-
-                
-            //}
-            //return;
             
             Player p = Room.FindCloestPlayer(this);
 
-            if (p == null || p.Room != Room || p.Hp == 0)
+            if (p == null || p.Room != Room || p.Hp == 0 || p.CurrentRoomId != CurrentRoomId)
             {
                 p = null;
                 return;
@@ -113,23 +132,18 @@ namespace Server.Game
 
         }
 
-        //long _nextMoveTick = 0;
-
-
         protected virtual void UpdateMoving()
         {
             Player p = Room.FindCloestPlayer(this);
 
             float distance = (p.CellPos - CellPos).Length();
 
-            if (p == null || p.Room != Room || p.Hp == 0 || distance <= 0.2 || p.CurrentRoomId != CurrentRoomId)
+            if (p == null || p.Room != Room || p.Hp == 0 || distance < 0.2 || p.CurrentRoomId != CurrentRoomId)
             {
                 State = CreatureState.Idle;
                 Console.WriteLine("idle로 상태변화");
                 return;
             }
-         
-            
            
             //Console.WriteLine("거리 " + distance);
 
@@ -142,7 +156,6 @@ namespace Server.Game
                 ObjectId = Id,
                 PositionInfo = PosInfo,
             };
-
             Room.BroadCast(CurrentRoomId, movepacket);
 
 
@@ -173,12 +186,16 @@ namespace Server.Game
             room.PushAfter(3000,room.EnterGame, this, true);
         }
 
+
+
+
+
         long _skillCool = 0;
         protected virtual void UpdatSkill()
         {
             if(_skillCool == 0)
             {
-
+                
 
 
 

@@ -44,20 +44,6 @@ namespace Server.Game
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public override void OnDamaged(GameObject attacker, int damage)
         {
             base.OnDamaged(attacker, damage);
