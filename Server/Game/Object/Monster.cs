@@ -136,16 +136,20 @@ namespace Server.Game
         {
             Player p = Room.FindCloestPlayer(this);
 
-            float distance = (p.CellPos - CellPos).Length();
 
-            if (p == null || p.Room != Room || p.Hp == 0 || distance < 0.2 || p.CurrentRoomId != CurrentRoomId)
+            if (p == null || p.Room != Room || p.Hp == 0 || p.CurrentRoomId != CurrentRoomId)
             {
                 State = CreatureState.Idle;
                 Console.WriteLine("idle로 상태변화");
                 return;
             }
-           
-            //Console.WriteLine("거리 " + distance);
+
+            float distance = (p.CellPos - CellPos).Length();
+
+            if(distance < 0.2) //Todo : skillrange
+            {
+                return;
+            }
 
             Dir = Vector2.Normalize(p.CellPos - CellPos);
             CellPos += Speed * Program.ServerTick / 1000 * Dir;

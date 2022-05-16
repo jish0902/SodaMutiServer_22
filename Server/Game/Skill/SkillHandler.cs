@@ -6,6 +6,7 @@ using System.Text;
 using Google.Protobuf.Protocol;
 using Google.Protobuf;
 using Server.Game.Room;
+using System.Numerics;
 
 public class SkillHandler
 {
@@ -212,7 +213,54 @@ public class SkillHandler
 
     internal static void Skill200(GameObject obj)
     {
-        throw new NotImplementedException();
+        //스킬 찾기
+        Skill skill = null;
+        if (DataManager.SkillDict.TryGetValue(200, out skill) == false)  //Todo
+            return;
+
+        //검사
+        if (obj.ObjectType != GameObjectType.Player)
+            return;
+
+        Player p = (Player)obj;
+        bool t = p.ApplySkill(200, skill.cooldown);
+        Console.WriteLine(t ? $"{obj.info.Name} 성공" : $"{obj.info.Name} 실패");
+        if (t == false) //실패하면
+            return;
+
+        Vector2 dir = Vector2.Normalize(new Vector2(p.SkillDir.X, p.SkillDir.Y));
+        //------------ 통과 --------------
+
+        S_Skill skillPacket = new S_Skill() { Info = new SkillInfo() };
+        skillPacket.ObjectId = obj.Id;
+        skillPacket.Info.SkillId = 200;
+
+        p.Room.Push(p.Room.BroadCast, p.CurrentRoomId, skillPacket);
+
+
+        Arrow arrow = ObjectManager.Instance.Add<Arrow>();
+        if (arrow == null)
+            return;
+        arrow.CurrentRoomId = p.CurrentRoomId;
+        arrow.info.Name = "Arrow";
+        arrow.Owner = p;
+        arrow.Data = skill;
+        arrow.PosInfo.State = CreatureState.Moving;
+        arrow.PosInfo.DirX = dir.X;
+        arrow.PosInfo.DirY = dir.Y;
+        arrow.PosInfo.PosX = p.PosInfo.PosX;
+        arrow.PosInfo.PosY = p.PosInfo.PosY;
+        arrow.Speed = skill.projectile.speed;
+        arrow.info.SkillId = 200;
+
+        Console.WriteLine($"P pos : {p.PosInfo.PosX},{p.PosInfo.PosY}");
+        Console.WriteLine($"arrow pos : {arrow.PosInfo.PosX},{arrow.PosInfo.PosY}");
+        p.Room.Push(p.Room.EnterGame, arrow, false);
+
+
+        // Console.WriteLine("Skill11____________");
+        //Console.WriteLine ($"{arrow.PosInfo.DirX},{arrow.PosInfo.DirY},{arrow.PosInfo.PosX},{arrow.PosInfo.PosY}");
+
     }
     internal static void Skill301(GameObject obj)
     {
@@ -260,51 +308,7 @@ public class SkillHandler
 
     internal static void Skill11(GameObject obj)
     {
-        //스킬 찾기
-        Skill skill = null;
-        if (DataManager.SkillDict.TryGetValue(501, out skill) == false)  //Todo
-            return;
-
-        //검사
-        if (obj.ObjectType != GameObjectType.Player)
-            return;
-
-        Player p = (Player)obj;
-        bool t = p.ApplySkill(11, skill.cooldown);
-        Console.WriteLine(t ? $"{obj.info.Name} 성공" : $"{obj.info.Name} 실패");
-        if (t == false) //실패하면
-            return;
-
-        //------------ 통과 --------------
-
-        S_Skill skillPacket = new S_Skill() { Info = new SkillInfo() };
-        skillPacket.ObjectId = obj.Id;
-        skillPacket.Info.SkillId = 501;
-
-        p.Room.Push(p.Room.BroadCast, p.CurrentRoomId, skillPacket);
-
-
-        Arrow arrow = ObjectManager.Instance.Add<Arrow>();
-        if (arrow == null)
-            return;
-        arrow.CurrentRoomId = p.CurrentRoomId;
-        arrow.info.Name = "Arrow";
-        arrow.Owner = p;
-        arrow.Data = skill;
-        arrow.PosInfo.State = CreatureState.Moving;
-        arrow.PosInfo.DirX = p.SkillDir.X;
-        arrow.PosInfo.DirY  = p.SkillDir.Y;
-        arrow.PosInfo.PosX = p.PosInfo.PosX;
-        arrow.PosInfo.PosY = p.PosInfo.PosY;
-        arrow.Speed = skill.projectile.speed;
-
-        Console.WriteLine($"P pos : {p.PosInfo.PosX},{p.PosInfo.PosY}");
-        Console.WriteLine($"arrow pos : {arrow.PosInfo.PosX},{arrow.PosInfo.PosY}");
-        p.Room.Push(p.Room.EnterGame, arrow, false);
-
         
-       // Console.WriteLine("Skill11____________");
-        //Console.WriteLine ($"{arrow.PosInfo.DirX},{arrow.PosInfo.DirY},{arrow.PosInfo.PosX},{arrow.PosInfo.PosY}");
     }
 
     internal static void Skill10(GameObject obj)
