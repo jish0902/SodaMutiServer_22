@@ -32,7 +32,7 @@ namespace Server.Game
 
             CellPos += Speed * Program.ServerTick / 1000 * Dir;
 
-            Console.WriteLine("Arrow" + CellPos);
+            Console.WriteLine("Arrow" + CellPos + $"time {System.Environment.TickCount64}");
 
 
             S_Move movePacket = new S_Move()

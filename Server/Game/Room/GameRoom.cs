@@ -22,10 +22,14 @@ namespace Server.Game
         {
             Map.LoadMap(mapId);
             Map.SetMonster(this,1);
-            
-            
 
 
+            //Arrow arrow = ObjectManager.Instance.Add<Arrow>();
+            //arrow.Speed = 20;
+            //arrow.CellPos = new System.Numerics.Vector2(0, 0);
+            //arrow.Dir = new System.Numerics.Vector2(1, 0);
+            //arrow.Room = this;
+            //EnterGame(arrow,false);
 
         }
 

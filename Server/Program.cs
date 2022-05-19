@@ -54,6 +54,7 @@ namespace Server
             
             GameLogic.Instance.Push(() => { GameLogic.Instance.Add(21); }); //방하나 추가
 
+            
 
             // DNS (Domain Name System)
             string host = Dns.GetHostName();

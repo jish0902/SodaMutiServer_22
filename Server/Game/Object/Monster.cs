@@ -134,6 +134,10 @@ namespace Server.Game
 
         protected virtual void UpdateMoving()
         {
+
+
+            return;
+
             Player p = Room.FindCloestPlayer(this);
 
 
