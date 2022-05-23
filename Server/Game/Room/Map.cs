@@ -249,7 +249,13 @@ namespace Server.Game.Room
 				room.Objects.Add(go);
 			}
         }
-   
+		
+		public GameObject FindObjById(int roomId,int playerId)
+        {
+			List<Player> t = GetPlanetPlayers(roomId);
+			GameObject go = t.Find(p => p.Id == playerId);
+			return go;
+		}
 
 		public int RemoveObject(GameObject go)
         {
@@ -273,12 +279,12 @@ namespace Server.Game.Room
 			}
 		}
 
-		public List<Player> GetPlanetPlayers(int id, int level = 1)
+		public List<Player> GetPlanetPlayers(int roomId, int level = 1)
 		{
-			if (id == -1)
+			if (roomId == -1)
 				return null;
 
-			Room room = Rooms.Find(r => { return r.Id == id; });
+			Room room = Rooms.Find(r => { return r.Id == roomId; });
 
 			if (room == null)
 			{

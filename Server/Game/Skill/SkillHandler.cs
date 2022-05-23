@@ -243,7 +243,7 @@ public class SkillHandler
             return;
         arrow.CurrentRoomId = p.CurrentRoomId;
         arrow.info.Name = "Arrow";
-        arrow.Owner = p;
+        arrow.OwnerId = p.Id;
         arrow.Data = skill;
         arrow.PosInfo.State = CreatureState.Moving;
         arrow.PosInfo.DirX = dir.X;
@@ -252,9 +252,10 @@ public class SkillHandler
         arrow.PosInfo.PosY = p.PosInfo.PosY;
         arrow.Speed = skill.projectile.speed;
         arrow.info.SkillId = 200;
+        arrow.Attack = skill.damage;
 
-        Console.WriteLine($"P pos : {p.PosInfo.PosX},{p.PosInfo.PosY}");
-        Console.WriteLine($"arrow pos : {arrow.PosInfo.PosX},{arrow.PosInfo.PosY}");
+        //Console.WriteLine($"P pos : {p.PosInfo.PosX},{p.PosInfo.PosY}");
+        //Console.WriteLine($"arrow pos : {arrow.PosInfo.PosX},{arrow.PosInfo.PosY}");
         p.Room.Push(p.Room.EnterGame, arrow, false);
 
 

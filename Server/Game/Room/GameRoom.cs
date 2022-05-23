@@ -21,7 +21,7 @@ namespace Server.Game
         public void Init(int mapId, int zoneCells)
         {
             Map.LoadMap(mapId);
-            Map.SetMonster(this,1);
+            Map.SetMonster(this,0);
 
 
             //Arrow arrow = ObjectManager.Instance.Add<Arrow>();
@@ -188,6 +188,7 @@ namespace Server.Game
         }
 
 
+
         public Player FindCloestPlayer(GameObject go)
         {
             Player player = null;
@@ -210,6 +211,9 @@ namespace Server.Game
             return player;
         }
 
+        
+
+
         private void SetPosAndPlanetsId(Player player)
         {
             List<Room.Room> _rooms =  Map.Rooms.FindAll(p => p.isSpawnPoint);
@@ -218,6 +222,9 @@ namespace Server.Game
             player.CurrentRoomId = _rooms[0].Id;
 
         }
+
+
+
 
     }//gameroom
 

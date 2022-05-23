@@ -113,10 +113,10 @@ namespace Server.Game
 
         public void HandleHit(Player player, C_Hit packet)
         {
-            int attackId = packet.AttackId;
-            int hitId = packet.HitId;
+            int attackId = packet.AttackId; //화살아이디
+            int hitId = packet.HitId;  //맞은아이디
 
-            if(attackId == hitId || attackId == 0 || hitId == 0 || attackId == player.Id)
+            if(attackId == hitId || attackId == 0 || hitId == 0 || attackId == player.Id  )
             { 
                 Console.WriteLine("----------공격 오류-----------");
                 return;
@@ -125,9 +125,17 @@ namespace Server.Game
             if(player.Id == hitId) //본인이 맞았는데 본인이 보고할경우
             {
                 Projectile projectile = null;
-                if(_projectilList.TryGetValue(hitId, out projectile) == true)
+                if(_projectilList.TryGetValue(attackId, out projectile) == true)
                 {
+                    if (projectile.GetOwner() == player)
+                    {
+                        return;  //본인이 본인을 때릴경우
+                    }
+
                     player.OnDamaged(projectile.GetOwner(), projectile.Attack);
+                    Console.WriteLine($"{projectile.GetOwner().info.Name}이 {player.info.Name}를 {projectile.Attack}만큼 공격");
+
+                    this.Push(LeaveGame,attackId);
                 }
 
                 //player.Hp -= 

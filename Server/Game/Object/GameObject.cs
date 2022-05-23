@@ -9,7 +9,7 @@ namespace Server.Game
     public class GameObject
     {
         public GameObjectType ObjectType { get; protected set; } = GameObjectType.None;
-        public ObjectInfo info { get; set; } = new ObjectInfo();
+        public ObjectInfo info { get; set; } = new ObjectInfo() { OwnerId = -1};
         public int CurrentRoomId
         {
             get { return info.PositionInfo.CurrentRoomId; }
@@ -21,6 +21,14 @@ namespace Server.Game
             get { return info.ObjectId; }
             set { info.ObjectId = value; }
         }
+
+        public int OwnerId
+        {
+            get { return info.OwnerId; }
+            set { info.OwnerId = value; }
+        } 
+
+
         public GameRoom Room { get; set; }
         public PositionInfo PosInfo { get; private set; } = new PositionInfo();
         public StatInfo stat { get; private set; } = new StatInfo();

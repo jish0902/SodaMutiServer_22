@@ -44,8 +44,8 @@ namespace Server.Game
                 stat.MergeFrom(monsterData.stat);
                 stat.Hp = monsterData.stat.MaxHp;
                 State = CreatureState.Idle;
-                AttackType = MonsterAttackType.Melee; //Todo : 나중에 바꾸기
-                Console.WriteLine(stat.AttackSpeed);
+                AttackType = MonsterAttackType.Melee; //Todo : 나중에 바꾸기(AttackSpeed)
+                //Console.WriteLine(stat.AttackSpeed);
             }
             else
             {
@@ -134,9 +134,6 @@ namespace Server.Game
 
         protected virtual void UpdateMoving()
         {
-
-
-            return;
 
             Player p = Room.FindCloestPlayer(this);
 

@@ -8,7 +8,7 @@ namespace Server.Game
 {
     public class Arrow : Projectile
     {
-        public GameObject Owner;
+        
         public bool active = false;
         private bool Destoryed = false;
 
@@ -19,12 +19,13 @@ namespace Server.Game
 
         public override void Update()
         {
-            if (Data == null || Data.projectile == null || Owner == null || Room == null || Destoryed == true)
+            if (Data == null || Data.projectile == null || OwnerId == -1 || Room == null || Destoryed == true)
                 return;
 
             Room.PushAfter(Program.ServerTick, Update);
             if (active == false)
             {
+                Console.WriteLine("시간" + System.Environment.TickCount64);
                 Room.PushAfter(5 * 1000, Destroy); ;
                 active = true;
                 return;
@@ -32,7 +33,7 @@ namespace Server.Game
 
             CellPos += Speed * Program.ServerTick / 1000 * Dir;
 
-            Console.WriteLine("Arrow" + CellPos + $"time {System.Environment.TickCount64}");
+            //Console.WriteLine("Arrow" + CellPos + $"time {System.Environment.TickCount64}");
 
 
             S_Move movePacket = new S_Move()
@@ -45,13 +46,12 @@ namespace Server.Game
 
             Room.BroadCast(CurrentRoomId, movePacket);
 
-
         }
 
 
         public void Destroy()
         {
-            if (Data == null || Data.projectile == null || Owner == null || Room == null)
+            if (Data == null || Data.projectile == null || OwnerId == -1 || Room == null)
                 return;
 
             Room.Push(() => { ObjectManager.Instance.Remove(Id); });
@@ -63,6 +63,11 @@ namespace Server.Game
 
         public override GameObject GetOwner()
         {
+            if(OwnerId == -1 || OwnerId == 0)
+                return null;
+
+            GameObject Owner;
+            Owner = Room.Map.FindObjById(CurrentRoomId,OwnerId);   //데이터 레이스?
             return Owner;
         }
 
