@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Text;
 using Google.Protobuf.Protocol;
 using Google.Protobuf;
-using Server.Game.Room;
 using System.Numerics;
 
 public class SkillHandler
@@ -84,7 +83,7 @@ public class SkillHandler
 
         foreach (GameObject go in p.Targets)  //아마 상관 없음
         {
-            if(go != null || go.Room != null || p.Room != null|| go.Room == p.Room || go.State != CreatureState.Dead)
+            if(go != null || go.gameRoom != null || p.gameRoom != null|| go.gameRoom == p.gameRoom || go.State != CreatureState.Dead)
                 go.OnDamaged(p, _skill.damage + p.Attack);
             Console.WriteLine($"{p.info.Name}이 {go.info.Name}에게 {_skill.damage + p.Attack}데미지 줌  남은 피: {go.Hp}");
         }
@@ -134,18 +133,18 @@ public class SkillHandler
         S_Skill skillPacket = new S_Skill() { Info = new SkillInfo() };
         skillPacket.ObjectId = obj.Id;
         skillPacket.Info.SkillId = 101;
-        obj.Room.Push(obj.Room.BroadCast, obj.CurrentRoomId, skillPacket);
+        obj.gameRoom.Push(obj.gameRoom.BroadCast, obj.CurrentRoomId, skillPacket);
 
 
         S_StatChange statPacket = new S_StatChange();
         statPacket.ObjectId = obj.Id;
         statPacket.StatInfo = obj.stat;
-        obj.Room.Push(obj.Room.BroadCast, obj.CurrentRoomId, statPacket);
+        obj.gameRoom.Push(obj.gameRoom.BroadCast, obj.CurrentRoomId, statPacket);
 
         //---------------- 후처리 --------------
     
-        obj.Room.PushAfter((int)_skill.duration * 1000,  () => {
-            if (obj == null|| obj.Room == null)
+        obj.gameRoom.PushAfter((int)_skill.duration * 1000,  () => {
+            if (obj == null|| obj.gameRoom == null)
                 return;
 
             obj.stat.Attack -= (int)_skill.attackbuff;            ////Todo: 나중에 디버프 같은거 생각해서 고치기 (이게 맞나)
@@ -153,7 +152,7 @@ public class SkillHandler
             S_StatChange StatAfter = new S_StatChange();
             statPacket.ObjectId = obj.Id;
             statPacket.StatInfo = obj.stat;
-            obj.Room.Push(obj.Room.BroadCast, obj.CurrentRoomId, StatAfter);
+            obj.gameRoom.Push(obj.gameRoom.BroadCast, obj.CurrentRoomId, StatAfter);
             return; 
         });
 
@@ -235,7 +234,7 @@ public class SkillHandler
         skillPacket.ObjectId = obj.Id;
         skillPacket.Info.SkillId = 200;
 
-        p.Room.Push(p.Room.BroadCast, p.CurrentRoomId, skillPacket);
+        p.gameRoom.Push(p.gameRoom.BroadCast, p.CurrentRoomId, skillPacket);
 
 
         Arrow arrow = ObjectManager.Instance.Add<Arrow>();
@@ -256,7 +255,7 @@ public class SkillHandler
 
         //Console.WriteLine($"P pos : {p.PosInfo.PosX},{p.PosInfo.PosY}");
         //Console.WriteLine($"arrow pos : {arrow.PosInfo.PosX},{arrow.PosInfo.PosY}");
-        p.Room.Push(p.Room.EnterGame, arrow, false);
+        p.gameRoom.Push(p.gameRoom.EnterGame, arrow, false);
 
 
         // Console.WriteLine("Skill11____________");
@@ -265,15 +264,50 @@ public class SkillHandler
     }
     internal static void Skill301(GameObject obj)
     {
-        //시체를 일으켜 망자로 만든다
+        //시체를 일으켜 망자로 만든다   몬스터 Id : 100
+        Skill skill = null;
+        if (DataManager.SkillDict.TryGetValue(301, out skill) == false)  //Todo
+            return;
+
+        //검사
+        if (obj.ObjectType != GameObjectType.Player)
+            return;
+
+        Player p = (Player)obj;
+        bool t = p.ApplySkill(301, skill.cooldown);
+        Console.WriteLine(t ? $"{obj.info.Name} 성공" : $"{obj.info.Name} 실패");
+        if (t == false) //실패하면
+            return;
+
+        Vector2 dir = Vector2.Normalize(new Vector2(p.SkillDir.X, p.SkillDir.Y));
+        //------------ 통과 --------------
+
+        S_Skill skillPacket = new S_Skill() { Info = new SkillInfo() };
+        skillPacket.ObjectId = obj.Id;
+        skillPacket.Info.SkillId = 301;
+
+        p.gameRoom.Push(p.gameRoom.BroadCast, p.CurrentRoomId, skillPacket);
 
 
+        Monster summons = ObjectManager.Instance.Add<Monster>();
+        if (summons == null)
+            return;
+        summons.OwnerId = p.Id;
+        summons.CurrentRoomId = p.CurrentRoomId;
+
+        summons.info.Name = skill.name;
+        summons.Init(100);
+
+        summons.PosInfo.MergeFrom(new PositionInfo()
+        {
+            PosX = p.CellPos.X,
+            PosY = p.CellPos.Y,
+            CurrentRoomId = p.CurrentRoomId,
+            State = CreatureState.Idle
+        });
 
 
-
-
-
-
+        p.gameRoom.Push(p.gameRoom.EnterGame, summons, false);
 
 
 

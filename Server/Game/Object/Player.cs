@@ -1,5 +1,5 @@
 ﻿using Google.Protobuf.Protocol;
-using Server.Game.Room;
+using Server.Game;
 using Server.Session;
 using System;
 using System.Collections.Generic;

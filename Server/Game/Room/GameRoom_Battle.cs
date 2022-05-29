@@ -21,31 +21,8 @@ namespace Server.Game
             int next = packet.PositionInfo.CurrentRoomId;
             int now = player.CurrentRoomId;
             if (next != now)
-            {
-                Room.Room nowRoom =  Map.Rooms.Find(r => r.Id == now);
-                if (nowRoom == null)
-                {
-                    Console.WriteLine("방 오류");
-                    return;
-                }
-                Room.Room nextRoom = nowRoom.TouarableRooms.Find(t=> t.Id == next);
-                if (nextRoom == null)
-                {
-                    Console.WriteLine($"이동 오류{nowRoom.TouarableRooms}");
-                    return;
-                }
-
-                nowRoom.Players.Remove(player);
-                nextRoom.Players.Add(player);
-                player.CurrentRoomId = next;
-
-                Console.WriteLine($"{player.info.Name}이 {now}에서 {next}로 이동");
-                Console.WriteLine($"{nextRoom.Objects.Count}");
-                foreach (GameObject go in nextRoom.Objects)
-                {
-                    Console.WriteLine($"{go.CellPos}{go.CurrentRoomId}{go.State}");
-                }
-            }
+                Map.MoveRoom(player, next);
+            
             #endregion
 
 

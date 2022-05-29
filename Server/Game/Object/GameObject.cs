@@ -22,14 +22,15 @@ namespace Server.Game
             set { info.ObjectId = value; }
         }
 
-        public int OwnerId
+        public int OwnerId  //중요 : 초기값 -1
         {
             get { return info.OwnerId; }
             set { info.OwnerId = value; }
-        } 
+        }
+        
 
 
-        public GameRoom Room { get; set; }
+        public GameRoom gameRoom { get; set; }
         public PositionInfo PosInfo { get; private set; } = new PositionInfo();
         public StatInfo stat { get; private set; } = new StatInfo();
 
@@ -59,7 +60,11 @@ namespace Server.Game
             set { stat.Attack = value; }
         }
 
-
+        public float AttackRange
+        {
+            get { return stat.AttackRange; }
+            set { stat.AttackRange = value; }
+        }
         public float Speed
         {
             get { return stat.Speed; }
@@ -111,7 +116,7 @@ namespace Server.Game
         }
         public virtual void OnDamaged(GameObject attacker, int damage)
         {
-            if (Room == null)
+            if (gameRoom == null)
                 return;
 
 
@@ -123,7 +128,7 @@ namespace Server.Game
             S_ChangeHp ChangePacket = new S_ChangeHp();
             ChangePacket.ObjectId = Id;
             ChangePacket.Hp = stat.Hp;
-            Room.BroadCast(CurrentRoomId, ChangePacket);
+            gameRoom.BroadCast(CurrentRoomId, ChangePacket);
 
             if (stat.Hp <= 0)
             {
@@ -133,7 +138,7 @@ namespace Server.Game
         }
         public virtual void OnDead(GameObject attacker)
         {
-            if (Room == null)
+            if (gameRoom == null)
                 return;
 
 
@@ -141,9 +146,9 @@ namespace Server.Game
             diePacket.ObjectId = Id;
             diePacket.AttackerId = attacker.Id;
 
-            Room.BroadCast(CurrentRoomId, diePacket);
+            gameRoom.BroadCast(CurrentRoomId, diePacket);
 
-            GameRoom room = Room;
+            GameRoom room = gameRoom;
             room.Push(room.LeaveGame, Id);
 
             room.Push(new Job(() => {

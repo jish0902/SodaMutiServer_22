@@ -4,7 +4,6 @@ using Google.Protobuf.Protocol;
 using System.Text;
 using Server.Data;
 using System.Numerics;
-using Server.Game.Room;
 
 namespace Server.Game
 {
@@ -18,13 +17,14 @@ namespace Server.Game
 
 
 
-    class Monster : GameObject
+     public class Monster : GameObject
     {
         public int TemplateId { get; private set; }
         
         public MonsterAttackType AttackType { get; private set; }
-        
-        
+
+        private GameObject _attackTarget;
+        private GameObject _Owner;
 
  
         public Monster()
@@ -45,6 +45,7 @@ namespace Server.Game
                 stat.Hp = monsterData.stat.MaxHp;
                 State = CreatureState.Idle;
                 AttackType = MonsterAttackType.Melee; //Todo : 나중에 바꾸기(AttackSpeed)
+                Speed = monsterData.stat.Speed;
                 //Console.WriteLine(stat.AttackSpeed);
             }
             else
@@ -57,7 +58,7 @@ namespace Server.Game
         IJob _job;
         public override void Update()
         {
-
+           
             switch (State)
             {
                 case CreatureState.Idle:
@@ -75,9 +76,9 @@ namespace Server.Game
                 default:
                     break;
             }
-            if (Room != null)
+            if (gameRoom != null)
             {
-                _job = Room.PushAfter(Program.ServerTick, Update);
+                _job = gameRoom.PushAfter(Program.ServerTick, Update);
             }
 
 
@@ -86,7 +87,7 @@ namespace Server.Game
 
         void CheakSkill(GameObject target)
         {
-            if(target == null || target.Room != Room || target.Hp == 0 || target.CurrentRoomId != CurrentRoomId)
+            if(target == null || target.gameRoom != gameRoom || target.Hp == 0 || target.CurrentRoomId != CurrentRoomId)
             {
                 return;
             }
@@ -116,17 +117,36 @@ namespace Server.Game
         
         protected virtual void UpdateIdle()
         {
-            
-            Player p = Room.FindCloestPlayer(this);
+            _attackTarget = null;
 
-            if (p == null || p.Room != Room || p.Hp == 0 || p.CurrentRoomId != CurrentRoomId)
+            if (OwnerId != -1) //주인이 있으면
             {
-                p = null;
+                Player p = gameRoom.FindCloestPlayer(this, except: new int[] { OwnerId });
+                Monster m = gameRoom.FindCloestMonster(this, except: new int[] { OwnerId });
+
+
+
+                if (p != null && m != null)
+                    _attackTarget = Vector2.Distance(p.CellPos, CellPos) <= Vector2.Distance(m.CellPos, CellPos) ? _attackTarget : m;
+                else if (p != null)
+                    _attackTarget = p;
+                else if(m != null)
+                    _attackTarget = m;
+                
+                //플레이어가 가까우면 플레이어 아니면 몬스터
+                
+            }
+            else  //주인없으면 가까운 플레이어 때림
+            {
+                _attackTarget = gameRoom.FindCloestPlayer(this);
+            }
+
+            if (_attackTarget == null || _attackTarget.gameRoom != gameRoom || _attackTarget.Hp == 0 || _attackTarget.CurrentRoomId != CurrentRoomId)
+            {
+                _attackTarget = null;
                 return;
             }
 
-            Game.Room.Room planet = Room.Map.Rooms.Find(r => r.Id == (CurrentRoomId));
-           
             State = CreatureState.Moving;
             Console.WriteLine("Moving로 상태변화");
 
@@ -135,22 +155,27 @@ namespace Server.Game
         protected virtual void UpdateMoving()
         {
 
-            Player p = Room.FindCloestPlayer(this);
+            Player p = gameRoom.FindCloestPlayer(this);
 
 
-            if (p == null || p.Room != Room || p.Hp == 0 || p.CurrentRoomId != CurrentRoomId)
+            if (p == null || p.gameRoom != gameRoom || p.Hp == 0 || p.CurrentRoomId != CurrentRoomId)
             {
                 State = CreatureState.Idle;
+                p = null;
                 Console.WriteLine("idle로 상태변화");
                 return;
             }
 
             float distance = (p.CellPos - CellPos).Length();
 
-            if(distance < 0.2) //Todo : skillrange
+            
+            if(distance < AttackRange - 0.2f)
             {
+                _attackTarget = p;
+                State = CreatureState.Skill;
                 return;
             }
+
 
             Dir = Vector2.Normalize(p.CellPos - CellPos);
             CellPos += Speed * Program.ServerTick / 1000 * Dir;
@@ -161,7 +186,7 @@ namespace Server.Game
                 ObjectId = Id,
                 PositionInfo = PosInfo,
             };
-            Room.BroadCast(CurrentRoomId, movepacket);
+            gameRoom.BroadCast(CurrentRoomId, movepacket);
 
 
             //BroadCastMove();
@@ -169,26 +194,36 @@ namespace Server.Game
 
         public override void OnDead(GameObject attacker)
         {
-            if (Room == null)
+            if (gameRoom == null)
                 return;
 
+            _attackTarget = null;
+            
+            if(OwnerId == -1)  //주인이 없으면
+            {
+                GameRoom room = gameRoom;
+                room.Push(room.LeaveGame, Id);
 
+                room.PushAfter(3000, new Job(() => {
+                    stat.Hp = stat.MaxHp;
+                    PosInfo.State = CreatureState.Idle;
+                }));
+
+                room.PushAfter(3000, room.EnterGame, this, true);
+            }
+            else                 //주인이 있으면
+            {
+                OwnerId = -1;
+            }
+
+            
             S_Die diePacket = new S_Die();
             diePacket.ObjectId = Id;
             diePacket.AttackerId = attacker.Id;
+            gameRoom.BroadCast(CurrentRoomId, diePacket);
 
-            Room.BroadCast(CurrentRoomId, diePacket);
 
             State = CreatureState.Dead;
-            GameRoom room = Room;
-            room.Push(room.LeaveGame, Id);
-
-            room.PushAfter(3000,new Job(() => {
-                stat.Hp = stat.MaxHp;
-                PosInfo.State = CreatureState.Idle;
-            }));
-
-            room.PushAfter(3000,room.EnterGame, this, true);
         }
 
 
@@ -200,10 +235,8 @@ namespace Server.Game
         {
             if(_skillCool == 0)
             {
-                
-
-
-
+                if(_attackTarget != null)
+                _attackTarget.OnDamaged(this, Attack);       //--------------공격----------------------
 
                 _skillCool = Environment.TickCount64 + (int)(stat.AttackSpeed * 1000);
             }
@@ -213,7 +246,7 @@ namespace Server.Game
 
             _skillCool = 0;
 
-
+            State = CreatureState.Idle;
 
 
         }
@@ -231,7 +264,7 @@ namespace Server.Game
             S_Move movepacket = new S_Move();
             movepacket.ObjectId = Id;
             movepacket.PositionInfo = PosInfo;
-            Room.BroadCast(CurrentRoomId, movepacket);
+            gameRoom.BroadCast(CurrentRoomId, movepacket);
         }
     }
 

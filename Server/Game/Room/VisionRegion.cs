@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Server.Game.Room
+namespace Server.Game
 {
     public class VisionRegion
     {
@@ -20,10 +20,10 @@ namespace Server.Game.Room
 
         public HashSet<GameObject> GatherObjects()
         {
-            if (Owner == null || Owner.Room == null || Owner.CurrentRoomId == -1)
+            if (Owner == null || Owner.gameRoom == null || Owner.CurrentRoomId == -1)
                 return null;
 
-            HashSet<GameObject> objects =  Owner.Room.Map.GetPlanetObjects(Owner.CurrentRoomId);
+            HashSet<GameObject> objects =  Owner.gameRoom.Map.GetPlanetObjects(Owner.CurrentRoomId);
 
             if (objects == null)
                 return null;
@@ -32,10 +32,10 @@ namespace Server.Game.Room
         }
         public HashSet<GameObject> GatherPlayers()
         {
-            if (Owner == null || Owner.Room == null || Owner.CurrentRoomId == -1)
+            if (Owner == null || Owner.gameRoom == null || Owner.CurrentRoomId == -1)
                 return null;
 
-            HashSet<GameObject> objects =  Owner.Room.Map.GetPlanetPlayers(Owner.CurrentRoomId).ToHashSet<GameObject>();
+            HashSet<GameObject> objects =  Owner.gameRoom.Map.GetPlanetPlayers(Owner.CurrentRoomId).ToHashSet<GameObject>();
 
             if (objects == null)
                 return null;
@@ -44,7 +44,7 @@ namespace Server.Game.Room
 
         public void Update()
         {
-            if (Owner == null || Owner.Room == null || Owner.CurrentRoomId == -1)
+            if (Owner == null || Owner.gameRoom == null || Owner.CurrentRoomId == -1)
                 return;
 
             HashSet<GameObject> currentObject = GatherObjects();
@@ -81,7 +81,7 @@ namespace Server.Game.Room
 
             PreviousObjects = currentObject;
 
-            Owner.Room.PushAfter(Program.ServerTick, Update); // .2초
+            Owner.gameRoom.PushAfter(Program.ServerTick, Update); // .2초
         }//update
 
     }

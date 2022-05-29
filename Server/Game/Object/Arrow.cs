@@ -19,14 +19,14 @@ namespace Server.Game
 
         public override void Update()
         {
-            if (Data == null || Data.projectile == null || OwnerId == -1 || Room == null || Destoryed == true)
+            if (Data == null || Data.projectile == null || OwnerId == -1 || gameRoom == null || Destoryed == true)
                 return;
 
-            Room.PushAfter(Program.ServerTick, Update);
+            gameRoom.PushAfter(Program.ServerTick, Update);
             if (active == false)
             {
                 Console.WriteLine("시간" + System.Environment.TickCount64);
-                Room.PushAfter(5 * 1000, Destroy); ;
+                gameRoom.PushAfter(5 * 1000, Destroy); ;
                 active = true;
                 return;
             }
@@ -44,18 +44,18 @@ namespace Server.Game
 
 
 
-            Room.BroadCast(CurrentRoomId, movePacket);
+            gameRoom.BroadCast(CurrentRoomId, movePacket);
 
         }
 
 
         public void Destroy()
         {
-            if (Data == null || Data.projectile == null || OwnerId == -1 || Room == null)
+            if (Data == null || Data.projectile == null || OwnerId == -1 || gameRoom == null)
                 return;
 
-            Room.Push(() => { ObjectManager.Instance.Remove(Id); });
-            Room.Push(Room.LeaveGame, Id);
+            gameRoom.Push(() => { ObjectManager.Instance.Remove(Id); });
+            gameRoom.Push(gameRoom.LeaveGame, Id);
             Destoryed = true;
             Console.WriteLine("Destory");
 
@@ -67,7 +67,7 @@ namespace Server.Game
                 return null;
 
             GameObject Owner;
-            Owner = Room.Map.FindObjById(CurrentRoomId,OwnerId);   //데이터 레이스?
+            Owner = gameRoom.Map.FindObjById(CurrentRoomId,OwnerId);   //데이터 레이스?
             return Owner;
         }
 

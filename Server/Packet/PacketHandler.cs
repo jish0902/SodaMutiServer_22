@@ -45,7 +45,7 @@ class PacketHandler
         if (player == null)
             return; 
 
-        GameRoom room = player.Room; //나중에 null로 바꿔도 참조가능
+        GameRoom room = player.gameRoom; //나중에 null로 바꿔도 참조가능
         if (room == null)
             return;
 
@@ -63,7 +63,7 @@ class PacketHandler
         if (player == null)
             return;
 
-        GameRoom room = player.Room;
+        GameRoom room = player.gameRoom;
         if (room == null)
             return;
 
@@ -83,7 +83,7 @@ class PacketHandler
         if (player == null)
             return;
 
-        GameRoom room = player.Room;
+        GameRoom room = player.gameRoom;
         if (room == null)
             return;
 

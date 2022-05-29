@@ -1,6 +1,5 @@
 ﻿using Google.Protobuf;
 using Google.Protobuf.Protocol;
-using Server.Game.Room;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,7 +64,7 @@ namespace Server.Game
             if(type == GameObjectType.Player){
                 Player player = gameObject as Player;
                 _playerList.Add(gameObject.Id, player);
-                player.Room = this;
+                player.gameRoom = this;
 
                 //player.RefreshAddtionalStat();
 
@@ -81,7 +80,10 @@ namespace Server.Game
                 //        break;
                 //}
 
-                SetPosAndPlanetsId(player);
+                if(Map.SetPosAndRoomtsId(player) == false)
+                {
+                    Console.WriteLine("맵 스폰 오류");
+                }
 
                 Map.AddObject(player);
 
@@ -102,7 +104,7 @@ namespace Server.Game
             {
                 Monster monster = gameObject as Monster;
                 _MonsterList.Add(gameObject.Id, monster);
-                monster.Room = this;
+                monster.gameRoom = this;
 
                 Map.AddObject(monster);
                 monster.Update();
@@ -111,7 +113,7 @@ namespace Server.Game
             {
                 Projectile projectile = gameObject as Projectile;
                 _projectilList.Add(gameObject.Id, projectile);
-                projectile.Room = this;
+                projectile.gameRoom = this;
 
                 Map.AddObject(projectile);
                 projectile.Update();
@@ -139,10 +141,8 @@ namespace Server.Game
                 Player player;
                 if (true == _playerList.TryGetValue(id, out player))
                 {
-                    Room.Room room = Map.Rooms.Find(p => p.Id == player.CurrentRoomId);
-                    room.Players.Remove(player);
-
-                    Map.RemoveObject(player);
+                    if(Map.RemoveObject(player) == -1)
+                        Console.WriteLine("지우기 오류");
 
                     S_Despawn despawnpacket = new S_Despawn();
                     despawnpacket.ObjcetIds.Add(id);
@@ -156,12 +156,10 @@ namespace Server.Game
                 Monster monster;
                 if (true == _MonsterList.TryGetValue(id, out monster))
                 {
-                    Room.Room room = Map.Rooms.Find(p => p.Id == monster.CurrentRoomId);
-                    room.Objects.Remove(monster);
-                    
-                    Map.RemoveObject(monster);
+                    if(Map.RemoveObject(monster) == -1)
+                        Console.WriteLine("지우기 오류"); ;
 
-                    S_Despawn despawnpacket = new S_Despawn();
+                        S_Despawn despawnpacket = new S_Despawn();
                     despawnpacket.ObjcetIds.Add(id);
                     BroadCast(monster.CurrentRoomId, despawnpacket);
                     _MonsterList.Remove(id);
@@ -173,11 +171,8 @@ namespace Server.Game
                 Projectile projectile;
                 if (true == _projectilList.TryGetValue(id, out projectile))
                 {
-                    Room.Room room = Map.Rooms.Find(p => p.Id == projectile.CurrentRoomId);
-                    room.Objects.Remove(projectile);
-
-                    Map.RemoveObject(projectile);
-
+                    if(Map.RemoveObject(projectile) == 1)
+                        Console.WriteLine("지우기 오류");
                     S_Despawn despawnpacket = new S_Despawn();
                     despawnpacket.ObjcetIds.Add(id);
                     BroadCast(projectile.CurrentRoomId, despawnpacket);
@@ -189,7 +184,7 @@ namespace Server.Game
 
 
 
-        public Player FindCloestPlayer(GameObject go)
+        public Player FindCloestPlayer(GameObject go,int[] except = null)
         {
             Player player = null;
 
@@ -200,6 +195,9 @@ namespace Server.Game
             Vector2 t = new Vector2() { X = 99, Y=99 };
             foreach (Player p in players)
             {
+               if(except != null&& except.Contains(p.Id))
+                    continue;
+
                 Vector2 temp = p.CellPos - go.CellPos;
                 if(t.Length() > temp.Length())
                 {
@@ -211,17 +209,33 @@ namespace Server.Game
             return player;
         }
 
-        
-
-
-        private void SetPosAndPlanetsId(Player player)
+        public Monster FindCloestMonster(GameObject go, int[] except = null)
         {
-            List<Room.Room> _rooms =  Map.Rooms.FindAll(p => p.isSpawnPoint);
-            //임시
-            player.CellPos = new Vector2(_rooms[0].PosX , _rooms[0].PosY);
-            player.CurrentRoomId = _rooms[0].Id;
+            Monster monster = null;
 
+            List<GameObject> monsters = Map.GetPlanetObjects(go.CurrentRoomId).Where(i => i.ObjectType == GameObjectType.Monster).ToList();
+            
+            if (monsters == null)
+                return monster;
+
+            Vector2 t = new Vector2() { X = 99, Y = 99 };
+            foreach (Monster p in monsters)
+            {
+                if (except.Contains(p.Id))
+                    continue;
+
+                Vector2 temp = p.CellPos - go.CellPos;
+                if (t.Length() > temp.Length())
+                {
+                    t = temp;
+                    monster = p;
+                }
+            }
+
+            return monster;
         }
+
+
 
 
 

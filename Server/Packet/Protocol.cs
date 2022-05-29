@@ -54,7 +54,7 @@ namespace Google.Protobuf.Protocol {
             "AhIMCgRwb3NYGAUgASgCEgwKBHBvc1kYBiABKAISDAoEcm90WhgHIAEoAiLG",
             "AgoIU3RhdEluZm8SDQoFY2xhc3MYASABKAUSDQoFbGV2ZWwYAiABKAUSCgoC",
             "aHAYAyABKAUSDQoFbWF4SHAYBCABKAUSCgoCbXAYBSABKAUSDQoFbWF4TXAY",
-            "BiABKAUSEwoLYXR0YWNrUmFuZ2UYByABKAUSDgoGYXR0YWNrGAggASgFEhMK",
+            "BiABKAUSEwoLYXR0YWNrUmFuZ2UYByABKAISDgoGYXR0YWNrGAggASgFEhMK",
             "C2F0dGFja1NwZWVkGAkgASgCEg8KB2RlZmVuY2UYCiABKAUSEAoIY3JpdGlj",
             "YWwYCyABKAUSCwoDZXhwGAwgASgFEg0KBWZhaXRoGA0gASgFEgwKBHdpbGwY",
             "DiABKAUSEAoIZnJpZW5kbHkYDyABKAUSDQoFa2FybWEYECABKAUSDQoFZnJh",
@@ -4858,10 +4858,10 @@ namespace Google.Protobuf.Protocol {
 
     /// <summary>Field number for the "attackRange" field.</summary>
     public const int AttackRangeFieldNumber = 7;
-    private int attackRange_;
+    private float attackRange_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int AttackRange {
+    public float AttackRange {
       get { return attackRange_; }
       set {
         attackRange_ = value;
@@ -5045,7 +5045,7 @@ namespace Google.Protobuf.Protocol {
       if (MaxHp != other.MaxHp) return false;
       if (Mp != other.Mp) return false;
       if (MaxMp != other.MaxMp) return false;
-      if (AttackRange != other.AttackRange) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(AttackRange, other.AttackRange)) return false;
       if (Attack != other.Attack) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(AttackSpeed, other.AttackSpeed)) return false;
       if (Defence != other.Defence) return false;
@@ -5072,7 +5072,7 @@ namespace Google.Protobuf.Protocol {
       if (MaxHp != 0) hash ^= MaxHp.GetHashCode();
       if (Mp != 0) hash ^= Mp.GetHashCode();
       if (MaxMp != 0) hash ^= MaxMp.GetHashCode();
-      if (AttackRange != 0) hash ^= AttackRange.GetHashCode();
+      if (AttackRange != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(AttackRange);
       if (Attack != 0) hash ^= Attack.GetHashCode();
       if (AttackSpeed != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(AttackSpeed);
       if (Defence != 0) hash ^= Defence.GetHashCode();
@@ -5128,9 +5128,9 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(48);
         output.WriteInt32(MaxMp);
       }
-      if (AttackRange != 0) {
-        output.WriteRawTag(56);
-        output.WriteInt32(AttackRange);
+      if (AttackRange != 0F) {
+        output.WriteRawTag(61);
+        output.WriteFloat(AttackRange);
       }
       if (Attack != 0) {
         output.WriteRawTag(64);
@@ -5218,9 +5218,9 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(48);
         output.WriteInt32(MaxMp);
       }
-      if (AttackRange != 0) {
-        output.WriteRawTag(56);
-        output.WriteInt32(AttackRange);
+      if (AttackRange != 0F) {
+        output.WriteRawTag(61);
+        output.WriteFloat(AttackRange);
       }
       if (Attack != 0) {
         output.WriteRawTag(64);
@@ -5302,8 +5302,8 @@ namespace Google.Protobuf.Protocol {
       if (MaxMp != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxMp);
       }
-      if (AttackRange != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(AttackRange);
+      if (AttackRange != 0F) {
+        size += 1 + 4;
       }
       if (Attack != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Attack);
@@ -5374,7 +5374,7 @@ namespace Google.Protobuf.Protocol {
       if (other.MaxMp != 0) {
         MaxMp = other.MaxMp;
       }
-      if (other.AttackRange != 0) {
+      if (other.AttackRange != 0F) {
         AttackRange = other.AttackRange;
       }
       if (other.Attack != 0) {
@@ -5455,8 +5455,8 @@ namespace Google.Protobuf.Protocol {
             MaxMp = input.ReadInt32();
             break;
           }
-          case 56: {
-            AttackRange = input.ReadInt32();
+          case 61: {
+            AttackRange = input.ReadFloat();
             break;
           }
           case 64: {
@@ -5550,8 +5550,8 @@ namespace Google.Protobuf.Protocol {
             MaxMp = input.ReadInt32();
             break;
           }
-          case 56: {
-            AttackRange = input.ReadInt32();
+          case 61: {
+            AttackRange = input.ReadFloat();
             break;
           }
           case 64: {
