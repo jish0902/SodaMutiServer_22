@@ -15,6 +15,11 @@ namespace Server.Game
         Explosion = 2,
     }
 
+    public enum MonsterSpawnType  //직접 소환 or 세력 느낌
+    {
+        player = 0,
+        skill = 1,
+    }
 
 
      public class Monster : GameObject
@@ -23,10 +28,10 @@ namespace Server.Game
         
         public MonsterAttackType AttackType { get; private set; }
 
-        private GameObject _attackTarget;
-        private GameObject _Owner;
+        public MonsterSpawnType SpawnType { get; set; } = MonsterSpawnType.skill;
 
- 
+        private readonly int FindRange = 12;
+
         public Monster()
         {
             ObjectType = GameObjectType.Monster;
@@ -87,7 +92,7 @@ namespace Server.Game
 
         void CheakSkill(GameObject target)
         {
-            if(target == null || target.gameRoom != gameRoom || target.Hp == 0 || target.CurrentRoomId != CurrentRoomId)
+            if(target != null && target.gameRoom != gameRoom || target.Hp == 0 || target.CurrentRoomId != CurrentRoomId)
             {
                 return;
             }
@@ -114,72 +119,169 @@ namespace Server.Game
 
         }
 
-        
-        protected virtual void UpdateIdle()
+        private GameObject _target;
+
+        protected virtual void UpdateIdle()  // 타겟에 가장 가까운 거리까지 이동
         {
-            _attackTarget = null;
+            _target = null;   
 
             if (OwnerId != -1) //주인이 있으면
             {
-                Player p = gameRoom.FindCloestPlayer(this, except: new int[] { OwnerId });
+                GameObject owner = gameRoom.Map.FindObjById(CurrentRoomId, OwnerId);
+                if(owner != null && SpawnType == MonsterSpawnType.player) //주인이 있고 주인을 따라가는 상태이고 같은 방에 있으면
+                {
+                    if(Vector2.Distance(owner.CellPos,CellPos) > FindRange + 3)
+                    {
+                        _target = owner;
+                    }
+                }
+
+                if(_target == null)  //주인 방에 없거나, 주인을 따라가는 상태가아니거나, 주인과 충분히 가까우면
+                {
+                    Player p = gameRoom.FindCloestPlayer(this, except: new int[] { OwnerId });
+                    Monster m = gameRoom.FindCloestMonster(this, except: new int[] { OwnerId });
+
+                    if (m != null && p != null) //둘다 있으면
+                    {
+                        float disM = Vector2.Distance(m.CellPos, CellPos);
+                        float disP = Vector2.Distance(p.CellPos, CellPos);
+
+                        if (MathF.Min(disM, disP) > FindRange)  //가장 가까운 오브젝트가 FindRange 보다 멀면
+                        {
+                            _target = null;
+                            return;
+                        }
+
+                        if (disM >= disP)
+                            _target = p;
+                        else
+                            _target = m;
+                    }
+                    else if (m != null) //몬스터만 있으면
+                        _target = m;
+                    else if (p != null) //플레이어만 잇으면
+                        _target = p;
+
+                    //가장 가까운 사람 먼저 따라감
+                }
+                
+
+            }
+            else  //주인없으면 (플레이어 or 주인있는 몬스터중) 가장 가까운애 때림
+            {
+                Player p = gameRoom.FindCloestPlayer(this);
                 Monster m = gameRoom.FindCloestMonster(this, except: new int[] { OwnerId });
 
+                if (m != null && p != null) //둘다 있으면
+                {
+                    float disM = Vector2.Distance(m.CellPos, CellPos);
+                    float disP = Vector2.Distance(p.CellPos, CellPos);
 
+                    if (MathF.Min(disM, disP) > FindRange)  //가장 가까운 오브젝트가 FindRange 보다 멀면
+                    {
+                        _target = null;
+                        return;
+                    }
 
-                if (p != null && m != null)
-                    _attackTarget = Vector2.Distance(p.CellPos, CellPos) <= Vector2.Distance(m.CellPos, CellPos) ? _attackTarget : m;
-                else if (p != null)
-                    _attackTarget = p;
-                else if(m != null)
-                    _attackTarget = m;
-                
-                //플레이어가 가까우면 플레이어 아니면 몬스터
-                
+                    if (disM >= disP)
+                        _target = p;
+                    else
+                        _target = m;
+                }
+                else if (m != null) //몬스터만 있으면
+                    _target = m;
+                else if (p != null) //플레이어만 잇으면
+                    _target = p;
             }
-            else  //주인없으면 가까운 플레이어 때림
-            {
-                _attackTarget = gameRoom.FindCloestPlayer(this);
-            }
 
-            if (_attackTarget == null || _attackTarget.gameRoom != gameRoom || _attackTarget.Hp == 0 || _attackTarget.CurrentRoomId != CurrentRoomId)
+            if (_target == null || _target.gameRoom != gameRoom || _target.Hp == 0 || _target.CurrentRoomId != CurrentRoomId)
             {
-                _attackTarget = null;
+                _target = null;
                 return;
             }
 
+
+            //Todo : _target의 a* 알고리즘 정렬후 한칸 움직임
+
+            _moveTime = 0;
             State = CreatureState.Moving;
             Console.WriteLine("Moving로 상태변화");
-
         }
 
+
+        long _moveTime; //1초마다 idle로 가서 다시 가까운애 찾기
         protected virtual void UpdateMoving()
         {
 
-            Player p = gameRoom.FindCloestPlayer(this);
-
-
-            if (p == null || p.gameRoom != gameRoom || p.Hp == 0 || p.CurrentRoomId != CurrentRoomId)
+            if (_target == null || _target.gameRoom != gameRoom || _target.Hp == 0 || _target.CurrentRoomId != CurrentRoomId)
             {
                 State = CreatureState.Idle;
-                p = null;
+                _target = null;
                 Console.WriteLine("idle로 상태변화");
                 return;
             }
 
-            float distance = (p.CellPos - CellPos).Length();
-
-            
-            if(distance < AttackRange - 0.2f)
+            if(_target.Id != OwnerId &&  Vector2.Distance(_target.CellPos, CellPos) > FindRange)  //_target이 주인이 아니고 거리가 멀어지면
             {
-                _attackTarget = p;
-                State = CreatureState.Skill;
+                State = CreatureState.Idle;
+                _target = null;
+                Console.WriteLine("(FindRange)idle로 상태변화");
                 return;
             }
 
 
-            Dir = Vector2.Normalize(p.CellPos - CellPos);
-            CellPos += Speed * Program.ServerTick / 1000 * Dir;
+            #region MoveTime
+            if (_moveTime == 0)
+            {
+                _moveTime = Environment.TickCount64 + 3000;
+            }
+            else
+            {
+                if (_moveTime <= Environment.TickCount64)
+                {
+                    _moveTime = 0;
+                    State = CreatureState.Idle;
+                    _target = null;
+                    Console.WriteLine("(_time)idle로 상태변화");
+                    return;
+                }
+            }
 
+            #endregion
+
+
+
+            if (OwnerId != -1 && (_target.Id == OwnerId || _target.OwnerId == OwnerId)) //주인이 있고 타겟이 주인이거나 주인의 하수인이면
+            {
+                float _dis = Vector2.Distance(_target.CellPos, CellPos);
+                if (_dis > FindRange + 5)  //너무 멀면 빠르게 이동               Todo : 순간이동 구현
+                {
+                    Dir = Vector2.Normalize(_target.CellPos - CellPos);
+                    CellPos += Speed * 2 * Program.ServerTick / 1000 * Dir;
+                }
+                else //적당히 멀면
+                {
+                    Dir = Vector2.Normalize(_target.CellPos - CellPos);
+                    CellPos += Speed * Program.ServerTick / 1000 * Dir;
+                }
+                
+            }
+            else //적이면
+            {
+                #region 스킬 사용
+                float distance = (_target.CellPos - CellPos).Length();
+                if (distance <= AttackRange )
+                {
+                    State = CreatureState.Skill;
+                    return;
+                }
+                #endregion
+
+                Dir = Vector2.Normalize(_target.CellPos - CellPos);
+                CellPos += Speed * Program.ServerTick / 1000 * Dir;
+            }
+
+           
 
             S_Move movepacket = new S_Move()
             {
@@ -187,7 +289,6 @@ namespace Server.Game
                 PositionInfo = PosInfo,
             };
             gameRoom.BroadCast(CurrentRoomId, movepacket);
-
 
             //BroadCastMove();
         }
@@ -197,7 +298,7 @@ namespace Server.Game
             if (gameRoom == null)
                 return;
 
-            _attackTarget = null;
+            _target = null;
             
             if(OwnerId == -1)  //주인이 없으면
             {
@@ -214,6 +315,9 @@ namespace Server.Game
             else                 //주인이 있으면
             {
                 OwnerId = -1;
+
+                GameRoom room = gameRoom;
+                room.Push(room.LeaveGame, Id);
             }
 
             
@@ -233,10 +337,36 @@ namespace Server.Game
         long _skillCool = 0;
         protected virtual void UpdatSkill()
         {
-            if(_skillCool == 0)
+
+            if (_target == null || _target.gameRoom != gameRoom || _target.Hp == 0 || _target.CurrentRoomId != CurrentRoomId)
             {
-                if(_attackTarget != null)
-                _attackTarget.OnDamaged(this, Attack);       //--------------공격----------------------
+                State = CreatureState.Idle;
+                _target = null;
+                Console.WriteLine("idle로 상태변화");
+                return;
+            }
+
+            if (OwnerId != -1 && (_target.Id == OwnerId || _target.OwnerId == OwnerId)) //주인이 없거나 주인이거나 주인의 하수인이면
+            {
+                State = CreatureState.Idle;
+                _target = null;
+                Console.WriteLine("idle로 상태변화");
+                return;
+            }
+
+            float distance = (_target.CellPos - CellPos).Length();
+            if (distance > AttackRange)
+            {
+                State = CreatureState.Idle;
+                _target = null;
+                Console.WriteLine("idle로 상태변화");
+                return;
+            }
+
+            if (_skillCool == 0)
+            {
+                if(_target != null)
+                _target.OnDamaged(this, Attack);       //--------------공격----------------------
 
                 _skillCool = Environment.TickCount64 + (int)(stat.AttackSpeed * 1000);
             }
@@ -247,8 +377,6 @@ namespace Server.Game
             _skillCool = 0;
 
             State = CreatureState.Idle;
-
-
         }
         
         

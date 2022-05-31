@@ -20,7 +20,7 @@ namespace Server.Game
         public void Init(int mapId, int zoneCells)
         {
             Map.LoadMap(mapId);
-            Map.SetMonster(this,0);
+            Map.SetMonster(this,1);
 
 
             //Arrow arrow = ObjectManager.Instance.Add<Arrow>();
@@ -191,12 +191,17 @@ namespace Server.Game
             List<Player> players =  Map.GetPlanetPlayers(go.CurrentRoomId);
             if (players == null)
                 return player;
+            
+            if(players.Count() == 0)
+                return player;
 
             Vector2 t = new Vector2() { X = 99, Y=99 };
             foreach (Player p in players)
             {
-               if(except != null&& except.Contains(p.Id))
-                    continue;
+                if (except != null)
+                    if (except.Contains(p.Id) || except.Contains(p.OwnerId))
+                        continue; ;
+              
 
                 Vector2 temp = p.CellPos - go.CellPos;
                 if(t.Length() > temp.Length())
@@ -221,7 +226,7 @@ namespace Server.Game
             Vector2 t = new Vector2() { X = 99, Y = 99 };
             foreach (Monster p in monsters)
             {
-                if (except.Contains(p.Id))
+                if (except != null && except.Contains(p.Id) || except.Contains(p.OwnerId))
                     continue;
 
                 Vector2 temp = p.CellPos - go.CellPos;

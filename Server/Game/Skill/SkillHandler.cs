@@ -294,6 +294,7 @@ public class SkillHandler
             return;
         summons.OwnerId = p.Id;
         summons.CurrentRoomId = p.CurrentRoomId;
+        summons.SpawnType = MonsterSpawnType.player;
 
         summons.info.Name = skill.name;
         summons.Init(100);
