@@ -51,10 +51,14 @@ namespace Server.Game
 
 	public class Map 
     {
-		public Vector2 ZeroIndex { get; private set; }
-		public int[,] MapArray { get; private set; }
+		public Vector2Int Bleft { get; private set; }
+		public Vector2Int Tright { get; private set; }
+
+
+		public int[,] _collisions;
 		private List<Room> Rooms { get;  set; } = new List<Room>();  //요기서만 사용
 
+		int roomSize = 0;
 		public void LoadMap(int mapId, string pathPrefix = "../../../../../Common/MapData")
 		{
 			int Distance = 22;
@@ -107,24 +111,21 @@ namespace Server.Game
 
 
 			string[] minIndex = reader.ReadLine().Split('/');
-			ZeroIndex = new Vector2(float.Parse(minIndex[0]), float.Parse(minIndex[1]));
 
-			int roomSize = int.Parse(reader.ReadLine());
-			MapArray = new int[roomSize, roomSize];
+			roomSize = int.Parse(reader.ReadLine());
 
+			Bleft = new Vector2Int(int.Parse(minIndex[0]), int.Parse(minIndex[1]));
+			Tright = new Vector2Int(Bleft.x + (roomSize - 1), Bleft.y + (roomSize - 1));
+
+
+			_collisions = new int[roomSize, roomSize];
 
 
 			for (int x = 0; x < roomSize; x++)
             {
 				Buffer.BlockCopy(
 					 Array.ConvertAll<string, int>(reader.ReadLine().Split(','), s => int.Parse(s)),
-					 0, MapArray, x * roomSize * sizeof(int), roomSize * sizeof(int));
-
-                //foreach (var item in MapArray)  디버깅
-                //{
-
-                //}
-
+					 0, _collisions, x * roomSize * sizeof(int), roomSize * sizeof(int));
 			}
 
             //for (int i = 0; i < roomSize; i++)                  디버깅
@@ -183,8 +184,17 @@ namespace Server.Game
             //}
 
 
+   //         while (true)
+   //         {
+			//	int x = int.Parse(Console.ReadLine());
+			//	int y = int.Parse(Console.ReadLine());
+			//	bool k = CanGo(new Vector2Int(x, y), false);
+   //             Console.WriteLine(k);
+			//}
 
-        }//LoadMap
+			
+
+		}//LoadMap
 
 
 
@@ -443,36 +453,21 @@ namespace Server.Game
 			{
 				Console.WriteLine($"{go.CellPos}{go.CurrentRoomId}{go.State}");
 			}
+
+
 		}
+
 		public void ApplyProjectile(Vector2 pos,Vector2 dir)
         {
 			 //dir - pos
 
 		}
 
-		//public GameObject FindByDir(GameObject go)
-  //      {
-		//	GameObject target = null;
-
-		//	if (go == null)
-		//		return null;
-		//	Player p = go as Player;
-		//	if (p == null || p.Room == null)
-		//		return null;
-
-
-		//	return target;
-
-		//}
-
 		public Room GetRoom(int id)
         {
 			return Rooms.Find(r => r.Id == id);
 
 		}
-
-
-
 
 		public void SendMapInfo(Player p)
         {
@@ -495,9 +490,56 @@ namespace Server.Game
 
 
 
+		#region Map Collison
+	
+
+		GameObject[,] _objects;
+		public bool ApplyMove(GameObject gameObject, Vector2Int dest, bool cheakObjects = true, bool collision = true)
+        {
+			if(CanGo(dest,false) == true)
+            {
+                Console.WriteLine($"{dest.x}{dest.y} 이동가능");
+				return true;
+            }
+			Console.WriteLine($"{dest.x}{dest.y} 이동불가능");
+			return false;
+
+		}
+
+		public bool CanGo(Vector2Int cellPos, bool cheakObjects = true)
+		{
+			if (cellPos.x < Bleft.x || cellPos.x > Tright.x)
+				return false;
+			if (cellPos.y < Bleft.y || cellPos.y > Tright.y)
+				return false;
+
+			int x = cellPos.x - Bleft.x;	
+			int y = cellPos.y - Bleft.y;
+
+			int k =_collisions[x, y];
+			return _collisions[x, y] > 0 && (!cheakObjects || _objects[x, y] == null);
+		}
 
 
-	} //class
+
+        #endregion
+        //public GameObject FindByDir(GameObject go)
+        //      {
+        //	GameObject target = null;
+
+        //	if (go == null)
+        //		return null;
+        //	Player p = go as Player;
+        //	if (p == null || p.Room == null)
+        //		return null;
+
+
+        //	return target;
+
+        //}
+
+
+    } //class
 
 
 }

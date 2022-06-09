@@ -20,11 +20,39 @@ namespace Server.Game
             #region 방이동
             int next = packet.PositionInfo.CurrentRoomId;
             int now = player.CurrentRoomId;
-            if (next != now)
+            if (next != now) //방이 다르면
+            {
                 Map.MoveRoom(player, next);
-            
-            #endregion
 
+                //------------ 방 정보 ----------------------------------------
+                S_RoomInfo roomPacket = new S_RoomInfo();
+                List<Room> nextRooms = new List<Room>();
+
+                Room room = Map.GetRoom(next);
+                nextRooms.Add(room);
+                nextRooms.AddRange(room.TouarableRooms);
+
+                if (nextRooms != null)
+                {
+                    foreach (Room r in nextRooms)
+                    {
+                        RoomInfo roomInfo = new RoomInfo();
+                        roomInfo.RoomId = r.Id;
+                        roomInfo.RoomLevel = r.RoomLevel;
+                        roomInfo.RoomType = (int)r.RoomType;
+                        roomInfo.PosX = r.PosX;
+                        roomInfo.PosY = r.PosY;
+                        roomPacket.RoomInfos.Add(roomInfo);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("방이동 오류");
+                }
+            }
+               
+            #endregion
+            
 
             PositionInfo movePosInfo = packet.PositionInfo; //C요청
             
@@ -46,7 +74,7 @@ namespace Server.Game
 
 
 
-
+            Map.ApplyMove(player, new Vector2Int((int)packet.PositionInfo.PosX, (int)packet.PositionInfo.PosY));
 
             BroadCast(player.CurrentRoomId, resMovePacket);
         }
@@ -88,7 +116,7 @@ namespace Server.Game
 
         }
 
-        public void HandleHit(Player player, C_Hit packet)
+        public void HandleHit(Player player, C_Hit packet)  //화살만
         {
             int attackId = packet.AttackId; //화살아이디
             int hitId = packet.HitId;  //맞은아이디
@@ -99,29 +127,72 @@ namespace Server.Game
                 return;
             }
 
-            if(player.Id == hitId) //본인이 맞았는데 본인이 보고할경우
+            Projectile projectile = null;
+            if (_projectilList.TryGetValue(attackId, out projectile) == false)
             {
-                Projectile projectile = null;
-                if(_projectilList.TryGetValue(attackId, out projectile) == true)
+                Console.WriteLine("HandleHit이 Projectile아님");
+                return;
+            }
+          
+
+            if (player.Id == hitId) //본인이 맞았는데 본인이 보고할경우
+            {
+                if (projectile.GetOwner() == player) //본인이 본인을 때릴경우
+                    return;  
+
+                player.OnDamaged(projectile.GetOwner(), projectile.Attack);
+                Console.WriteLine($"{projectile.GetOwner().info.Name}이 {player.info.Name}를 {projectile.Attack}만큼 공격");
+
+                this.Push(LeaveGame,attackId);
+
+            }
+            else if(player.Id == attackId)  //본인이 다른사람을 때린경우
+            {
+
+                if (ObjectManager.GetObjectTypeById(hitId) == GameObjectType.Monster)
                 {
-                    if (projectile.GetOwner() == player)
+                    Monster gameObject = null;
+                    if (_MonsterList.TryGetValue(hitId, out gameObject) == true)
                     {
-                        return;  //본인이 본인을 때릴경우
+
+
+                        
+
+
+                        return;
                     }
 
-                    player.OnDamaged(projectile.GetOwner(), projectile.Attack);
-                    Console.WriteLine($"{projectile.GetOwner().info.Name}이 {player.info.Name}를 {projectile.Attack}만큼 공격");
 
-                    this.Push(LeaveGame,attackId);
+                }
+                else if (ObjectManager.GetObjectTypeById(hitId) == GameObjectType.Player)
+                {
+                    Player gameObject = null;
+                    if (_playerList.TryGetValue(hitId, out gameObject) == true)
+                    {
+
+
+
+                        return;
+                    }
+
+
                 }
 
-                //player.Hp -= 
+
+
+            } //본인이 다른사람을 때린경우
+            else // 다른사람이 다른사람을 때린경우
+            {
 
             }
-            else //다른사람이 맞은걸 보고할경우
-            {
-               //Todo:
-            }
+
+
+
+
+
+            //Todo:
+        }
+       
 
             
 
@@ -141,6 +212,3 @@ namespace Server.Game
 
 
 
-
-}
-   

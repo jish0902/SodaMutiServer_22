@@ -13,6 +13,7 @@ namespace Server.Game
         Melee = 0,
         Range = 1,
         Explosion = 2,
+        Spawning = 3,
     }
 
     public enum MonsterSpawnType  //직접 소환 or 세력 느낌
@@ -50,6 +51,18 @@ namespace Server.Game
                 stat.Hp = monsterData.stat.MaxHp;
                 State = CreatureState.Idle;
                 AttackType = MonsterAttackType.Melee; //Todo : 나중에 바꾸기(AttackSpeed)
+               //if(monsterData.stat.AttackRange < 1)
+               //{
+               //     AttackType = MonsterAttackType.Melee;
+               //}
+               //else if(monsterData.stat.AttackRange > 2)
+               //{
+               //     AttackType = MonsterAttackType.Melee;
+
+               //}
+
+
+
                 Speed = monsterData.stat.Speed;
                 //Console.WriteLine(stat.AttackSpeed);
             }

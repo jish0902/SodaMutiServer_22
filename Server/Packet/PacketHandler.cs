@@ -68,7 +68,7 @@ class PacketHandler
             return;
 
         room.Push(room.HandleHit, player, hitpacket);
-
+        
 
     }
 

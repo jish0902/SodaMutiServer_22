@@ -23,26 +23,26 @@ namespace Server.Game
                 return;
 
             gameRoom.PushAfter(Program.ServerTick, Update);
-            if (active == false)
+            if (active == false) //처음 실행
             {
+                
                 Console.WriteLine("시간" + System.Environment.TickCount64);
                 gameRoom.PushAfter(5 * 1000, Destroy); ;
+
                 active = true;
-                return;
+            }
+            else
+            {
+                CellPos += Speed * Program.ServerTick / 1000 * Dir;
             }
 
-            CellPos += Speed * Program.ServerTick / 1000 * Dir;
-
-            //Console.WriteLine("Arrow" + CellPos + $"time {System.Environment.TickCount64}");
-
+            Console.WriteLine("Arw" + CellPos + $"time {System.Environment.TickCount64}");
 
             S_Move movePacket = new S_Move()
             {
                 ObjectId = Id,
                 PositionInfo = PosInfo,
             };
-
-
 
             gameRoom.BroadCast(CurrentRoomId, movePacket);
 
