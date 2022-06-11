@@ -55,14 +55,14 @@ namespace Server.Game
 		public Vector2Int Tright { get; private set; }
 
 
-		public int[,] _collisions;
+		private int[,] _collisions;
+		private GameObject[,] _objects;
 		private List<Room> Rooms { get;  set; } = new List<Room>();  //요기서만 사용
 
 		int roomSize = 0;
 		public void LoadMap(int mapId, string pathPrefix = "../../../../../Common/MapData")
 		{
 			int Distance = 22;
-
 
 			//----------------------------------------
 			string mapName = "Map_" + mapId.ToString("000");
@@ -121,18 +121,18 @@ namespace Server.Game
 			_collisions = new int[roomSize, roomSize];
 
 
-			for (int x = 0; x < roomSize; x++)
+			for (int x = roomSize - 1; x >= 0; x--)
             {
 				Buffer.BlockCopy(
 					 Array.ConvertAll<string, int>(reader.ReadLine().Split(','), s => int.Parse(s)),
 					 0, _collisions, x * roomSize * sizeof(int), roomSize * sizeof(int));
 			}
 
-            //for (int i = 0; i < roomSize; i++)                  디버깅
+            //for (int i = 0; i < roomSize; i++) //디버깅
             //{
             //    for (int j = 0; j < roomSize; j++)
             //    {
-            //        Console.Write(MapArray[i, j]);
+            //        Console.Write(_collisions[i, j]);
             //    }
             //    Console.WriteLine();
             //}
@@ -197,6 +197,31 @@ namespace Server.Game
 		}//LoadMap
 
 
+		public bool ApplyMove(GameObject gameObject, Vector2Int dest, bool cheakObjects = true, bool collision = true)
+		{
+			if (CanGo(dest, false) == true)
+			{
+				//Console.WriteLine($"{dest.x}{dest.y} 이동가능");
+				return true;
+			}
+			Console.WriteLine($"{dest.x}{dest.y} 이동불가능");
+
+			return false;
+
+		}
+
+		public bool CanGo(Vector2Int cellPos, bool cheakObjects = true)
+		{
+			if (cellPos.x < Bleft.x || cellPos.x > Tright.x)
+				return false;
+			if (cellPos.y < Bleft.y || cellPos.y > Tright.y)
+				return false;
+
+			int x = cellPos.x - Bleft.x;
+			int y = cellPos.y - Bleft.y;
+
+			return _collisions[x, y] > 0 && (!cheakObjects || _objects[x, y] == null);
+		}
 
 		public void SetMonster(GameRoom room,int monsterCount)
         {
@@ -493,33 +518,7 @@ namespace Server.Game
 		#region Map Collison
 	
 
-		GameObject[,] _objects;
-		public bool ApplyMove(GameObject gameObject, Vector2Int dest, bool cheakObjects = true, bool collision = true)
-        {
-			if(CanGo(dest,false) == true)
-            {
-                Console.WriteLine($"{dest.x}{dest.y} 이동가능");
-				return true;
-            }
-			Console.WriteLine($"{dest.x}{dest.y} 이동불가능");
-			return false;
-
-		}
-
-		public bool CanGo(Vector2Int cellPos, bool cheakObjects = true)
-		{
-			if (cellPos.x < Bleft.x || cellPos.x > Tright.x)
-				return false;
-			if (cellPos.y < Bleft.y || cellPos.y > Tright.y)
-				return false;
-
-			int x = cellPos.x - Bleft.x;	
-			int y = cellPos.y - Bleft.y;
-
-			int k =_collisions[x, y];
-			return _collisions[x, y] > 0 && (!cheakObjects || _objects[x, y] == null);
-		}
-
+		
 
 
         #endregion

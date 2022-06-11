@@ -23,14 +23,35 @@ namespace Server.Game
             Map.SetMonster(this,0);
 
 
-            //Arrow arrow = ObjectManager.Instance.Add<Arrow>();
-            //arrow.Speed = 20;
-            //arrow.CellPos = new System.Numerics.Vector2(0, 0);
-            //arrow.Dir = new System.Numerics.Vector2(1, 0);
-            //arrow.Room = this;
-            //EnterGame(arrow,false);
 
         }
+
+        private void ArrowTest(Player p)
+        {
+            for (int i = 0; i <2 ; i++)
+            {
+                Arrow arrow = ObjectManager.Instance.Add<Arrow>();
+                if (arrow == null)
+                    return;
+                arrow.CurrentRoomId = p.CurrentRoomId;
+                arrow.info.Name = "Arrow";
+                arrow.PosInfo.State = CreatureState.Moving;
+                arrow.OwnerId = p.Id;
+                arrow.PosInfo.DirX = 1;
+                arrow.PosInfo.DirY = 0;
+                arrow.PosInfo.PosX = 0;
+                arrow.PosInfo.PosY = i;
+                arrow.Speed = 20;
+                arrow.info.SkillId = 200;
+                arrow.Attack = 10;
+
+                //Console.WriteLine($"P pos : {p.PosInfo.PosX},{p.PosInfo.PosY}");
+                //Console.WriteLine($"arrow pos : {arrow.PosInfo.PosX},{arrow.PosInfo.PosY}");
+                p.gameRoom.Push(p.gameRoom.EnterGame, arrow, false);
+            }
+           
+        }
+
 
         public void Update()
         {

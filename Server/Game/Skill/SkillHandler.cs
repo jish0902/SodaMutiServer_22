@@ -6,6 +6,7 @@ using System.Text;
 using Google.Protobuf.Protocol;
 using Google.Protobuf;
 using System.Numerics;
+using System.Linq;
 
 public class SkillHandler
 {
@@ -150,8 +151,8 @@ public class SkillHandler
             obj.stat.Attack -= (int)_skill.attackbuff;            ////Todo: 나중에 디버프 같은거 생각해서 고치기 (이게 맞나)
             obj.stat.Defence -= (int)_skill.attackbuff;
             S_StatChange StatAfter = new S_StatChange();
-            statPacket.ObjectId = obj.Id;
-            statPacket.StatInfo = obj.stat;
+            StatAfter.ObjectId = obj.Id;
+            StatAfter.StatInfo = obj.stat;
             obj.gameRoom.Push(obj.gameRoom.BroadCast, obj.CurrentRoomId, StatAfter);
             return; 
         });
@@ -159,9 +160,81 @@ public class SkillHandler
        //------------ 
        Console.WriteLine("Skill100____________");
     }
-    internal static void Skill102(GameObject obj)
+    internal static void Skill102(GameObject obj) // 오로라,지속 광역버프
     {
-        throw new NotImplementedException();
+       Skill _skill;
+        if (DataManager.SkillDict.TryGetValue(102, out _skill) == false)
+            return;
+
+        //if(obj.stat.Mp <= 0 || obj.stat.Mp < _skill.)
+        #region 검사구역
+
+        if (obj.ObjectType != GameObjectType.Player) //플레이어라면
+            return;
+
+        //----------------- 쿨타임 ---------------
+        Player p = (Player)obj;
+        bool t = p.ApplySkill(102, _skill.cooldown);
+        Console.WriteLine(t ? $"{obj.info.Name}성공" : $"{obj.info.Name}실패");
+        if (t == false) //실패하면
+            return;
+        //----------------- 코스트 ---------------
+
+
+
+
+
+        #endregion
+        //------------ 통과 --------------
+        Room room = p.gameRoom.Map.GetRoom(p.CurrentRoomId);
+        Map TargetMap =  p.gameRoom.Map;
+        HashSet<GameObject> _tempTargets= TargetMap.GetPlanetObjects(p.CurrentRoomId);
+        _tempTargets.UnionWith(TargetMap.GetPlanetPlayers(p.CurrentRoomId));
+
+        HashSet<GameObject> targets = _tempTargets.Where(go => go.OwnerId == p.Id).ToHashSet<GameObject>();
+        targets.Add(p);
+
+        if (targets.Count == 0)
+            return;
+
+        int[] Buff = new int[targets.Count];
+        int arrayCount = 0;
+        foreach (GameObject target in targets)
+        {
+            Buff[arrayCount] =  (int)MathF.Round((float)Math.Min(target.stat.Attack * 0.1, 1));
+            target.stat.Attack += Buff[arrayCount];
+            arrayCount++;
+        }
+
+        S_StatChange statPacket = new S_StatChange();
+        statPacket.ObjectId = obj.Id;
+        statPacket.StatInfo = obj.stat;
+        obj.gameRoom.Push(obj.gameRoom.BroadCast, obj.CurrentRoomId, statPacket);
+
+
+        //---------------- 후처리 --------------
+        obj.gameRoom.PushAfter((int)_skill.duration * 1000, () => {
+            if (obj == null || obj.gameRoom == null)
+                return;
+
+            arrayCount = 0;
+            foreach (GameObject target in targets)
+            {
+                target.stat.Attack -= Buff[arrayCount];
+
+                S_StatChange StatAfter = new S_StatChange();
+                StatAfter.ObjectId = obj.Id;
+                StatAfter.StatInfo = obj.stat;
+                obj.gameRoom.Push(obj.gameRoom.BroadCast, obj.CurrentRoomId, StatAfter);
+                arrayCount++;
+            }
+            
+            return;
+        });
+
+        //------------ 
+        Console.WriteLine("Skill____________");
+        
     }
     internal static void Skill103(GameObject obj)
     {
