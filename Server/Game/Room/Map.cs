@@ -389,6 +389,19 @@ namespace Server.Game
 			return _players;
 		}
 
+		public GameObject FindClosestObjAndPlayer(GameObject go)
+        {
+			Room plant = Rooms.Find(p => { return p.Id == go.CurrentRoomId; });
+
+			HashSet<GameObject> _objects = new HashSet<GameObject>();
+			_objects.UnionWith(plant.Objects);
+			_objects.UnionWith(plant.Players);
+
+			GameObject target = _objects.OrderByDescending(tgo => tgo.CellPos - go.CellPos).Single();
+			return target;
+
+		}
+
 		public HashSet<GameObject> GetPlanetObjects(int id, int level = 1)
 		{
 			if (id == -1)

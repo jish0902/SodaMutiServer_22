@@ -20,7 +20,7 @@ namespace Server.Game
         public void Init(int mapId, int zoneCells)
         {
             Map.LoadMap(mapId);
-            Map.SetMonster(this,0);
+            Map.SetMonster(this,1);
 
 
 
@@ -209,7 +209,7 @@ namespace Server.Game
         {
             Player player = null;
 
-            List<Player> players =  Map.GetPlanetPlayers(go.CurrentRoomId);
+            List<Player> players =  Map.GetPlanetPlayers(go.CurrentRoomId).Where(t => t.Id != go.Id).ToList();
             if (players == null)
                 return player;
             
@@ -247,8 +247,9 @@ namespace Server.Game
             Vector2 t = new Vector2() { X = 99, Y = 99 };
             foreach (Monster p in monsters)
             {
-                if (except != null && except.Contains(p.Id) || except.Contains(p.OwnerId))
-                    continue;
+                if (except != null)
+                    if (except.Contains(p.Id) || except.Contains(p.OwnerId))
+                        continue; ;
 
                 Vector2 temp = p.CellPos - go.CellPos;
                 if (t.Length() > temp.Length())
@@ -262,7 +263,34 @@ namespace Server.Game
         }
 
 
+        public GameObject FindCloestMonsterAndPlayer(GameObject go, int[] except = null)
+        {
+            GameObject results = null;
 
+            List<GameObject> _targets = Map.GetPlanetObjects(go.CurrentRoomId).Where(i => i.ObjectType == GameObjectType.Monster).ToList();
+            _targets.AddRange(Map.GetPlanetPlayers(go.CurrentRoomId).Where(t => t.Id != go.Id).ToList());
+
+
+            if (_targets == null)
+                return results;
+
+            Vector2 t = new Vector2() { X = 99, Y = 99 };
+            foreach (GameObject p in _targets)
+            {
+                if (except != null)
+                    if (except.Contains(p.Id) || except.Contains(p.OwnerId))
+                        continue; ;
+
+                Vector2 temp = p.CellPos - go.CellPos;
+                if (t.Length() > temp.Length())
+                {
+                    t = temp;
+                    results = p;
+                }
+            }
+
+            return results;
+        }
 
 
 

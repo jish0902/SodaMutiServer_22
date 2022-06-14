@@ -23,7 +23,7 @@ namespace Server.Game
     }
 
 
-     public class Monster : GameObject
+     public class Monster : CreatureObj
     {
         public int TemplateId { get; private set; }
         

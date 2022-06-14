@@ -9,14 +9,14 @@ using System.Text;
 
 namespace Server.Game
 {
-    public class Player : GameObject
+    public class Player : CreatureObj
     {
         public ClientSession Session { get; set; }
         public VisionRegion Vision { get; set; }
         public SkillCoolDown SkillCoolDown  = new SkillCoolDown();
 
         public Vector2 SkillDir { get; set; }
-        public List<GameObject> Targets { get; set; }
+        public List<GameObject> Targets { get; set; } = new List<GameObject>();
 
 
         public Player()
@@ -35,7 +35,7 @@ namespace Server.Game
             //Console.WriteLine(skillCool);
             //Console.WriteLine(currnt);
             float t = skillCool + CoolDown;
-            if (currnt >= (t >= 3660 ? t - 3660 : t))
+            if (currnt >= (t >= 3599 ? t - 3599 : t))
             {
                 SkillCoolDown.SetCoolTime(id, currnt);
                 return true;
@@ -44,9 +44,14 @@ namespace Server.Game
         }
 
 
+
+
         public override void OnDamaged(GameObject attacker, int damage)
         {
-            base.OnDamaged(attacker, damage);
+            if (DamageReflexAction != null)
+                DamageReflexAction(attacker);
+            else 
+                base.OnDamaged(attacker, damage);
         }
 
         public override void OnDead(GameObject attacker)

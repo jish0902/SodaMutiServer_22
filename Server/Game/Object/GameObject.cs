@@ -123,7 +123,7 @@ namespace Server.Game
             damage = Math.Max((damage), 0);
             stat.Hp = Math.Max(stat.Hp - damage, 0);
 
-            //Console.WriteLine($"damage : {damage}  stat.Hp : {stat.Hp}");
+            Console.WriteLine($" attacker :{attacker.Id} Damage : {damage}  stat.Hp : {stat.Hp}");
 
             S_ChangeHp ChangePacket = new S_ChangeHp();
             ChangePacket.ObjectId = Id;
