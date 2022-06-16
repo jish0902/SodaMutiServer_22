@@ -44,6 +44,49 @@ namespace Server.Game
 		public List<Player> Players { get; private set; } = new List<Player>();
 		public List<Room> TouarableRooms { get; private set; } = new List<Room>();
 		public HashSet<GameObject> Objects { get; private set; } = new HashSet<GameObject>();
+
+
+		//-------------------------- 게임 룰 ------------------------------------
+		
+	    static int rOwnerValInitCount = 100;
+		private Vector2 Owner = new Vector2(0, rOwnerValInitCount);
+
+		long coolDown = 0;
+		public void AddOwnerValue(int id, int value = 1)
+        {
+			if(Owner.X == id) //본인이면
+            {
+
+            }
+            else //본인이 아닌면
+            {
+				if (coolDown <= System.Environment.TickCount64)  coolDown = System.Environment.TickCount64 + 100;//0.1초 쿨타임	
+				else  return;
+
+				Owner.Y -= value;
+
+
+				if(Owner.Y <= 0) {
+					Owner.X = id;
+					Owner.Y = rOwnerValInitCount; //10초
+					//Todo : 방 컨트롤
+				}
+
+				if(Owner.Y % 5 == 0) 
+                {
+
+                }
+
+				//Console.WriteLine(System.Environment.TickCount64 + " : "+ Owner.Y);
+
+
+			}
+		}
+       
+
+
+
+
 	}
 
 
@@ -160,45 +203,52 @@ namespace Server.Game
 			} //투어 끝
 
 
-            //for (int i = 0; i < childCount; i++)
-            //{
-            //    int MinX = int.Parse(reader.ReadLine());
-            //    int MaxX = int.Parse(reader.ReadLine());
-            //    int MinY = int.Parse(reader.ReadLine());
-            //    int MaxY = int.Parse(reader.ReadLine());
+			//for (int i = 0; i < childCount; i++)
+			//{
+			//    int MinX = int.Parse(reader.ReadLine());
+			//    int MaxX = int.Parse(reader.ReadLine());
+			//    int MinY = int.Parse(reader.ReadLine());
+			//    int MaxY = int.Parse(reader.ReadLine());
 
-            //    int xCount = MaxX - MinX + 1;
-            //    int yCount = MaxY - MinY + 1;
-            //    Rooms[i].Collisions = new bool[yCount, xCount];
+			//    int xCount = MaxX - MinX + 1;
+			//    int yCount = MaxY - MinY + 1;
+			//    Rooms[i].Collisions = new bool[yCount, xCount];
 
-            //    for (int y = 0; y < yCount; y++)
-            //    {
-            //        string line = reader.ReadLine();
-            //        for (int x = 0; x < xCount; x++)
-            //        {
-            //            Rooms[i].Collisions[y, x] = (line[x] - '0') > 0;
-            //            //Console.Write(Rooms[i].Collisions[y, x] ? '1' :'0');
-            //        }
-            //    }
+			//    for (int y = 0; y < yCount; y++)
+			//    {
+			//        string line = reader.ReadLine();
+			//        for (int x = 0; x < xCount; x++)
+			//        {
+			//            Rooms[i].Collisions[y, x] = (line[x] - '0') > 0;
+			//            //Console.Write(Rooms[i].Collisions[y, x] ? '1' :'0');
+			//        }
+			//    }
 
-            //}
+			//}
 
 
-   //         while (true)
-   //         {
+			//         while (true)
+			//         {
 			//	int x = int.Parse(Console.ReadLine());
 			//	int y = int.Parse(Console.ReadLine());
 			//	bool k = CanGo(new Vector2Int(x, y), false);
-   //             Console.WriteLine(k);
+			//             Console.WriteLine(k);
 			//}
 
-			
+
 
 		}//LoadMap
 
 
+		
+		
+
+
+
 		public bool ApplyMove(GameObject gameObject, Vector2Int dest, bool cheakObjects = true, bool collision = true)
 		{
+			
+
 			if (CanGo(dest, false) == true)
 			{
 				//Console.WriteLine($"{dest.x}{dest.y} 이동가능");
@@ -433,6 +483,29 @@ namespace Server.Game
 
 			return _objects;
 		}
+
+
+		public List<Player> GetPlayerInOccupationPos(int Range = 2)
+        {
+			List<Player> _players = new List<Player>();
+
+            foreach (Room room in Rooms)
+            {
+				Vector2 Pos = new Vector2(room.PosX, room.PosY);
+				List<Player> target = room.Players.Where(P => (Pos - P.CellPos).Length() < (Range * Range)).ToList();
+				if(target != null)
+                {
+					_players.AddRange(target);
+                    foreach (Player player in target)
+                    {
+						room.AddOwnerValue(player.Id,1);
+					}
+				}
+
+			}
+			return _players;
+		}
+
 
 		public bool SetPosAndRoomtsId(Player player)
 		{

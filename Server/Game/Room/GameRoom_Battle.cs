@@ -74,7 +74,7 @@ namespace Server.Game
 
 
 
-            Map.ApplyMove(player, new Vector2Int((int)packet.PositionInfo.PosX, (int)packet.PositionInfo.PosY));
+            Map.ApplyMove(player, new Vector2Int((int)Math.Round(packet.PositionInfo.PosX), (int)Math.Round(packet.PositionInfo.PosY)));
 
             BroadCast(player.CurrentRoomId, resMovePacket);
         }
@@ -200,8 +200,8 @@ namespace Server.Game
 
 
 
-        }
     }
+}
 
 
 

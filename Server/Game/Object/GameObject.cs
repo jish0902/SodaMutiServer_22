@@ -168,7 +168,7 @@ namespace Server.Game
 
     }// class
 
-    public struct Vector2Int
+    public struct Vector2Int 
     {
         public int x;
         public int y;
@@ -188,11 +188,20 @@ namespace Server.Game
         {
             return new Vector2Int(a.x - b.x, a.y - b.y);
         }
+        public static Vector2Int operator -(Vector2 a, Vector2Int b)
+        {
+            return new Vector2Int((int)a.X - b.x, (int)a.Y - b.y);
+        }
 
-        public float magnitude { get { return (float)MathF.Sqrt(sqrMagnitude); } }
-        public int sqrMagnitude { get { return (x * x + y + y); } }
+        public float sqrMagnitude { get { return (float)MathF.Sqrt(sqrMagnitude); } }
+        public int Magnitude { get { return (x * x + y * y); } }
 
         public int cellDistFromZero { get { return Math.Abs(x) + Math.Abs(y); } }
+
+        public static explicit operator Vector2(Vector2Int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     //public struct Vector2

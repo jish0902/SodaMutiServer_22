@@ -260,7 +260,7 @@ public class SkillHandler
         //----------------- 쿨타임 ---------------
         Player p = (Player)obj;
         bool t = p.ApplySkill(103, _skill.cooldown);
-        Console.WriteLine(t ? $"{obj.info.Name}성공" : $"{obj.info.Name}실패");
+        Console.WriteLine(t ? $"{obj.info.Name} 성공" : $"{obj.info.Name} 실패");
         if (t == false) //실패하면
             return;
 
