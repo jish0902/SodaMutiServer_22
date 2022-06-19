@@ -14,7 +14,43 @@ using System.Text;
 
 
 namespace Server.Game
-{ 
+{
+
+
+	class Person
+	{
+		public string Name { get; set; } = "(No name)";
+
+		// 초기화 없을 경우 디폴드값 사용됨
+		public string Nickname { get;  }
+		public int Age { get; private set; }
+
+		// Auto-Property Initializer 할당
+		public bool Enabled { get; } = true;
+
+		// 생성자에서 초기값 할당
+		public int Level { get; }
+		public Person()
+		{
+			this.Level = 1;
+		}
+
+		public void Te()
+        {
+			Age = 5;
+
+		}
+	}
+
+
+
+
+
+
+
+
+
+
 	public enum RoomType  //TODO : 서보와 자동화
 	{
 		SPAWN = 0,
@@ -45,41 +81,37 @@ namespace Server.Game
 		public List<Room> TouarableRooms { get; private set; } = new List<Room>();
 		public HashSet<GameObject> Objects { get; private set; } = new HashSet<GameObject>();
 
-
 		//-------------------------- 게임 룰 ------------------------------------
-		
-	    static int rOwnerValInitCount = 100;
-		private Vector2 Owner = new Vector2(0, rOwnerValInitCount);
+	    static public readonly int rOwnerValInitCount = 100;
+		public Vector2Int Owner { get; private set; } = new Vector2Int(0, rOwnerValInitCount);
+		public int TryOwnerId { get; private set; } = 0;
 
 		long coolDown = 0;
-		public void AddOwnerValue(int id, int value = 1)
+		public bool AddOwnerValue(int id, int value = 1)
         {
-			if(Owner.X == id) //본인이면
+			if(Owner.x == id) //본인이면
             {
 
+				return false;
             }
             else //본인이 아닌면
             {
 				if (coolDown <= System.Environment.TickCount64)  coolDown = System.Environment.TickCount64 + 100;//0.1초 쿨타임	
-				else  return;
+				else  return false;
 
-				Owner.Y -= value;
+				Vector2Int owner = Owner;
+				owner.y -= value; //실제 빼기
+				Owner = owner;
+				TryOwnerId = id;
 
-
-				if(Owner.Y <= 0) {
-					Owner.X = id;
-					Owner.Y = rOwnerValInitCount; //10초
+				if (Owner.y <= 0) { //점령 했으면
+					Vector2Int _owner = Owner;
+					_owner.x = id;
+					_owner.y = rOwnerValInitCount;//10초
+					Owner = _owner;
 					//Todo : 방 컨트롤
 				}
-
-				if(Owner.Y % 5 == 0) 
-                {
-
-                }
-
-				//Console.WriteLine(System.Environment.TickCount64 + " : "+ Owner.Y);
-
-
+				return true;
 			}
 		}
        
@@ -240,8 +272,7 @@ namespace Server.Game
 		}//LoadMap
 
 
-		
-		
+
 
 
 
@@ -269,6 +300,8 @@ namespace Server.Game
 
 			int x = cellPos.x - Bleft.x;
 			int y = cellPos.y - Bleft.y;
+
+            //Console.WriteLine($"{cellPos.x}, {cellPos.y}and {x}, {y}");
 
 			return _collisions[x, y] > 0 && (!cheakObjects || _objects[x, y] == null);
 		}
@@ -493,15 +526,16 @@ namespace Server.Game
             {
 				Vector2 Pos = new Vector2(room.PosX, room.PosY);
 				List<Player> target = room.Players.Where(P => (Pos - P.CellPos).Length() < (Range * Range)).ToList();
-				if(target != null)
+				if (target == null)
+					continue;
+
+                foreach (Player player in target)
                 {
-					_players.AddRange(target);
-                    foreach (Player player in target)
+					if(room.AddOwnerValue(player.Id, 1) == true)
                     {
-						room.AddOwnerValue(player.Id,1);
+						_players.Add(player);
 					}
 				}
-
 			}
 			return _players;
 		}

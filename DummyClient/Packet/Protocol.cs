@@ -61,22 +61,23 @@ namespace Google.Protobuf.Protocol {
             "bWUYESABKAUSDgoGY3JlZGl0GBIgASgFEg0KBXNwZWVkGBMgASgCEhAKCHRv",
             "dGFsRXhwGBQgASgFIlUKDVBsYXllclByb2ZpbGUSEgoKcGxheWVyRGJJZBgB",
             "IAEoBRIMCgRuYW1lGAIgASgJEhMKC2NoYXJhY3RlcklEGAMgAygFEg0KBUNv",
-            "aW5zGAQgAygFIlsKCFJvb21JbmZvEg4KBnJvb21JZBgBIAEoBRIRCglyb29t",
-            "TGV2ZWwYAiABKAUSEAoIcm9vbVR5cGUYAyABKAUSDAoEcG9zWBgEIAEoAhIM",
-            "CgRwb3NZGAUgASgCKpICCgVNc2dJZBIQCgxTX0VOVEVSX0dBTUUQABIQCgxT",
-            "X0xFQVZFX0dBTUUQARILCgdTX1NQQVdOEAISDQoJU19ERVNQQVdOEAMSCgoG",
-            "Q19NT1ZFEAQSCgoGU19NT1ZFEAUSDwoLU19DT05ORUNURUQQBhIPCgtTX0NI",
-            "QU5HRV9IUBAHEgkKBVNfRElFEAgSEAoMQ19FTlRFUl9HQU1FEAkSFwoTU19M",
-            "T0JCWV9QTEFZRVJfSU5GTxALEhAKDENfTE9CQllfSU5GTxAMEgsKB0NfU0tJ",
-            "TEwQDRILCgdTX1NLSUxMEA4SEQoNU19TVEFUX0NIQU5HRRAPEg8KC1NfUk9P",
-            "TV9JTkZPEBASCQoFQ19ISVQQESpDCg5HYW1lT2JqZWN0VHlwZRIICgROT05F",
-            "EAASCgoGUExBWUVSEAESCwoHTU9OU1RFUhACEg4KClBST0pFQ1RJTEUQAypA",
-            "CglTa2lsbFR5cGUSCAoETm9uZRAAEgkKBU1lbGVlEAESCQoFUmFuZ2UQAhII",
-            "CgRCdWZmEAMSCQoFU3Bhd24QBCo6Cg1DcmVhdHVyZVN0YXRlEggKBElETEUQ",
-            "ABIKCgZNT1ZJTkcQARIJCgVTS0lMTBACEggKBERFQUQQAypaChFQbGF5ZXJT",
-            "ZXJ2ZXJTdGF0ZRIWChJTRVJWRVJfU1RBVEVfTE9HSU4QABIWChJTRVJWRVJf",
-            "U1RBVEVfTE9CQlkQARIVChFTRVJWRVJfU1RBVEVfR0FNRRACQhuqAhhHb29n",
-            "bGUuUHJvdG9idWYuUHJvdG9jb2xiBnByb3RvMw=="));
+            "aW5zGAQgAygFIpcBCghSb29tSW5mbxIOCgZyb29tSWQYASABKAUSEQoJcm9v",
+            "bUxldmVsGAIgASgFEhAKCHJvb21UeXBlGAMgASgFEgwKBHBvc1gYBCABKAIS",
+            "DAoEcG9zWRgFIAEoAhIPCgdvd25lcklkGAYgASgFEhIKCnRyeU93bmVySWQY",
+            "ByABKAUSFQoNdHJ5T3duZXJWYWx1ZRgIIAEoAiqSAgoFTXNnSWQSEAoMU19F",
+            "TlRFUl9HQU1FEAASEAoMU19MRUFWRV9HQU1FEAESCwoHU19TUEFXThACEg0K",
+            "CVNfREVTUEFXThADEgoKBkNfTU9WRRAEEgoKBlNfTU9WRRAFEg8KC1NfQ09O",
+            "TkVDVEVEEAYSDwoLU19DSEFOR0VfSFAQBxIJCgVTX0RJRRAIEhAKDENfRU5U",
+            "RVJfR0FNRRAJEhcKE1NfTE9CQllfUExBWUVSX0lORk8QCxIQCgxDX0xPQkJZ",
+            "X0lORk8QDBILCgdDX1NLSUxMEA0SCwoHU19TS0lMTBAOEhEKDVNfU1RBVF9D",
+            "SEFOR0UQDxIPCgtTX1JPT01fSU5GTxAQEgkKBUNfSElUEBEqQwoOR2FtZU9i",
+            "amVjdFR5cGUSCAoETk9ORRAAEgoKBlBMQVlFUhABEgsKB01PTlNURVIQAhIO",
+            "CgpQUk9KRUNUSUxFEAMqQAoJU2tpbGxUeXBlEggKBE5vbmUQABIJCgVNZWxl",
+            "ZRABEgkKBVJhbmdlEAISCAoEQnVmZhADEgkKBVNwYXduEAQqOgoNQ3JlYXR1",
+            "cmVTdGF0ZRIICgRJRExFEAASCgoGTU9WSU5HEAESCQoFU0tJTEwQAhIICgRE",
+            "RUFEEAMqWgoRUGxheWVyU2VydmVyU3RhdGUSFgoSU0VSVkVSX1NUQVRFX0xP",
+            "R0lOEAASFgoSU0VSVkVSX1NUQVRFX0xPQkJZEAESFQoRU0VSVkVSX1NUQVRF",
+            "X0dBTUUQAkIbqgIYR29vZ2xlLlByb3RvYnVmLlByb3RvY29sYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.MsgId), typeof(global::Google.Protobuf.Protocol.GameObjectType), typeof(global::Google.Protobuf.Protocol.SkillType), typeof(global::Google.Protobuf.Protocol.CreatureState), typeof(global::Google.Protobuf.Protocol.PlayerServerState), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -102,7 +103,7 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.PositionInfo), global::Google.Protobuf.Protocol.PositionInfo.Parser, new[]{ "State", "CurrentRoomId", "DirX", "DirY", "PosX", "PosY", "RotZ" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.StatInfo), global::Google.Protobuf.Protocol.StatInfo.Parser, new[]{ "Class", "Level", "Hp", "MaxHp", "Mp", "MaxMp", "AttackRange", "Attack", "AttackSpeed", "Defence", "Critical", "Exp", "Faith", "Will", "Friendly", "Karma", "Frame", "Credit", "Speed", "TotalExp" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.PlayerProfile), global::Google.Protobuf.Protocol.PlayerProfile.Parser, new[]{ "PlayerDbId", "Name", "CharacterID", "Coins" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.RoomInfo), global::Google.Protobuf.Protocol.RoomInfo.Parser, new[]{ "RoomId", "RoomLevel", "RoomType", "PosX", "PosY" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.RoomInfo), global::Google.Protobuf.Protocol.RoomInfo.Parser, new[]{ "RoomId", "RoomLevel", "RoomType", "PosX", "PosY", "OwnerId", "TryOwnerId", "TryOwnerValue" }, null, null, null, null)
           }));
     }
     #endregion
@@ -5934,6 +5935,9 @@ namespace Google.Protobuf.Protocol {
       roomType_ = other.roomType_;
       posX_ = other.posX_;
       posY_ = other.posY_;
+      ownerId_ = other.ownerId_;
+      tryOwnerId_ = other.tryOwnerId_;
+      tryOwnerValue_ = other.tryOwnerValue_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -6003,6 +6007,42 @@ namespace Google.Protobuf.Protocol {
       }
     }
 
+    /// <summary>Field number for the "ownerId" field.</summary>
+    public const int OwnerIdFieldNumber = 6;
+    private int ownerId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int OwnerId {
+      get { return ownerId_; }
+      set {
+        ownerId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "tryOwnerId" field.</summary>
+    public const int TryOwnerIdFieldNumber = 7;
+    private int tryOwnerId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int TryOwnerId {
+      get { return tryOwnerId_; }
+      set {
+        tryOwnerId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "tryOwnerValue" field.</summary>
+    public const int TryOwnerValueFieldNumber = 8;
+    private float tryOwnerValue_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public float TryOwnerValue {
+      get { return tryOwnerValue_; }
+      set {
+        tryOwnerValue_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -6023,6 +6063,9 @@ namespace Google.Protobuf.Protocol {
       if (RoomType != other.RoomType) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PosX, other.PosX)) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(PosY, other.PosY)) return false;
+      if (OwnerId != other.OwnerId) return false;
+      if (TryOwnerId != other.TryOwnerId) return false;
+      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(TryOwnerValue, other.TryOwnerValue)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -6035,6 +6078,9 @@ namespace Google.Protobuf.Protocol {
       if (RoomType != 0) hash ^= RoomType.GetHashCode();
       if (PosX != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PosX);
       if (PosY != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(PosY);
+      if (OwnerId != 0) hash ^= OwnerId.GetHashCode();
+      if (TryOwnerId != 0) hash ^= TryOwnerId.GetHashCode();
+      if (TryOwnerValue != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(TryOwnerValue);
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -6073,6 +6119,18 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(45);
         output.WriteFloat(PosY);
       }
+      if (OwnerId != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(OwnerId);
+      }
+      if (TryOwnerId != 0) {
+        output.WriteRawTag(56);
+        output.WriteInt32(TryOwnerId);
+      }
+      if (TryOwnerValue != 0F) {
+        output.WriteRawTag(69);
+        output.WriteFloat(TryOwnerValue);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -6103,6 +6161,18 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(45);
         output.WriteFloat(PosY);
       }
+      if (OwnerId != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(OwnerId);
+      }
+      if (TryOwnerId != 0) {
+        output.WriteRawTag(56);
+        output.WriteInt32(TryOwnerId);
+      }
+      if (TryOwnerValue != 0F) {
+        output.WriteRawTag(69);
+        output.WriteFloat(TryOwnerValue);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -6126,6 +6196,15 @@ namespace Google.Protobuf.Protocol {
         size += 1 + 4;
       }
       if (PosY != 0F) {
+        size += 1 + 4;
+      }
+      if (OwnerId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(OwnerId);
+      }
+      if (TryOwnerId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TryOwnerId);
+      }
+      if (TryOwnerValue != 0F) {
         size += 1 + 4;
       }
       if (_unknownFields != null) {
@@ -6154,6 +6233,15 @@ namespace Google.Protobuf.Protocol {
       }
       if (other.PosY != 0F) {
         PosY = other.PosY;
+      }
+      if (other.OwnerId != 0) {
+        OwnerId = other.OwnerId;
+      }
+      if (other.TryOwnerId != 0) {
+        TryOwnerId = other.TryOwnerId;
+      }
+      if (other.TryOwnerValue != 0F) {
+        TryOwnerValue = other.TryOwnerValue;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -6190,6 +6278,18 @@ namespace Google.Protobuf.Protocol {
             PosY = input.ReadFloat();
             break;
           }
+          case 48: {
+            OwnerId = input.ReadInt32();
+            break;
+          }
+          case 56: {
+            TryOwnerId = input.ReadInt32();
+            break;
+          }
+          case 69: {
+            TryOwnerValue = input.ReadFloat();
+            break;
+          }
         }
       }
     #endif
@@ -6223,6 +6323,18 @@ namespace Google.Protobuf.Protocol {
           }
           case 45: {
             PosY = input.ReadFloat();
+            break;
+          }
+          case 48: {
+            OwnerId = input.ReadInt32();
+            break;
+          }
+          case 56: {
+            TryOwnerId = input.ReadInt32();
+            break;
+          }
+          case 69: {
+            TryOwnerValue = input.ReadFloat();
             break;
           }
         }

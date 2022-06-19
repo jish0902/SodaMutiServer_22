@@ -61,8 +61,6 @@ namespace Server.Game
 
         
 
-
-
         public void BroadCast(int id, IMessage message)
         {
             List<Player> _players = Map.GetPlanetPlayers(id);
