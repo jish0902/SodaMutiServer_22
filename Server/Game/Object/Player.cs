@@ -42,6 +42,23 @@ namespace Server.Game
             }
             return false;
         }
+        
+
+        public bool CheakSkill(int id, float CoolDown)  //Todo : 사용하기
+        {
+            int skillCool = SkillCoolDown.GetCoolTime(id);
+            short currnt = (short)(DateTime.Now.Second + DateTime.Now.Minute * 60);
+            //최소 : 0 최대 : 3660
+            //Console.WriteLine(skillCool);
+            //Console.WriteLine(currnt);
+            float t = skillCool + CoolDown;
+            if (currnt >= (t >= 3599 ? t - 3599 : t))
+            {
+                SkillCoolDown.SetCoolTime(id, currnt);
+                return true;
+            }
+            return false;
+        }
 
 
 

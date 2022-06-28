@@ -92,8 +92,16 @@ public class SkillHandler
             _target = p.Targets.First();
         }
 
-        if (_target != null || _target.gameRoom != null || p.gameRoom != null || _target.gameRoom == p.gameRoom || _target.State != CreatureState.Dead)
+        //if (_target != null || _target.gameRoom != null || p.gameRoom != null || _target.gameRoom == p.gameRoom || _target.State != CreatureState.Dead)
+        //    _target.OnDamaged(p, _skill.damage + p.Attack);
+        if (_target != null && (_target.gameRoom != null || p.gameRoom != null || _target.gameRoom == p.gameRoom || _target.State != CreatureState.Dead))
             _target.OnDamaged(p, _skill.damage + p.Attack);
+        else
+        {  //실패시
+            return;
+        }
+
+
         Console.WriteLine($"{p.info.Name}이 {_target.info.Name}에게 {_skill.damage + p.Attack}데미지 줌  남은 피: {_target.Hp}");
            
 

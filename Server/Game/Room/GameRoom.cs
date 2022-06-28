@@ -20,7 +20,7 @@ namespace Server.Game
         public void Init(int mapId, int zoneCells)
         {
             Map.LoadMap(mapId);
-            Map.SetMonster(this,0);
+            Map.SetMonster(this,1);
 
             SetGameMode();
 
