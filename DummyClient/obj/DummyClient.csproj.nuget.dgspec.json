@@ -1,35 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\DummyClient\\DummyClient.csproj": {}
+    "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/DummyClient/DummyClient.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\DummyClient\\DummyClient.csproj": {
+    "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/DummyClient/DummyClient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\DummyClient\\DummyClient.csproj",
+        "projectUniqueName": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/DummyClient/DummyClient.csproj",
         "projectName": "DummyClient",
-        "projectPath": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\DummyClient\\DummyClient.csproj",
-        "packagesPath": "C:\\Users\\jish\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\DummyClient\\obj\\",
+        "projectPath": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/DummyClient/DummyClient.csproj",
+        "packagesPath": "/Users/jiseunghyeon/.nuget/packages/",
+        "outputPath": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/DummyClient/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jish\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/jiseunghyeon/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\ServerCore\\ServerCore.csproj": {
-                "projectPath": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\ServerCore\\ServerCore.csproj"
+              "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/ServerCore/ServerCore.csproj": {
+                "projectPath": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/ServerCore/ServerCore.csproj"
               }
             }
           }
@@ -59,33 +57,45 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.10, 3.1.10]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.osx-x64",
+              "version": "[3.1.26, 3.1.26]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.1.0, 3.1.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\ServerCore\\ServerCore.csproj": {
+    "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/ServerCore/ServerCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\ServerCore\\ServerCore.csproj",
+        "projectUniqueName": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/ServerCore/ServerCore.csproj",
         "projectName": "ServerCore",
-        "projectPath": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\ServerCore\\ServerCore.csproj",
-        "packagesPath": "C:\\Users\\jish\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\ServerCore\\obj\\",
+        "projectPath": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/ServerCore/ServerCore.csproj",
+        "packagesPath": "/Users/jiseunghyeon/.nuget/packages/",
+        "outputPath": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/ServerCore/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jish\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/jiseunghyeon/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -119,12 +129,22 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.10, 3.1.10]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.1.0, 3.1.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
         }
       }
     }

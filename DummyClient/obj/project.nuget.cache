@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "Im2TRO8PBCr9wd0gVx6wo5KiErF5NBA0ibZxnpRJSr967Tbzx1BPcNMOUFJREugLUe+eL2X5zejTuBMOs0NMTg==",
+  "dgSpecHash": "zY9NQlLXxNou6roezN+ee/YY4JlL7t8zd56OYv9zJqeLAgnASfwanYbZSCtrXadWVgDeuAJyIQRBzz58VsEQdA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jish\\Documents\\GitHub\\GameServer_22\\Server\\DummyClient\\DummyClient.csproj",
+  "projectFilePath": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/DummyClient/DummyClient.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jish\\.nuget\\packages\\google.protobuf\\3.19.3\\google.protobuf.3.19.3.nupkg.sha512",
-    "C:\\Users\\jish\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
-    "C:\\Users\\jish\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
+    "/Users/jiseunghyeon/.nuget/packages/google.protobuf/3.19.3/google.protobuf.3.19.3.nupkg.sha512",
+    "/Users/jiseunghyeon/.nuget/packages/system.memory/4.5.3/system.memory.4.5.3.nupkg.sha512",
+    "/Users/jiseunghyeon/.nuget/packages/system.runtime.compilerservices.unsafe/4.5.2/system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
+    "/Users/jiseunghyeon/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.10/microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "/Users/jiseunghyeon/.nuget/packages/microsoft.netcore.app.host.osx-x64/3.1.26/microsoft.netcore.app.host.osx-x64.3.1.26.nupkg.sha512",
+    "/Users/jiseunghyeon/.nuget/packages/microsoft.netcore.app.ref/3.1.0/microsoft.netcore.app.ref.3.1.0.nupkg.sha512"
   ],
   "logs": []
 }
