@@ -19,6 +19,7 @@ namespace Server.Data
 
         public static void LoadConfig()
         {
+            
             string text = File.ReadAllText("config.json"); //debug파일에 있음
             config = Newtonsoft.Json.JsonConvert.DeserializeObject<ServerConfig>(text);
         }

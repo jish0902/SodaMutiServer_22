@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xU78dTKdximdjcOtjaVEn65RywxvMGyMSIsI4tWfuhDbvM+UO1iO7RP2r+vISl6sB8MpNMoBJ2uMirfQqzdxNQ==",
+  "dgSpecHash": "33MmYURFsdH4GzO3Hn1ViqG60Dw+XyRc2UEoqKwBScqmFE2nxe+YG490bKyVM5+0JGwEJeMqTjwX+0D6yNXN7Q==",
   "success": true,
-  "projectFilePath": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/ServerCore/ServerCore.csproj",
+  "projectFilePath": "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/ServerCore/ServerCore.csproj",
   "expectedPackageFiles": [
     "/Users/jiseunghyeon/.nuget/packages/google.protobuf/3.19.3/google.protobuf.3.19.3.nupkg.sha512",
     "/Users/jiseunghyeon/.nuget/packages/system.memory/4.5.3/system.memory.4.5.3.nupkg.sha512",

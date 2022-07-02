@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/ServerCore/ServerCore.csproj": {}
+    "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/ServerCore/ServerCore.csproj": {}
   },
   "projects": {
-    "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/ServerCore/ServerCore.csproj": {
+    "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/ServerCore/ServerCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/ServerCore/ServerCore.csproj",
+        "projectUniqueName": "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/ServerCore/ServerCore.csproj",
         "projectName": "ServerCore",
-        "projectPath": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/ServerCore/ServerCore.csproj",
+        "projectPath": "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/ServerCore/ServerCore.csproj",
         "packagesPath": "/Users/jiseunghyeon/.nuget/packages/",
-        "outputPath": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/ServerCore/obj/",
+        "outputPath": "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/ServerCore/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/jiseunghyeon/.nuget/NuGet/NuGet.Config"

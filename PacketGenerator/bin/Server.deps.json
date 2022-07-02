@@ -38,15 +38,7 @@
         }
       },
       "System.Memory/4.5.4": {},
-      "System.Runtime.CompilerServices.Unsafe/4.5.2": {},
-      "ServerCore/1.0.0": {
-        "dependencies": {
-          "Google.Protobuf": "3.19.3"
-        },
-        "runtime": {
-          "ServerCore.dll": {}
-        }
-      }
+      "System.Runtime.CompilerServices.Unsafe/4.5.2": {}
     }
   },
   "libraries": {
@@ -82,11 +74,6 @@
       "sha512": "sha512-wprSFgext8cwqymChhrBLu62LMg/1u92bU+VOwyfBimSPVFXtsNqEWC92Pf9ofzJFlk4IHmJA75EDJn1b2goAQ==",
       "path": "system.runtime.compilerservices.unsafe/4.5.2",
       "hashPath": "system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
-    },
-    "ServerCore/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     }
   }
 }

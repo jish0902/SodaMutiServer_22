@@ -313,9 +313,88 @@ public class SkillHandler
         //------------ 
         Console.WriteLine("Skill103");
     }
-    internal static void Skill104(GameObject obj)
+
+
+    //신격 : 체력 비례 데미
+    internal static void Skill104(GameObject obj) 
     {
-        throw new NotImplementedException();
+
+        Skill _skill;
+        if (DataManager.SkillDict.TryGetValue(104, out _skill) == false)
+            return;
+
+        //if(obj.stat.Mp <= 0 || obj.stat.Mp < _skill.)
+        #region 검사구역
+
+        if (obj.ObjectType != GameObjectType.Player) //플레이어라면
+            return;
+
+        //----------------- 쿨타임 ---------------
+        Player p = (Player)obj;
+        bool t = p.ApplySkill(104, _skill.cooldown);
+        Console.WriteLine(t ? $"{obj.info.Name} 성공" : $"{obj.info.Name} 실패");
+        if (t == false) //실패하면
+            return;
+
+
+        //----------------- 코스트 ---------------
+
+
+
+
+
+
+
+        #endregion
+        //------------ 통과 --------------
+
+
+        double lossHpPer = 1.0 - (double)p.Hp / p.info.StatInfo.MaxHp;
+
+        int additionalDamage = _skill.amount * (int)Math.Ceiling(lossHpPer * 10);
+        //10프로 손해시 amount * 1(0.1 * 10)
+
+        int TotalDamage = additionalDamage + _skill.damage;
+
+        Console.WriteLine($"104 스킬 dam : {TotalDamage} , {additionalDamage} , {_skill.damage}");
+        Console.WriteLine($"104 스킬 hp :{p.Hp} {p.info.StatInfo.MaxHp}");
+
+        GameObject _target;
+        if (p.Targets == null || p.Targets.Count == 0) //없으면
+        {
+            _target = p.gameRoom.FindCloestMonsterAndPlayer(p);
+            Console.WriteLine("Done");
+        }
+        else
+        {
+            _target = p.Targets.First();
+        }
+
+        //if (_target != null || _target.gameRoom != null || p.gameRoom != null || _target.gameRoom == p.gameRoom || _target.State != CreatureState.Dead)
+        //    _target.OnDamaged(p, _skill.damage + p.Attack);
+        if (_target != null && (_target.gameRoom != null || p.gameRoom != null || _target.gameRoom == p.gameRoom || _target.State != CreatureState.Dead))
+            _target.OnDamaged(p, _skill.damage + p.Attack);
+        else
+        {  //실패시
+            return;
+        }
+
+
+
+
+
+        S_Skill skillPacket = new S_Skill() { Info = new SkillInfo() };
+        skillPacket.ObjectId = p.Id;
+        skillPacket.Info.SkillId = 104;
+        p.gameRoom.Push(p.gameRoom.BroadCast, p.CurrentRoomId, skillPacket);
+
+        //---------------- 후처리 --------------
+
+        
+       
+
+        //------------ 
+        Console.WriteLine("Skill103");
     }
 
     internal static void Skill110(GameObject obj)

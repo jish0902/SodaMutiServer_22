@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "N8HZr/QaGWNdxFdIxHAvkQ+M850p31EbrBIs3+RDUJVqJh8z05yHzRhVWEHofOklYk0vCnLTWXrSGW5KQnne3g==",
+  "dgSpecHash": "2wTVzmTauKBTTNnkzeM6aUo0wHsyCEWZc/NZrFk9LiAuxuPf0l92dNnyOkUTuOLWTtBvpO9K+JiuWlTT+odeQg==",
   "success": true,
-  "projectFilePath": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/Server/Server.csproj",
+  "projectFilePath": "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/Server/Server.csproj",
   "expectedPackageFiles": [
     "/Users/jiseunghyeon/.nuget/packages/google.protobuf/3.19.3/google.protobuf.3.19.3.nupkg.sha512",
     "/Users/jiseunghyeon/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",

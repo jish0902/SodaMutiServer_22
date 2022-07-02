@@ -136,11 +136,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/DummyClient/DummyClient.csproj",
+      "projectUniqueName": "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/DummyClient/DummyClient.csproj",
       "projectName": "DummyClient",
-      "projectPath": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/DummyClient/DummyClient.csproj",
+      "projectPath": "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/DummyClient/DummyClient.csproj",
       "packagesPath": "/Users/jiseunghyeon/.nuget/packages/",
-      "outputPath": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/DummyClient/obj/",
+      "outputPath": "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/DummyClient/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/jiseunghyeon/.nuget/NuGet/NuGet.Config"
@@ -155,8 +155,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/ServerCore/ServerCore.csproj": {
-              "projectPath": "/Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/ServerCore/ServerCore.csproj"
+            "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/ServerCore/ServerCore.csproj": {
+              "projectPath": "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/ServerCore/ServerCore.csproj"
             }
           }
         }
