@@ -54,7 +54,7 @@ namespace Server.Session
                 
 
                 StatInfo info;
-                if(Data.DataManager.StatDict.TryGetValue(1001,out info) == true)
+                if(Data.DataManager.StatDict.TryGetValue(101,out info) == true)
                 {
                     MyPlayer.info.StatInfo = info;
                     MyPlayer.stat.MergeFrom(info);

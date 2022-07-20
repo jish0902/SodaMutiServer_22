@@ -73,7 +73,19 @@ namespace Server.Game
 
         public override void OnDead(GameObject attacker)
         {
-            base.OnDead(attacker);
+            if (gameRoom == null)
+                return;
+
+            S_Die diePacket = new S_Die();
+            diePacket.ObjectId = Id;
+            diePacket.AttackerId = attacker.Id;
+
+            gameRoom.BroadCast(CurrentRoomId, diePacket);
+
+            GameRoom room = gameRoom;
+            room.Push(room.LeaveGame, Id);
+            
+            
         }
 
        

@@ -65,6 +65,10 @@ namespace Server.Game
 
                 Speed = monsterData.stat.Speed;
                 //Console.WriteLine(stat.AttackSpeed);
+                
+                
+              
+                
             }
             else
             {
@@ -72,6 +76,8 @@ namespace Server.Game
             }
            
         }
+
+       
 
         IJob _job;
         public override void Update()
@@ -219,6 +225,10 @@ namespace Server.Game
             _moveTime = 0;
             State = CreatureState.Moving;
             Console.WriteLine("Moving로 상태변화");
+            
+            
+            
+            
         }
 
 
@@ -333,6 +343,7 @@ namespace Server.Game
                 room.Push(room.LeaveGame, Id);
             }
 
+            attacker.stat.TotalExp
             
             S_Die diePacket = new S_Die();
             diePacket.ObjectId = Id;

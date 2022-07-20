@@ -253,6 +253,7 @@ public class SkillHandler
         Console.WriteLine("Skill102");
         
     }
+
     internal static void Skill103(GameObject obj)  //중갑전차, 반사데미지
     {
         Skill _skill;
@@ -394,7 +395,7 @@ public class SkillHandler
        
 
         //------------ 
-        Console.WriteLine("Skill103");
+        Console.WriteLine("Skill104");
     }
 
     internal static void Skill110(GameObject obj)
@@ -465,6 +466,7 @@ public class SkillHandler
         Arrow arrow = ObjectManager.Instance.Add<Arrow>();
         if (arrow == null)
             return;
+        
         arrow.CurrentRoomId = p.CurrentRoomId;
         arrow.info.Name = "Arrow";
         arrow.OwnerId = p.Id;
@@ -481,8 +483,7 @@ public class SkillHandler
         //Console.WriteLine($"P pos : {p.PosInfo.PosX},{p.PosInfo.PosY}");
         //Console.WriteLine($"arrow pos : {arrow.PosInfo.PosX},{arrow.PosInfo.PosY}");
         p.gameRoom.Push(p.gameRoom.EnterGame, arrow, false);
-
-
+        
         // Console.WriteLine("Skill11____________");
         //Console.WriteLine ($"{arrow.PosInfo.DirX},{arrow.PosInfo.DirY},{arrow.PosInfo.PosX},{arrow.PosInfo.PosY}");
 

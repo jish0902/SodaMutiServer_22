@@ -18,7 +18,7 @@ namespace Server
 
     class Program
     {
-        public static int ServerTick = 200; //0.2sec
+        public const int ServerTick = 200; //0.2sec
         static Listener _listener = new Listener();
 
         public static string IpAddress { get; set; }
@@ -48,6 +48,7 @@ namespace Server
 
         static void Main(string[] args)
         {
+            Console.WriteLine("1");
             ConfingManager.LoadConfig();
             DataManager.LoadData();
             
@@ -59,6 +60,17 @@ namespace Server
             string host = Dns.GetHostName();
             IPHostEntry ipHost = Dns.GetHostEntry(host);
             IPAddress ipAddr = ipHost.AddressList[0];
+            
+            foreach (var _ipAddress in ipHost.AddressList)
+            {
+                if (_ipAddress.ToString().Contains("192"))
+                {
+                    ipAddr = _ipAddress;
+                    break;
+                }
+            }
+
+            
            
             IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
 

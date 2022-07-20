@@ -37,6 +37,11 @@ namespace Server.Game
         //public virtual int TotalAttack { get { return stat.Attack; } }
         //public virtual int TotalDefence { get { return 0; } }
 
+
+        public  Exp
+        {
+            
+        }
         
         public Vector2 Dir
         {
@@ -156,7 +161,7 @@ namespace Server.Game
                 PosInfo.State = CreatureState.Idle;
             }));
 
-            room.Push(room.EnterGame, this, true);
+            room.PushAfter(10,room.EnterGame, this, true);
 
 
         }

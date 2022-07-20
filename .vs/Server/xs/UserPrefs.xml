@@ -1,25 +1,17 @@
 ﻿<Properties StartupConfiguration="{B9D789D0-92A0-4B78-9876-1BDD14097717}|Default">
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.DummyClient PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Server/Program.cs">
     <Files>
-      <File FileName="DummyClient/Program.cs" Line="35" Column="1" />
-      <File FileName="Server/Program.cs" Line="61" Column="54" />
+      <File FileName="Server/Game/Skill/SkillHandler.cs" Line="350" Column="38" />
+      <File FileName="Server/Program.cs" Line="85" Column="1" />
       <File FileName="Server/Session/SessionManager.cs" Line="1" Column="1" />
-      <File FileName="Server/Session/ClientSession.cs" Line="1" Column="1" />
-      <File FileName="Server/Packet/ServerPacketManager.cs" Line="1" Column="1" />
-      <File FileName="Server/Packet/Protocol.cs" Line="1" Column="1" />
-      <File FileName="Server/Packet/PacketHandler.cs" Line="1" Column="1" />
       <File FileName="Server/Session/ClientSession_PreGame.cs" Line="1" Column="1" />
-      <File FileName="Server/Game/Job/JobSerializer.cs" Line="1" Column="1" />
-      <File FileName="Server/Game/Job/JobTimer.cs" Line="1" Column="1" />
-      <File FileName="Server/Data/ConfingManager.cs" Line="1" Column="1" />
-      <File FileName="Server/Data/DataContents.cs" Line="1" Column="1" />
-      <File FileName="Server/Data/DataManager.cs" Line="44" Column="48" NotebookId="1" />
-      <File FileName="Server/Game/Object/GameObject.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Server/Game/Object/Player.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Server/Game/Object/ObjectManager.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Server/DB/DataModel.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Server/Game/Job/Job.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Server/Session/ClientSession.cs" Line="73" Column="10" />
+      <File FileName="Server/Game/Skill/SkillCoolDown.cs" Line="1" Column="1" />
+      <File FileName="Server/Game/Skill/S_SkillManager.cs" Line="1" Column="1" />
+      <File FileName="Server/Packet/PacketHandler.cs" Line="1" Column="1" />
+      <File FileName="../Common/protoc-3.19.3-win64/bin/Protocol.proto" Line="134" Column="15" NotebookId="1" IsPinned="True" />
+      <File FileName="Server/Game/Object/CreatureObj.cs" Line="7" Column="37" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -28,12 +20,16 @@
             <Node name="Gameserver" expanded="True" />
             <Node name="Server" expanded="True">
               <Node name="Data" expanded="True" />
-              <Node name="DB" expanded="True" />
-              <Node name="Game" expanded="True" />
+              <Node name="Game" expanded="True">
+                <Node name="Job" expanded="True" />
+                <Node name="Object" expanded="True" />
+                <Node name="Room" expanded="True" />
+                <Node name="Skill" expanded="True" />
+              </Node>
               <Node name="Packet" expanded="True" />
               <Node name="Session" expanded="True" />
-              <Node name="Program.cs" selected="True" />
             </Node>
+            <Node name="ServerCore" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -42,13 +38,13 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/Server/Program.cs" relfile="Server/Program.cs" line="61" column="1" />
+      <Breakpoint file="/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/Server/Game/Skill/SkillHandler.cs" relfile="Server/Game/Skill/SkillHandler.cs" line="12" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.DummyClient PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.ItemProperties.Server PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

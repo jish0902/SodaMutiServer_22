@@ -52,3 +52,13 @@ C:/Users/jish/Documents/GitHub/GameServer_22/Server/DummyClient/obj/Debug/netcor
 /Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/DummyClient/obj/Debug/netcoreapp3.1/DummyClient.dll
 /Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/DummyClient/obj/Debug/netcoreapp3.1/DummyClient.pdb
 /Users/jiseunghyeon/Documents/GitHub/SodaMutiServer_22/DummyClient/obj/Debug/netcoreapp3.1/DummyClient.genruntimeconfig.cache
+/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/DummyClient/bin/Debug/netcoreapp3.1/DummyClient
+/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/DummyClient/bin/Debug/netcoreapp3.1/DummyClient.dll
+/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/DummyClient/bin/Debug/netcoreapp3.1/DummyClient.pdb
+/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/DummyClient/obj/Debug/netcoreapp3.1/DummyClient.csproj.AssemblyReference.cache
+/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/DummyClient/obj/Debug/netcoreapp3.1/DummyClient.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/DummyClient/obj/Debug/netcoreapp3.1/DummyClient.AssemblyInfoInputs.cache
+/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/DummyClient/obj/Debug/netcoreapp3.1/DummyClient.AssemblyInfo.cs
+/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/DummyClient/obj/Debug/netcoreapp3.1/DummyClient.csproj.CoreCompileInputs.cache
+/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/DummyClient/obj/Debug/netcoreapp3.1/DummyClient.dll
+/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/DummyClient/obj/Debug/netcoreapp3.1/DummyClient.pdb

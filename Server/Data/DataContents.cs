@@ -45,7 +45,7 @@ namespace Server.Data
 				stat.Speed = 3; //속도
 				stat.TotalExp = stat.Exp;
 				stat.Exp = 0;
-				dict.Add(1000 * stat.Class + stat.Level, stat); //1001
+				dict.Add(100 * stat.Class + stat.Level, stat); //101
 				
 			}
 			return dict;

@@ -128,6 +128,9 @@ namespace Server.Game
 
                 Map.AddObject(monster);
                 monster.Update();
+                
+                
+                
             }
             else if (type == GameObjectType.Projectile)
             {
@@ -142,10 +145,14 @@ namespace Server.Game
             }//if끝
 
             {
-
                 S_Spawn spawnpacket = new S_Spawn();
                 spawnpacket.Objects.Add(gameObject.info);
                 BroadCast(gameObject.CurrentRoomId, spawnpacket);
+                
+                S_ChangeHp ChangePacket = new S_ChangeHp();
+                ChangePacket.ObjectId = gameObject.Id;
+                ChangePacket.Hp = gameObject.Hp;
+                BroadCast(gameObject.CurrentRoomId, ChangePacket);
             }
 
 
@@ -168,6 +175,7 @@ namespace Server.Game
                     despawnpacket.ObjcetIds.Add(id);
                     BroadCast(player.CurrentRoomId, despawnpacket);
                     _playerList.Remove(id);
+                    
                 }
 
             }
@@ -179,7 +187,7 @@ namespace Server.Game
                     if(Map.RemoveObject(monster) == -1)
                         Console.WriteLine("지우기 오류"); ;
 
-                        S_Despawn despawnpacket = new S_Despawn();
+                    S_Despawn despawnpacket = new S_Despawn();
                     despawnpacket.ObjcetIds.Add(id);
                     BroadCast(monster.CurrentRoomId, despawnpacket);
                     _MonsterList.Remove(id);

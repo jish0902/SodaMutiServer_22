@@ -1,16 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "2wTVzmTauKBTTNnkzeM6aUo0wHsyCEWZc/NZrFk9LiAuxuPf0l92dNnyOkUTuOLWTtBvpO9K+JiuWlTT+odeQg==",
+  "dgSpecHash": "3BIyMBFz4HkjfC0+PU8VAGDcnLqOXclPhCz6nD/91vNoNaHkL848H1t3pgaySVURqLgMu2la8qnagvfus7GhXg==",
   "success": true,
-  "projectFilePath": "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/Server/Server.csproj",
+  "projectFilePath": "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/Server/Server.csproj",
   "expectedPackageFiles": [
     "/Users/jiseunghyeon/.nuget/packages/google.protobuf/3.19.3/google.protobuf.3.19.3.nupkg.sha512",
     "/Users/jiseunghyeon/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
     "/Users/jiseunghyeon/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512",
-    "/Users/jiseunghyeon/.nuget/packages/system.runtime.compilerservices.unsafe/4.5.2/system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
-    "/Users/jiseunghyeon/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.10/microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
-    "/Users/jiseunghyeon/.nuget/packages/microsoft.netcore.app.host.osx-x64/3.1.26/microsoft.netcore.app.host.osx-x64.3.1.26.nupkg.sha512",
-    "/Users/jiseunghyeon/.nuget/packages/microsoft.netcore.app.ref/3.1.0/microsoft.netcore.app.ref.3.1.0.nupkg.sha512"
+    "/Users/jiseunghyeon/.nuget/packages/system.runtime.compilerservices.unsafe/4.5.2/system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
   ],
   "logs": []
 }
