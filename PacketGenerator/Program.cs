@@ -20,6 +20,7 @@ namespace PacketGenerator
 
 		static void Main(string[] args)
 		{
+			//절대 생성 금지  ../../../Common/protoc-21.3-osx-x86_64/bin 위치에서 생성하는 파일 있음
 			ProtocolGen(args);
 			GenSkillManager(args);
 		}
@@ -27,7 +28,7 @@ namespace PacketGenerator
 
 		static public void ProtocolGen(string[] args)
         {
-			string file = "../../../Common/protoc-3.19.3-win64/bin/Protocol.proto";
+			string file = "../../../Common/protoc-21.3-osx-x86_64/bin/Protocol.proto";
 			if (args.Length >= 1)
 				file = args[0];
 
@@ -112,7 +113,9 @@ namespace PacketGenerator
 
 		}
 
-
+		public static void MonstaDataMerge(string[] args){
+			
+		}
 		public static void SkillCoolGen(string[] args)
         {
 

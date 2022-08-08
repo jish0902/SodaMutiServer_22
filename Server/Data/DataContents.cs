@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using Google.Protobuf.Protocol;
 
+
 namespace Server.Data
 {
-
+	
     #region Stat
 
     /*message StatInfo{
@@ -29,12 +30,14 @@ namespace Server.Data
 	float speed = 18;
 	int32 totalExp = 19;
 }*/
+    
+    
 
-    [Serializable]
+	    [Serializable]
 	public class StatData : ILoader<int, StatInfo>
 	{
 		public List<StatInfo> stats = new List<StatInfo>();
-
+		
 		public Dictionary<int, StatInfo> MakeDict()
 		{
 			Dictionary<int, StatInfo> dict = new Dictionary<int, StatInfo>();
@@ -43,7 +46,6 @@ namespace Server.Data
 				stat.Hp = stat.MaxHp;
 				stat.Mp = stat.MaxMp;
 				stat.Speed = 3; //속도
-				stat.TotalExp = stat.Exp;
 				stat.Exp = 0;
 				dict.Add(100 * stat.Class + stat.Level, stat); //101
 				
@@ -183,7 +185,9 @@ namespace Server.Data
     //#endregion
 
     #region Mosnter
-
+    
+   
+    
     [Serializable]
     public class RewardData
     {
@@ -192,6 +196,46 @@ namespace Server.Data
         public int count;
     }
 
+    public class MonsterStat
+    {
+	    public  int id;
+	    public  int Class;
+	    public  int level;
+	    public  int maxHp;
+	    public  int maxMp;
+	    public  float attackRange;
+	    public  int attack;
+	    public  float attackSpeed;
+	    public  int defence;
+	    public  int critical;
+	    public  int exp;
+	    public  int faith;
+	    public  int will;
+	    public  int friendly;
+	    public  int karma;
+	    public  int frame;
+	    public  int credit;
+	    public  int speed;
+	    public  int maxExp;
+    }
+    
+    public class MonsterStatData : ILoader<int, MonsterStat>
+    {
+	    public List<MonsterStat> MonsterStat = new List<MonsterStat>();
+
+	    public Dictionary<int, MonsterStat> MakeDict()
+	    {
+		    Dictionary<int, MonsterStat> dict = new Dictionary<int, MonsterStat>();
+		    foreach (MonsterStat stat in MonsterStat)
+		    {
+			    dict.Add(stat.id, stat);
+		    }
+		    return dict;
+	    }
+    }
+    
+    
+    
     [Serializable]
     public class MonsterData
     {
@@ -200,8 +244,8 @@ namespace Server.Data
         public StatInfo stat;  //class = 100이상
         public List<RewardData> rewards;
         public string prefabPath;
-
     }
+    
 
     [Serializable]
     public class MonsterLoader : ILoader<int, MonsterData>
@@ -210,20 +254,56 @@ namespace Server.Data
         public Dictionary<int, MonsterData> MakeDict()
         {
             Dictionary<int, MonsterData> dict = new Dictionary<int, MonsterData>();
+
+            var StatData = DataManager.MonsterStatDict;
+            
             foreach (MonsterData monster in monsters)
             {
+	            //---------------------------------
+	            MonsterStat mStat;
+	            if (false == StatData.TryGetValue(monster.id, out mStat))
+	            {
+		            Console.WriteLine("몬스터 스텟 병합오류");
+		            continue;
+	            }
+
+	            monster.stat = new StatInfo();
+	            
+	            monster.stat.Class = mStat.Class;
+	            monster.stat.Level = mStat.level;
+	            monster.stat.MaxHp = mStat.maxHp;
+	            monster.stat.MaxMp = mStat.maxMp;
+	            monster.stat.AttackRange = mStat.attackRange;
+	            monster.stat.Attack = mStat.attack;
+	            monster.stat.AttackSpeed = mStat.attackSpeed;
+	            monster.stat.Defence = mStat.defence;
+	            monster.stat.Critical = mStat.critical;
+	            monster.stat.Exp = mStat.exp * 10; //Todo: 삭제
+	            
+	            monster.stat.Faith = mStat.faith;
+	            monster.stat.Will = mStat.will;
+	            monster.stat.Friendly = mStat.friendly;
+	            monster.stat.Karma = mStat.karma;
+	            monster.stat.Frame = mStat.frame;
+	            monster.stat.Credit = mStat.credit;
+	            monster.stat.Speed = mStat.speed;
+	            monster.stat.MaxExp = mStat.maxExp;
+	            
+	            
+	            
+	            
+	            //---------------------------------
+
                 monster.stat.Hp = monster.stat.MaxHp;
                 monster.stat.Mp = monster.stat.MaxMp;
-                monster.stat.Speed = 3; //속도
-                monster.stat.TotalExp = monster.stat.Exp;
-                monster.stat.Exp = 0;
 
                 dict.Add(monster.id, monster);
             }
             return dict;
         }
     }
-
+    
+    
 
     #endregion
 

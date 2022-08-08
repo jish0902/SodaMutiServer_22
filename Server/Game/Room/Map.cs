@@ -83,7 +83,7 @@ namespace Server.Game
 
 		//-------------------------- 게임 룰 ------------------------------------
 	    static public readonly int rOwnerValInitCount = 100;
-		public Vector2Int Owner { get; private set; } = new Vector2Int(0, rOwnerValInitCount);
+		public Vector2Int Owner { get; private set; } = new Vector2Int(0, 0);
 		public int TryOwnerId { get; private set; } = 0;
 
 		long coolDown = 0;
@@ -91,26 +91,44 @@ namespace Server.Game
         {
 			if(Owner.x == id) //본인이면
             {
-
-				return false;
+	            return false;
             }
             else //본인이 아닌면
             {
-				if (coolDown <= System.Environment.TickCount64)  coolDown = System.Environment.TickCount64 + 100;//0.1초 쿨타임	
-				else  return false;
-
-				Vector2Int owner = Owner;
-				owner.y -= value; //실제 빼기
-				Owner = owner;
-				TryOwnerId = id;
-
-				if (Owner.y <= 0) { //점령 했으면
-					Vector2Int _owner = Owner;
-					_owner.x = id;
-					_owner.y = rOwnerValInitCount;//10초
-					Owner = _owner;
-					//Todo : 방 컨트롤
+	            if (coolDown <= System.Environment.TickCount64)  coolDown = System.Environment.TickCount64 + 100;//0.1초 쿨타임	
+	            else  return false;
+	            
+	            if (Owner.x == 0) //주인이 없으면
+				{
+					Vector2Int owner = Owner;
+					owner.y += value; //실제 빼기
+					Owner = owner;
+					TryOwnerId = id;
+					
+					if (Owner.y >= rOwnerValInitCount) { //점령 했으면 내꺼인 상태
+						Vector2Int _owner = Owner;
+						_owner.x = TryOwnerId;  
+						_owner.y = rOwnerValInitCount;//10초
+						Owner = _owner;
+						//Todo : 방 컨트롤
+					}
+					
 				}
+				else //주인이 있으면
+				{
+					Vector2Int owner = Owner;
+					owner.y -= value; //실제 빼기
+					Owner = owner;
+					TryOwnerId = id;
+					
+					if (Owner.y <= 0) { //점령 했으면 태초의 상태로
+						Vector2Int _owner = Owner;
+						_owner.x = 0;  
+						_owner.y = 0;//10초
+						Owner = _owner;
+					}
+				}
+				
 				return true;
 			}
 		}
@@ -524,6 +542,11 @@ namespace Server.Game
 
             foreach (Room room in Rooms)
             {
+	            if (room.RoomType == RoomType.PATH | room.RoomType == RoomType.BOSSROOM)
+	            {
+		            continue;
+	            }
+	            
 				Vector2 Pos = new Vector2(room.PosX, room.PosY);
 				List<Player> target = room.Players.Where(P => (Pos - P.CellPos).Length() < (Range * Range)).ToList();
 				if (target == null)

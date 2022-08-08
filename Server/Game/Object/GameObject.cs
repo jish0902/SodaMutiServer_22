@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
+using Server.Data;
 
 namespace Server.Game
 {
@@ -38,10 +39,47 @@ namespace Server.Game
         //public virtual int TotalDefence { get { return 0; } }
 
 
-        public  Exp
+        public int Exp => stat.Exp;
+
+
+        public void AddExp(int addnum)
         {
-            
+            if(addnum > 0)
+                stat.Exp += addnum;
+            else
+                return;
+
+            Console.WriteLine($"---------{info.Name} Exp {addnum} 증가------------");
+            if (stat.Exp >= stat.MaxExp)  //일단 레벨업
+            {
+                int addtional =  stat.Exp - stat.MaxExp;
+                
+                Console.WriteLine($"{info.Name}Level Up");
+                stat.Level += 1;
+                StatInfo nextStat;
+                if (true == DataManager.StatDict.TryGetValue(100 * stat.Class + stat.Level, out nextStat))
+                {
+                    stat = nextStat;
+                    stat.Exp = 0;
+
+                    S_StatChange statPacket = new S_StatChange();
+                    statPacket.ObjectId = this.Id;
+                    statPacket.StatInfo = this.stat;
+                    this.gameRoom.Push(this.gameRoom.BroadCast, this.CurrentRoomId, statPacket);
+                }
+                else
+                {
+                    Console.WriteLine("레벨업 오류");
+                }
+                
+                if (addtional >= stat.MaxExp) // 한번더 레벨업 할경우
+                {
+                    AddExp(addtional);
+                }
+                
+            }
         }
+        
         
         public Vector2 Dir
         {

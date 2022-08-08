@@ -50,3 +50,22 @@ C:/Users/jish/Documents/GitHub/GameServer_22/Server/PacketGenerator/obj/Debug/Pa
 /Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/PacketGenerator/obj/Debug/PacketGenerator.pdb
 /Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/PacketGenerator/bin/PacketGenerator.dll
 /Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/PacketGenerator/bin/PacketGenerator.pdb
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/PacketGenerator.deps.json
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/PacketGenerator.runtimeconfig.json
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/PacketGenerator.runtimeconfig.dev.json
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/PacketGenerator.dll
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/PacketGenerator.pdb
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/Google.Protobuf.dll
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/Newtonsoft.Json.dll
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/Server.dll
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/ServerCore.dll
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/Server.pdb
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/ServerCore.pdb
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/obj/Debug/PacketGenerator.csproj.AssemblyReference.cache
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/obj/Debug/PacketGenerator.AssemblyInfoInputs.cache
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/obj/Debug/PacketGenerator.AssemblyInfo.cs
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/obj/Debug/PacketGenerator.csproj.CoreCompileInputs.cache
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/obj/Debug/PacketGenerator.csproj.CopyComplete
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/obj/Debug/PacketGenerator.dll
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/obj/Debug/PacketGenerator.pdb
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/obj/Debug/PacketGenerator.genruntimeconfig.cache

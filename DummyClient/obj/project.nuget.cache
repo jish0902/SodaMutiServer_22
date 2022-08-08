@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ckEmW/oqCR2g3MOhoGCu26vHuXmO9TzrmMIk02MfrJqwwW653yd+LD/u4XBr43wPUuw8EZ2IfXg4Rsbm+uxbAg==",
+  "dgSpecHash": "Hr97ZvG7miZjobCd/v+GdoU0CoVbcxAtpdljXo3E471PtZcMXAhSXi5vckyJEvlxwTg/dBDEPHzPU0hxH6fjZw==",
   "success": true,
-  "projectFilePath": "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/DummyClient/DummyClient.csproj",
+  "projectFilePath": "/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/DummyClient/DummyClient.csproj",
   "expectedPackageFiles": [
     "/Users/jiseunghyeon/.nuget/packages/google.protobuf/3.19.3/google.protobuf.3.19.3.nupkg.sha512",
     "/Users/jiseunghyeon/.nuget/packages/system.memory/4.5.3/system.memory.4.5.3.nupkg.sha512",

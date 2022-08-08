@@ -19,7 +19,7 @@ namespace Server.Game
 		{
 			if (occupationMode)
 			{
-				List<Player> _players = Map.GetPlayerInOccupationPos(2);
+				List<Player> _players = Map.GetPlayerInOccupationPos(2); //추가
 
 				HashSet<int> rooms = new HashSet<int>();
 				foreach (Player player in _players)
@@ -31,7 +31,7 @@ namespace Server.Game
                 foreach (int rId in rooms)
                 {
                     Room room = Map.GetRoom(rId);
-                    if (room. Owner.y % 5 == 0)
+                    if (room.Owner.y % 5 == 0)
                     {
                         S_RoomInfo roomPacket = new S_RoomInfo();
                         roomPacket.RoomInfos.Add(new RoomInfo()

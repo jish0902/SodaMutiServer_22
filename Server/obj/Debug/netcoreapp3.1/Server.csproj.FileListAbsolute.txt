@@ -64,3 +64,20 @@ C:/Users/jish/Documents/GitHub/GameServer_22/Server/Server/bin/Debug/netcoreapp3
 /Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/Server/obj/Debug/netcoreapp3.1/Server.csproj.CoreCompileInputs.cache
 /Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/Server/obj/Debug/netcoreapp3.1/Server.dll
 /Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/Server/obj/Debug/netcoreapp3.1/Server.pdb
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/bin/Debug/netcoreapp3.1/Server.deps.json
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/bin/Debug/netcoreapp3.1/Server.runtimeconfig.json
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/bin/Debug/netcoreapp3.1/Server.runtimeconfig.dev.json
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/bin/Debug/netcoreapp3.1/Server.dll
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/bin/Debug/netcoreapp3.1/Server.pdb
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/bin/Debug/netcoreapp3.1/Google.Protobuf.dll
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/bin/Debug/netcoreapp3.1/Newtonsoft.Json.dll
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/bin/Debug/netcoreapp3.1/ServerCore.dll
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/bin/Debug/netcoreapp3.1/ServerCore.pdb
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/obj/Debug/netcoreapp3.1/Server.csproj.AssemblyReference.cache
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/obj/Debug/netcoreapp3.1/Server.AssemblyInfoInputs.cache
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/obj/Debug/netcoreapp3.1/Server.AssemblyInfo.cs
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/obj/Debug/netcoreapp3.1/Server.csproj.CoreCompileInputs.cache
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/obj/Debug/netcoreapp3.1/Server.csproj.CopyComplete
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/obj/Debug/netcoreapp3.1/Server.dll
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/obj/Debug/netcoreapp3.1/Server.pdb
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/obj/Debug/netcoreapp3.1/Server.genruntimeconfig.cache

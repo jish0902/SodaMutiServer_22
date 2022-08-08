@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gameserver", "Gameserver", 
 		TextFile1.txt = TextFile1.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonMerge", "JsonMerge\JsonMerge.csproj", "{20E9E14B-42F8-4B73-9EE3-949AF4648CFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,12 +42,17 @@ Global
 		{B2A9F0D7-0BE9-4598-B369-A51D1B3F7E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2A9F0D7-0BE9-4598-B369-A51D1B3F7E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2A9F0D7-0BE9-4598-B369-A51D1B3F7E85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20E9E14B-42F8-4B73-9EE3-949AF4648CFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20E9E14B-42F8-4B73-9EE3-949AF4648CFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20E9E14B-42F8-4B73-9EE3-949AF4648CFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20E9E14B-42F8-4B73-9EE3-949AF4648CFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B2A9F0D7-0BE9-4598-B369-A51D1B3F7E85} = {1DBF65C9-64D8-4C6F-AB2B-EEAC43891F2D}
+		{20E9E14B-42F8-4B73-9EE3-949AF4648CFE} = {1DBF65C9-64D8-4C6F-AB2B-EEAC43891F2D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ADB7DC89-4FFA-42E9-BC8C-5425B18BF2C0}

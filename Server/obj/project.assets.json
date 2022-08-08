@@ -159,7 +159,7 @@
     "ServerCore/1.0.0": {
       "type": "project",
       "path": "../ServerCore/ServerCore.csproj",
-      "msbuildProject": "../../../게임 서버/SodaMutiServer_22/ServerCore/ServerCore.csproj"
+      "msbuildProject": "../ServerCore/ServerCore.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -176,11 +176,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/Server/Server.csproj",
+      "projectUniqueName": "/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/Server.csproj",
       "projectName": "Server",
-      "projectPath": "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/Server/Server.csproj",
+      "projectPath": "/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/Server.csproj",
       "packagesPath": "/Users/jiseunghyeon/.nuget/packages/",
-      "outputPath": "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/Server/obj/",
+      "outputPath": "/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/jiseunghyeon/.nuget/NuGet/NuGet.Config"
@@ -195,8 +195,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/ServerCore/ServerCore.csproj": {
-              "projectPath": "/Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/ServerCore/ServerCore.csproj"
+            "/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/ServerCore/ServerCore.csproj": {
+              "projectPath": "/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/ServerCore/ServerCore.csproj"
             }
           }
         }
@@ -239,7 +239,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/3.1.420/RuntimeIdentifierGraph.json"
       }
     }
   }

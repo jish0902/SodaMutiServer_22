@@ -343,7 +343,7 @@ namespace Server.Game
                 room.Push(room.LeaveGame, Id);
             }
 
-            attacker.stat.TotalExp
+            attacker.AddExp(stat.Exp);
             
             S_Die diePacket = new S_Die();
             diePacket.ObjectId = Id;
