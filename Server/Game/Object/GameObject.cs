@@ -53,24 +53,8 @@ namespace Server.Game
             if (stat.Exp >= stat.MaxExp)  //일단 레벨업
             {
                 int addtional =  stat.Exp - stat.MaxExp;
-                
-                Console.WriteLine($"{info.Name}Level Up");
-                stat.Level += 1;
-                StatInfo nextStat;
-                if (true == DataManager.StatDict.TryGetValue(100 * stat.Class + stat.Level, out nextStat))
-                {
-                    stat = nextStat;
-                    stat.Exp = 0;
 
-                    S_StatChange statPacket = new S_StatChange();
-                    statPacket.ObjectId = this.Id;
-                    statPacket.StatInfo = this.stat;
-                    this.gameRoom.Push(this.gameRoom.BroadCast, this.CurrentRoomId, statPacket);
-                }
-                else
-                {
-                    Console.WriteLine("레벨업 오류");
-                }
+                SetLevelUp();
                 
                 if (addtional >= stat.MaxExp) // 한번더 레벨업 할경우
                 {
@@ -79,6 +63,28 @@ namespace Server.Game
                 
             }
         }
+
+        public void SetLevelUp()
+        {
+            Console.WriteLine($"{info.Name}Level Up");
+            stat.Level += 1;
+            StatInfo nextStat;
+            if (true == DataManager.StatDict.TryGetValue(100 * stat.Class + stat.Level, out nextStat))
+            {
+                stat = nextStat;
+                stat.Exp = 0;
+
+                S_StatChange statPacket = new S_StatChange();
+                statPacket.ObjectId = this.Id;
+                statPacket.StatInfo = this.stat;
+                this.gameRoom.Push(this.gameRoom.BroadCast, this.CurrentRoomId, statPacket);
+            }
+            else
+            {
+                Console.WriteLine("레벨업 오류");
+            }
+        }
+        
         
         
         public Vector2 Dir
@@ -243,7 +249,7 @@ namespace Server.Game
 
         public static explicit operator Vector2(Vector2Int v)
         {
-            throw new NotImplementedException();
+            return new Vector2(v.x, v.y);
         }
     }
 

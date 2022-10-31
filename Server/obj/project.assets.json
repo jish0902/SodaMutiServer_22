@@ -1,18 +1,14 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {
+    "net6.0": {
       "Google.Protobuf/3.19.3": {
         "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.3",
-          "System.Runtime.CompilerServices.Unsafe": "4.5.2"
-        },
         "compile": {
-          "lib/netstandard2.0/Google.Protobuf.dll": {}
+          "lib/net5.0/Google.Protobuf.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/Google.Protobuf.dll": {}
+          "lib/net5.0/Google.Protobuf.dll": {}
         }
       },
       "Newtonsoft.Json/13.0.1": {
@@ -31,15 +27,6 @@
         },
         "runtime": {
           "lib/netcoreapp2.1/_._": {}
-        }
-      },
-      "System.Runtime.CompilerServices.Unsafe/4.5.2": {
-        "type": "package",
-        "compile": {
-          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
-        },
-        "runtime": {
-          "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         }
       },
       "ServerCore/1.0.0": {
@@ -131,31 +118,6 @@
         "version.txt"
       ]
     },
-    "System.Runtime.CompilerServices.Unsafe/4.5.2": {
-      "sha512": "wprSFgext8cwqymChhrBLu62LMg/1u92bU+VOwyfBimSPVFXtsNqEWC92Pf9ofzJFlk4IHmJA75EDJn1b2goAQ==",
-      "type": "package",
-      "path": "system.runtime.compilerservices.unsafe/4.5.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
-        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
-        "system.runtime.compilerservices.unsafe.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
-      ]
-    },
     "ServerCore/1.0.0": {
       "type": "project",
       "path": "../ServerCore/ServerCore.csproj",
@@ -163,7 +125,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": [
+    "net6.0": [
       "Google.Protobuf >= 3.19.3",
       "Newtonsoft.Json >= 13.0.1",
       "ServerCore >= 1.0.0",
@@ -186,14 +148,14 @@
         "/Users/jiseunghyeon/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp3.1"
+        "net6.0"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "projectReferences": {
             "/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/ServerCore/ServerCore.csproj": {
               "projectPath": "/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/ServerCore/ServerCore.csproj"
@@ -208,8 +170,8 @@
       }
     },
     "frameworks": {
-      "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
+      "net6.0": {
+        "targetAlias": "net6.0",
         "dependencies": {
           "Google.Protobuf": {
             "target": "Package",
@@ -239,7 +201,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/3.1.420/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/6.0.301/RuntimeIdentifierGraph.json"
       }
     }
   }

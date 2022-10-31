@@ -224,11 +224,7 @@ namespace Server.Game
 
             _moveTime = 0;
             State = CreatureState.Moving;
-            Console.WriteLine("Moving로 상태변화");
-            
-            
-            
-            
+            //Console.WriteLine("Moving로 상태변화");
         }
 
 
@@ -240,7 +236,7 @@ namespace Server.Game
             {
                 State = CreatureState.Idle;
                 _target = null;
-                Console.WriteLine("idle로 상태변화");
+                Console.WriteLine("player null or dead idle로 상태변화");
                 return;
             }
 
@@ -272,19 +268,24 @@ namespace Server.Game
 
             #endregion
 
+             List<Vector2Int> _path = gameRoom.Map.FindPath(new Vector2Int((int)MathF.Round(CellPos.X), (int)MathF.Round(CellPos.Y)),
+                new Vector2Int((int)MathF.Round(_target.CellPos.X), (int)MathF.Round(_target.CellPos.Y)),
+                checkObjects: true);
 
-
+             Console.WriteLine($"길찾기");
+            
             if (OwnerId != -1 && (_target.Id == OwnerId || _target.OwnerId == OwnerId)) //주인이 있고 타겟이 주인이거나 주인의 하수인이면
             {
                 float _dis = Vector2.Distance(_target.CellPos, CellPos);
+                Vector2 tempTarget = _path == null ? CellPos : (Vector2)_path[1];
+                Dir = Vector2.Normalize(tempTarget - CellPos);
+                
                 if (_dis > FindRange + 5)  //너무 멀면 빠르게 이동               Todo : 순간이동 구현
                 {
-                    Dir = Vector2.Normalize(_target.CellPos - CellPos);
                     CellPos += Speed * 2 * Program.ServerTick / 1000 * Dir;
                 }
                 else //적당히 멀면
                 {
-                    Dir = Vector2.Normalize(_target.CellPos - CellPos);
                     CellPos += Speed * Program.ServerTick / 1000 * Dir;
                 }
                 
@@ -300,7 +301,8 @@ namespace Server.Game
                 }
                 #endregion
 
-                Dir = Vector2.Normalize(_target.CellPos - CellPos);
+                Vector2 tempTarget = _path == null ? CellPos : (Vector2)_path[1];
+                Dir = Vector2.Normalize(tempTarget - CellPos);
                 CellPos += Speed * Program.ServerTick / 1000 * Dir;
             }
 
@@ -333,7 +335,7 @@ namespace Server.Game
                     PosInfo.State = CreatureState.Idle;
                 }));
 
-                room.PushAfter(3000, room.EnterGame, this, true);
+                room.PushAfter(3001, room.EnterGame, this, true);
             }
             else                 //주인이 있으면
             {
@@ -410,14 +412,7 @@ namespace Server.Game
         }
 
 
-        void BroadCastMove()
-        {
-            //다른플레이어에게도 알려준다
-            S_Move movepacket = new S_Move();
-            movepacket.ObjectId = Id;
-            movepacket.PositionInfo = PosInfo;
-            gameRoom.BroadCast(CurrentRoomId, movepacket);
-        }
+        
     }
 
 

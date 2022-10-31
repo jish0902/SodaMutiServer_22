@@ -1,6 +1,7 @@
 ﻿using Google.Protobuf.Protocol;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Server.Game
@@ -19,16 +20,14 @@ namespace Server.Game
 		{
 			if (occupationMode)
 			{
-				List<Player> _players = Map.GetPlayerInOccupationPos(2); //추가
+				List<Player> _players = Map.AddPlayerInOccupationPos(2); //추가
 
-				HashSet<int> rooms = new HashSet<int>();
+				HashSet<int> rooms = new HashSet<int>(); //페캣 타겢 찾기
+				
 				foreach (Player player in _players)
-                {
-					if(player != null)
-						rooms.Add(player.CurrentRoomId);
-				}
-
-                foreach (int rId in rooms)
+					if(player != null) rooms.Add(player.CurrentRoomId);
+				
+				foreach (int rId in rooms) //패킷 전송
                 {
                     Room room = Map.GetRoom(rId);
                     if (room.Owner.y % 5 == 0)

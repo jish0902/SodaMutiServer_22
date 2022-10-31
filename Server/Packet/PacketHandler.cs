@@ -91,5 +91,31 @@ class PacketHandler
 
         //Console.WriteLine($"Skill{skillPacket.Info.SkillId}");
     }
+
+    public static void C_RewardInfoHandler(PacketSession session, IMessage message)
+    {
+        ClientSession clientSession = (ClientSession)session;
+        C_RewardInfo info = message as C_RewardInfo;
+
+        Define.RewardsType t = (Define.RewardsType)info.RewardsType;
+
+        Player player = clientSession.MyPlayer; ;
+        if (player == null)
+            return;
+        
+        
+        if (t == Define.RewardsType.LevelUp)
+        {
+            player.SetLevelUp();
+        }
+        else if (t == Define.RewardsType.RandomItem)
+        {
+            //Todo: 아이템 구현
+        }
+        else if (t == Define.RewardsType.RandomSpawn)
+        {
+            //Todo : 아군 몬스터 구현
+        }
+    }
 }
 

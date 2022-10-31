@@ -81,3 +81,5 @@ C:/Users/jish/Documents/GitHub/GameServer_22/Server/Server/bin/Debug/netcoreapp3
 /Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/obj/Debug/netcoreapp3.1/Server.dll
 /Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/obj/Debug/netcoreapp3.1/Server.pdb
 /Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/obj/Debug/netcoreapp3.1/Server.genruntimeconfig.cache
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/bin/Debug/netcoreapp3.1/Server
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/obj/Debug/netcoreapp3.1/Server.GeneratedMSBuildEditorConfig.editorconfig

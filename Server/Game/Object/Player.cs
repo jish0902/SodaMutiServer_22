@@ -14,10 +14,13 @@ namespace Server.Game
         public ClientSession Session { get; set; }
         public VisionRegion Vision { get; set; }
         public SkillCoolDown SkillCoolDown  = new SkillCoolDown();
+        
 
         public Vector2 SkillDir { get; set; }
-        public List<GameObject> Targets { get; set; } = new List<GameObject>();
-
+        public List<GameObject> Targets { get; set; } = new List<GameObject>(); //스킬 공격
+        
+        //-------------------------------------------
+        private List<Room> ownRooms = new List<Room>();
 
         public Player()
         {
@@ -26,7 +29,30 @@ namespace Server.Game
 
         }
 
+        #region InGames
 
+        public void AddOwnRoomList(Room room)
+        {
+            ownRooms.Add(room);
+        }
+
+        public void RemoveRoomList(Room room)
+        {
+            ownRooms.Remove(room);
+        }
+        
+        
+        
+        
+        #endregion
+
+
+
+
+
+        
+        #region Skill
+        
         public bool ApplySkill(int id, float CoolDown)
         {
             int skillCool = SkillCoolDown.GetCoolTime(id);
@@ -60,7 +86,8 @@ namespace Server.Game
             return false;
         }
 
-
+        #endregion
+       
 
 
         public override void OnDamaged(GameObject attacker, int damage)
@@ -84,8 +111,6 @@ namespace Server.Game
 
             GameRoom room = gameRoom;
             room.Push(room.LeaveGame, Id);
-            
-            
         }
 
        

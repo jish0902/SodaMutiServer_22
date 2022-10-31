@@ -1,0 +1,92 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Server/1.0.0": {
+        "dependencies": {
+          "Google.Protobuf": "3.19.3",
+          "Newtonsoft.Json": "13.0.1",
+          "ServerCore": "1.0.0",
+          "System.Memory": "4.5.4"
+        },
+        "runtime": {
+          "Server.dll": {}
+        }
+      },
+      "Google.Protobuf/3.19.3": {
+        "dependencies": {
+          "System.Memory": "4.5.4",
+          "System.Runtime.CompilerServices.Unsafe": "4.5.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Protobuf.dll": {
+            "assemblyVersion": "3.19.3.0",
+            "fileVersion": "3.19.3.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
+          }
+        }
+      },
+      "System.Memory/4.5.4": {},
+      "System.Runtime.CompilerServices.Unsafe/4.5.2": {},
+      "ServerCore/1.0.0": {
+        "dependencies": {
+          "Google.Protobuf": "3.19.3"
+        },
+        "runtime": {
+          "ServerCore.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Server/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Google.Protobuf/3.19.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/C209W6RtwvtG1MoNNjoOMdlnCjVi8k3gFn90DO3O7kYoH3O345jZkJMYaJmddYIm7ROZC25sEAKHJPt3XZOog==",
+      "path": "google.protobuf/3.19.3",
+      "hashPath": "google.protobuf.3.19.3.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    },
+    "System.Memory/4.5.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1MbJTHS1lZ4bS4FmsJjnuGJOu88ZzTT2rLvrhW7Ygic+pC0NWA+3hgAen0HRdsocuQXCkUTdFn9yHJJhsijDXw==",
+      "path": "system.memory/4.5.4",
+      "hashPath": "system.memory.4.5.4.nupkg.sha512"
+    },
+    "System.Runtime.CompilerServices.Unsafe/4.5.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wprSFgext8cwqymChhrBLu62LMg/1u92bU+VOwyfBimSPVFXtsNqEWC92Pf9ofzJFlk4IHmJA75EDJn1b2goAQ==",
+      "path": "system.runtime.compilerservices.unsafe/4.5.2",
+      "hashPath": "system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
+    },
+    "ServerCore/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

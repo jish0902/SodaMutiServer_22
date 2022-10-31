@@ -1,11 +1,11 @@
 {
   "runtimeTarget": {
-    "name": ".NETCoreApp,Version=v3.1",
+    "name": ".NETCoreApp,Version=v6.0",
     "signature": ""
   },
   "compilationOptions": {},
   "targets": {
-    ".NETCoreApp,Version=v3.1": {
+    ".NETCoreApp,Version=v6.0": {
       "PacketGenerator/1.0.0": {
         "dependencies": {
           "Server": "1.0.0"
@@ -15,12 +15,8 @@
         }
       },
       "Google.Protobuf/3.19.3": {
-        "dependencies": {
-          "System.Memory": "4.5.4",
-          "System.Runtime.CompilerServices.Unsafe": "4.5.2"
-        },
         "runtime": {
-          "lib/netstandard2.0/Google.Protobuf.dll": {
+          "lib/net5.0/Google.Protobuf.dll": {
             "assemblyVersion": "3.19.3.0",
             "fileVersion": "3.19.3.0"
           }
@@ -35,7 +31,6 @@
         }
       },
       "System.Memory/4.5.4": {},
-      "System.Runtime.CompilerServices.Unsafe/4.5.2": {},
       "Server/1.0.0": {
         "dependencies": {
           "Google.Protobuf": "3.19.3",
@@ -83,13 +78,6 @@
       "sha512": "sha512-1MbJTHS1lZ4bS4FmsJjnuGJOu88ZzTT2rLvrhW7Ygic+pC0NWA+3hgAen0HRdsocuQXCkUTdFn9yHJJhsijDXw==",
       "path": "system.memory/4.5.4",
       "hashPath": "system.memory.4.5.4.nupkg.sha512"
-    },
-    "System.Runtime.CompilerServices.Unsafe/4.5.2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-wprSFgext8cwqymChhrBLu62LMg/1u92bU+VOwyfBimSPVFXtsNqEWC92Pf9ofzJFlk4IHmJA75EDJn1b2goAQ==",
-      "path": "system.runtime.compilerservices.unsafe/4.5.2",
-      "hashPath": "system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
     },
     "Server/1.0.0": {
       "type": "project",

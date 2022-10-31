@@ -48,6 +48,7 @@ namespace Server
 
         static void Main(string[] args)
         {
+
             Console.WriteLine("1");
             ConfingManager.LoadConfig();
             DataManager.LoadData();
@@ -63,9 +64,11 @@ namespace Server
             
             foreach (var _ipAddress in ipHost.AddressList)
             {
-                if (_ipAddress.ToString().Contains("192"))
+                if (_ipAddress.ToString().Contains("192") || _ipAddress.ToString().Contains("218") || _ipAddress.ToString().Contains("172"))
                 {
                     ipAddr = _ipAddress;
+                    //ipAddr = IPAddress.Any;
+                        
                     break;
                 }
             }

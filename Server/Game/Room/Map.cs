@@ -7,7 +7,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 
-
+using ServerCore;
 
 
 
@@ -15,40 +15,55 @@ using System.Text;
 
 namespace Server.Game
 {
-
-
-	class Person
+	public struct Pos
 	{
-		public string Name { get; set; } = "(No name)";
-
-		// 초기화 없을 경우 디폴드값 사용됨
-		public string Nickname { get;  }
-		public int Age { get; private set; }
-
-		// Auto-Property Initializer 할당
-		public bool Enabled { get; } = true;
-
-		// 생성자에서 초기값 할당
-		public int Level { get; }
-		public Person()
+		public int X;
+		public int Y;
+		public Pos(int x, int y)
 		{
-			this.Level = 1;
+			this.X = x;
+			this.Y = y;
+		}
+		
+		public static bool operator==(Pos lhs, Pos rhs)
+		{
+			return lhs.X == rhs.X && lhs.Y == rhs.Y;
+		}
+		
+		public static bool operator!=(Pos lhs, Pos rhs)
+		{
+			return !(lhs == rhs);
 		}
 
-		public void Te()
-        {
-			Age = 5;
+		public override bool Equals(object obj)
+		{
+			return (Pos)obj == this;
+		}
 
+		public override int GetHashCode()
+		{
+			long val = (Y << 32) | X;
+			return val.GetHashCode();
+		}
+		public override string ToString()
+		{
+			return base.ToString();
 		}
 	}
 
-
-
-
-
-
-
-
+	public struct PQNode : IComparable<PQNode>
+	{
+		public int F;
+		public int G;
+		public int Y;
+		public int X;
+		public int CompareTo(PQNode other)
+		{
+			if (F == other.F)
+				return 0;
+			return F < other.F ? 1 : -1;
+		}
+	}
 
 
 	public enum RoomType  //TODO : 서보와 자동화
@@ -87,9 +102,11 @@ namespace Server.Game
 		public int TryOwnerId { get; private set; } = 0;
 
 		long coolDown = 0;
-		public bool AddOwnerValue(int id, int value = 1)
-        {
-			if(Owner.x == id) //본인이면
+		public bool AddOwnerValue(Map map, Player Player, int value = 1)
+		{
+			int targetID = Player.Id;
+			
+			if(Owner.x == targetID) //본인이면
             {
 	            return false;
             }
@@ -103,14 +120,27 @@ namespace Server.Game
 					Vector2Int owner = Owner;
 					owner.y += value; //실제 빼기
 					Owner = owner;
-					TryOwnerId = id;
+					TryOwnerId = targetID;
 					
 					if (Owner.y >= rOwnerValInitCount) { //점령 했으면 내꺼인 상태
 						Vector2Int _owner = Owner;
+						
+						//---------------------------- 손실 -----------------------
+						Player lostPlayer = map.FindObjById(this.Id,_owner.x) as Player;
+						if (lostPlayer != null)
+							lostPlayer.RemoveRoomList(this);
+						
+						//------------------------------ 점령 --------------------
 						_owner.x = TryOwnerId;  
 						_owner.y = rOwnerValInitCount;//10초
 						Owner = _owner;
-						//Todo : 방 컨트롤
+						Player.AddOwnRoomList(this);
+
+						foreach (GameObject go in Objects)
+						{
+							ObjectManager.Instance.Remove(go.Id);
+						}
+						
 					}
 					
 				}
@@ -119,7 +149,7 @@ namespace Server.Game
 					Vector2Int owner = Owner;
 					owner.y -= value; //실제 빼기
 					Owner = owner;
-					TryOwnerId = id;
+					TryOwnerId = targetID;
 					
 					if (Owner.y <= 0) { //점령 했으면 태초의 상태로
 						Vector2Int _owner = Owner;
@@ -133,8 +163,6 @@ namespace Server.Game
 			}
 		}
        
-
-
 
 
 	}
@@ -212,6 +240,7 @@ namespace Server.Game
 
 
 			_collisions = new int[roomSize, roomSize];
+			_objects = new GameObject[roomSize, roomSize];
 
 
 			for (int x = roomSize - 1; x >= 0; x--)
@@ -293,16 +322,48 @@ namespace Server.Game
 
 
 
+		public bool ApplyLeave(GameObject gameObject)
+		{
+			if (gameObject.gameRoom == null)
+				return false;
+			if (gameObject.gameRoom.Map != this)
+				return false;
 
+			PositionInfo posInfo = gameObject.PosInfo;
+			if (posInfo.PosX < Bleft.x || posInfo.PosX > Tright.x)
+				return false;
+			if (posInfo.PosY < Bleft.y || posInfo.PosY > Tright.y)
+				return false;
+
+			{
+				Pos pos = Cell2Pos(posInfo.PosX,posInfo.PosY);
+				if (_objects[pos.X, pos.Y] == gameObject)
+					_objects[pos.X, pos.Y] = null;
+			}
+
+			return true;
+		}
 		public bool ApplyMove(GameObject gameObject, Vector2Int dest, bool cheakObjects = true, bool collision = true)
 		{
+			ApplyLeave(gameObject);
 			
-
+			if (gameObject.gameRoom == null)
+				return false;
+			if (gameObject.gameRoom.Map != this)
+				return false;
+			
+			PositionInfo posInfo = gameObject.PosInfo;
 			if (CanGo(dest, false) == true)
 			{
-				//Console.WriteLine($"{dest.x}{dest.y} 이동가능");
 				return true;
 			}
+			
+			
+			{
+				Pos pos = Cell2Pos(posInfo.PosX,posInfo.PosY);
+				_objects[pos.X,pos.Y] = gameObject;
+			}
+			
 			Console.WriteLine($"{dest.x}{dest.y} 이동불가능");
 
 			return false;
@@ -536,7 +597,7 @@ namespace Server.Game
 		}
 
 
-		public List<Player> GetPlayerInOccupationPos(int Range = 2)
+		public List<Player> AddPlayerInOccupationPos(int Range = 2)
         {
 			List<Player> _players = new List<Player>();
 
@@ -554,11 +615,9 @@ namespace Server.Game
 
                 foreach (Player player in target)
                 {
-					if(room.AddOwnerValue(player.Id, 1) == true)
-                    {
+	                if(room.AddOwnerValue(this, player, 1) == true) //실제 추가
 						_players.Add(player);
-					}
-				}
+                }
 			}
 			return _players;
 		}
@@ -657,31 +716,141 @@ namespace Server.Game
 
 
 
+		#region A* PathFinding
 
-		#region Map Collison
-	
+		// U D L R
+		int[] _deltaY = new int[] { 1, -1, 0, 0 };
+		int[] _deltaX = new int[] { 0, 0, -1, 1 };
+		int[] _cost = new int[] { 10, 10, 10, 10 };
 
+		public List<Vector2Int> FindPath(Vector2Int startCellPos, Vector2Int destCellPos, bool checkObjects = true)
+		{
+			List<Pos> path = new List<Pos>();
+			HashSet<Pos> closeList = new HashSet<Pos>(); // CloseList
+
+			// (y, x) 가는 길을 한 번이라도 발견했는지
+			// 발견X => MaxValue
+			// 발견O => F = G + H
+			Dictionary<Pos, int> openList = new Dictionary<Pos, int>(); // OpenList
+			Dictionary<Pos, Pos> parent = new Dictionary<Pos, Pos>();
+
+			// 오픈리스트에 있는 정보들 중에서, 가장 좋은 후보를 빠르게 뽑아오기 위한 도구
+			PriorityQueue<PQNode> pq = new PriorityQueue<PQNode>();
+
+			// CellPos -> ArrayPos
+			Pos pos = Cell2Pos(startCellPos);
+			Pos dest = Cell2Pos(destCellPos);
+
+			// 시작점 발견 (예약 진행)
+			openList.Add(pos, 10 * (Math.Abs(dest.Y - pos.Y) + Math.Abs(dest.X - pos.X)));
+
+			pq.Push(new PQNode() { F = 10 * (Math.Abs(dest.Y - pos.Y) + Math.Abs(dest.X - pos.X)), G = 0, Y = pos.Y, X = pos.X });
+			parent.Add(pos, pos);
+
+			while (pq.Count > 0)
+			{
+				// 제일 좋은 후보를 찾는다
+				PQNode pqNode = pq.Pop();
+				Pos node = new Pos(pqNode.X, pqNode.Y);
+				// 동일한 좌표를 여러 경로로 찾아서, 더 빠른 경로로 인해서 이미 방문(closed)된 경우 스킵
+				if (closeList.Contains(node))
+					continue;
+
+				// 방문한다
+				closeList.Add(node);
+
+				// 목적지 도착했으면 바로 종료
+				if (node.Y == dest.Y && node.X == dest.X)
+					break;
+
+				// 상하좌우 등 이동할 수 있는 좌표인지 확인해서 예약(open)한다
+				for (int i = 0; i < _deltaY.Length; i++)
+				{
+					Pos next = new Pos(node.X + _deltaX[i],node.Y + _deltaY[i]);
+
+					// 유효 범위를 벗어났으면 스킵
+					// 벽으로 막혀서 갈 수 없으면 스킵
+					if (next.Y != dest.Y || next.X != dest.X)
+					{
+						if (CanGo(Pos2Cell(next), checkObjects) == false) // CellPos
+							continue;
+					}
+
+					// 이미 방문한 곳이면 스킵
+					if (closeList.Contains(next))
+						continue;
+
+					// 비용 계산
+					int g = 0;// node.G + _cost[i];
+					int h = 10 * ((dest.Y - next.Y) * (dest.Y - next.Y) + (dest.X - next.X) * (dest.X - next.X));
+					// 다른 경로에서 더 빠른 길 이미 찾았으면 스킵
+
+					int value = 0;
+					if (openList.TryGetValue(next, out value) == false)
+						value = Int32.MaxValue;
+
+					if (value < g + h)
+						continue;
+
+					// 예약 진행
+					if (openList.TryAdd(next, g + h) == false)
+						openList[next] = g + h;
+
+					pq.Push(new PQNode() { F = g + h, G = g, Y = next.Y, X = next.X });
+
+					if (parent.TryAdd(next, node) == false)
+						parent[next] = node;
+				}
+			}
+
+
+			if (parent.Count() <= 1)
+				return null;
+			
+			return CalcCellPathFromParent(parent, dest);
+		}
+
+		List<Vector2Int> CalcCellPathFromParent(Dictionary<Pos, Pos> parent, Pos dest)
+		{
+			List<Vector2Int> cells = new List<Vector2Int>();
+			
+			Pos pos = dest;
+			while (parent[pos] != pos)
+			{
+				cells.Add(Pos2Cell(pos));
+				var t = parent[pos];
+				//Console.WriteLine($"{t.X},{t.Y}");
+				pos = parent[pos];
+			}
+			cells.Add(Pos2Cell(pos));
+			cells.Reverse();
+
+			return cells;
+		}
+
+		Pos Cell2Pos(Vector2Int cell)
+		{
+			// CellPos -> ArrayPos
+			return new Pos(cell.x - Bleft.x,cell.y-Bleft.y);
+		}
 		
+		Pos Cell2Pos(float x, float y)
+		{
+			// CellPos -> ArrayPos
+			return new Pos((int)MathF.Round(x) - Bleft.x,(int)MathF.Round(y)-Bleft.y);
+		}
+
+		Vector2Int Pos2Cell(Pos pos)
+		{
+			// ArrayPos -> CellPos
+			return new Vector2Int(Bleft.x + pos.X, Bleft.y + pos.Y);
+		}
+
+		#endregion
 
 
-        #endregion
-        //public GameObject FindByDir(GameObject go)
-        //      {
-        //	GameObject target = null;
 
-        //	if (go == null)
-        //		return null;
-        //	Player p = go as Player;
-        //	if (p == null || p.Room == null)
-        //		return null;
-
-
-        //	return target;
-
-        //}
-
-
-    } //class
+    } 
 
 
 }

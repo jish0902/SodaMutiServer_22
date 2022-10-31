@@ -52,7 +52,6 @@ C:/Users/jish/Documents/GitHub/GameServer_22/Server/PacketGenerator/obj/Debug/Pa
 /Users/jiseunghyeon/Documents/GitHub/게임 서버/SodaMutiServer_22/PacketGenerator/bin/PacketGenerator.pdb
 /Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/PacketGenerator.deps.json
 /Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/PacketGenerator.runtimeconfig.json
-/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/PacketGenerator.runtimeconfig.dev.json
 /Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/PacketGenerator.dll
 /Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/PacketGenerator.pdb
 /Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/Google.Protobuf.dll
@@ -69,3 +68,10 @@ C:/Users/jish/Documents/GitHub/GameServer_22/Server/PacketGenerator/obj/Debug/Pa
 /Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/obj/Debug/PacketGenerator.dll
 /Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/obj/Debug/PacketGenerator.pdb
 /Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/obj/Debug/PacketGenerator.genruntimeconfig.cache
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/Server.deps.json
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/Server.runtimeconfig.json
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/Server
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/bin/PacketGenerator
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/obj/Debug/PacketGenerator.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/obj/Debug/refint/PacketGenerator.dll
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/obj/Debug/ref/PacketGenerator.dll

@@ -19,8 +19,16 @@ namespace Server.Data
 
         public static void LoadConfig()
         {
+            Console.WriteLine($"testLenght start ");
+            var t = Directory.GetCurrentDirectory();
+            Console.WriteLine(t);
+
+            var path = Path.Combine(Path.GetFullPath("./"), "config.json");
             
-            string text = File.ReadAllText("config.json"); //debug파일에 있음
+            
+            Console.WriteLine(path);
+            string text = File.ReadAllText(path); //debug파일에 있음
+            Console.WriteLine($"testLenght{text.Length}");
             config = Newtonsoft.Json.JsonConvert.DeserializeObject<ServerConfig>(text);
         }
 

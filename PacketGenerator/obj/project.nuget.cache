@@ -1,13 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "rXKObxzifjPQClx1M305OI7I8Yzn+toKpvg0o1h2H6DB5iYZRVXMywZWlVCvBuBuGGcDXS2veAOS1hleOFe2Eg==",
+  "dgSpecHash": "Kx9bfa4W4IUa7RdVqfy9L5Q1Egoc7IAS71Y0C2oVJq5+r2EQiVZprFb1lX0zgmiQNzi5a6ZU8hHuJZCMizhk2g==",
   "success": true,
   "projectFilePath": "/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/PacketGenerator/PacketGenerator.csproj",
   "expectedPackageFiles": [
     "/Users/jiseunghyeon/.nuget/packages/google.protobuf/3.19.3/google.protobuf.3.19.3.nupkg.sha512",
     "/Users/jiseunghyeon/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
-    "/Users/jiseunghyeon/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512",
-    "/Users/jiseunghyeon/.nuget/packages/system.runtime.compilerservices.unsafe/4.5.2/system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
+    "/Users/jiseunghyeon/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512"
   ],
   "logs": []
 }

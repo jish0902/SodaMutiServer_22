@@ -17,3 +17,9 @@
 /Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/JsonMerge/obj/Debug/netcoreapp3.1/JsonMerge.dll
 /Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/JsonMerge/obj/Debug/netcoreapp3.1/JsonMerge.pdb
 /Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/JsonMerge/obj/Debug/netcoreapp3.1/JsonMerge.genruntimeconfig.cache
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/JsonMerge/bin/Debug/netcoreapp3.1/Server.deps.json
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/JsonMerge/bin/Debug/netcoreapp3.1/Server.runtimeconfig.json
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/JsonMerge/bin/Debug/netcoreapp3.1/Server.runtimeconfig.dev.json
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/JsonMerge/bin/Debug/netcoreapp3.1/Server
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/JsonMerge/bin/Debug/netcoreapp3.1/JsonMerge
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/JsonMerge/obj/Debug/netcoreapp3.1/JsonMerge.GeneratedMSBuildEditorConfig.editorconfig
