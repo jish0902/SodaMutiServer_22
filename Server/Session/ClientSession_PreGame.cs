@@ -21,7 +21,7 @@ namespace Server.Session
             //message.DeviceId;
             //찾아보고
 
-            S_LobbyPlayerInfo lobbyPaket = new S_LobbyPlayerInfo();
+            S_LobbyPlayerInfo lobbyPaket = new S_LobbyPlayerInfo();  
             lobbyPaket.Profile = new PlayerProfile()
             {
                 PlayerDbId = 10,
@@ -32,6 +32,8 @@ namespace Server.Session
 
             Send(lobbyPaket);
         }
+        
+        
 
 
         public void HandleEnterGame(C_EnterGame enterGamePacket)

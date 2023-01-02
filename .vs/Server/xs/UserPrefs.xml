@@ -1,17 +1,25 @@
 ﻿<Properties StartupConfiguration="{B9D789D0-92A0-4B78-9876-1BDD14097717}|Default">
-  <MonoDevelop.Ide.ItemProperties.Server PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/Game/Skill/SkillHandler.cs" relfile="Server/Game/Skill/SkillHandler.cs" line="12" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.DummyClient PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Server/Program.cs">
     <Files>
       <File FileName="Server/Game/Skill/SkillHandler.cs" Line="350" Column="38" />
       <File FileName="Server/Program.cs" Line="85" Column="1" />
-      <File FileName="Server/Session/SessionManager.cs" />
-      <File FileName="Server/Session/ClientSession_PreGame.cs" />
-      <File FileName="Server/Session/ClientSession.cs" />
-      <File FileName="Server/Game/Skill/SkillCoolDown.cs" />
-      <File FileName="Server/Game/Skill/S_SkillManager.cs" />
-      <File FileName="Server/Packet/PacketHandler.cs" />
+      <File FileName="Server/Session/SessionManager.cs" Line="1" Column="1" />
+      <File FileName="Server/Session/ClientSession_PreGame.cs" Line="1" Column="1" />
+      <File FileName="Server/Session/ClientSession.cs" Line="1" Column="1" />
+      <File FileName="Server/Game/Skill/SkillCoolDown.cs" Line="1" Column="1" />
+      <File FileName="Server/Game/Skill/S_SkillManager.cs" Line="1" Column="1" />
+      <File FileName="Server/Packet/PacketHandler.cs" Line="1" Column="1" />
       <File FileName="../Common/protoc-3.19.3-win64/bin/Protocol.proto" Line="134" Column="15" NotebookId="1" IsPinned="True" />
-      <File FileName="Server/Game/Object/CreatureObj.cs" NotebookId="1" />
+      <File FileName="Server/Game/Object/CreatureObj.cs" Line="1" Column="1" NotebookId="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -28,21 +36,15 @@
               </Node>
               <Node name="Packet" expanded="True" />
               <Node name="Session" expanded="True" />
-              <Node name="Program.cs" selected="True" />
             </Node>
             <Node name="ServerCore" expanded="True" />
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.DummyClient PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/Server/Game/Skill/SkillHandler.cs" relfile="Server/Game/Skill/SkillHandler.cs" line="12" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Server PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

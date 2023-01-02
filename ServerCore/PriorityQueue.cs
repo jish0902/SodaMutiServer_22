@@ -22,7 +22,7 @@ namespace ServerCore
                 if (_heap[now].CompareTo(_heap[next]) < 0)
                     break;
                 
-                T t = _heap[next];
+                 T t = _heap[next];
                 _heap[next] = _heap[now];
                 _heap[now] = t;
 

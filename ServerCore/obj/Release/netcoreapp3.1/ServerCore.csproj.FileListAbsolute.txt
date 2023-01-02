@@ -1,0 +1,10 @@
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/ServerCore/bin/Release/netcoreapp3.1/ServerCore.deps.json
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/ServerCore/bin/Release/netcoreapp3.1/ServerCore.dll
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/ServerCore/bin/Release/netcoreapp3.1/ServerCore.pdb
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/ServerCore/obj/Release/netcoreapp3.1/ServerCore.csproj.AssemblyReference.cache
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/ServerCore/obj/Release/netcoreapp3.1/ServerCore.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/ServerCore/obj/Release/netcoreapp3.1/ServerCore.AssemblyInfoInputs.cache
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/ServerCore/obj/Release/netcoreapp3.1/ServerCore.AssemblyInfo.cs
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/ServerCore/obj/Release/netcoreapp3.1/ServerCore.csproj.CoreCompileInputs.cache
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/ServerCore/obj/Release/netcoreapp3.1/ServerCore.dll
+/Users/jiseunghyeon/Documents/GitHub/GameServer/SodaMutiServer_22/ServerCore/obj/Release/netcoreapp3.1/ServerCore.pdb

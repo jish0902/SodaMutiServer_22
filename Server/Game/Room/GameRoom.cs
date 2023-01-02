@@ -154,8 +154,7 @@ namespace Server.Game
                 ChangePacket.Hp = gameObject.Hp;
                 BroadCast(gameObject.CurrentRoomId, ChangePacket);
             }
-
-
+            
         }
 
         public void LeaveGame(int id)

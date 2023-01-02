@@ -63,9 +63,6 @@ namespace Server.Game
             player.info.PositionInfo.PosY = movePosInfo.PosY;
             player.info.PositionInfo.RotZ = movePosInfo.RotZ;
             
-            
-
-
 
             //다른플레이어에게 알려줌
             S_Move resMovePacket = new S_Move();

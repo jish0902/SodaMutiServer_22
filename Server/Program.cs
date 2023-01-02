@@ -7,6 +7,7 @@ using System.Threading;
 using Server.Game;
 using Server.Data;
 using System.Collections.Generic;
+using System.Net.Sockets;
 
 namespace Server
 {
@@ -60,20 +61,19 @@ namespace Server
             // DNS (Domain Name System)
             string host = Dns.GetHostName();
             IPHostEntry ipHost = Dns.GetHostEntry(host);
-            IPAddress ipAddr = ipHost.AddressList[0];
+            IPAddress ipAddr = IPAddress.Any;
             
             foreach (var _ipAddress in ipHost.AddressList)
             {
-                if (_ipAddress.ToString().Contains("192") || _ipAddress.ToString().Contains("218") || _ipAddress.ToString().Contains("172"))
+                if (_ipAddress.AddressFamily == AddressFamily.InterNetwork)
                 {
                     ipAddr = _ipAddress;
-                    //ipAddr = IPAddress.Any;
-                        
-                    break;
                 }
             }
-
             
+            
+            
+            Console.WriteLine(ipAddr);
            
             IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
 
