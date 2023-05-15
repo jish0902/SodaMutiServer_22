@@ -83,6 +83,7 @@ public class Player : CreatureObj
         return false;
     }
 
+   
 
     public bool CheakSkill(int id, float CoolDown) //Todo : 사용하기
     {

@@ -65,6 +65,11 @@ public class Arrow : Projectile
         return Owner;
     }
 
+    public override void OnCollisionFeedback(GameObject other = null)
+    {
+        Destroy();
+
+    }
 
     /*if (Room.Map.ApplyMove(this,destPos,cheakObjects : true,collision : false))
        {

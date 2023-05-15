@@ -164,39 +164,24 @@ public class GameObject
 
     public virtual void OnDamaged(GameObject attacker, int damage)
     {
-        if (gameRoom == null)
-            return;
-
-
-        damage = Math.Max(damage, 0);
-        stat.Hp = Math.Max(stat.Hp - damage, 0);
-
-        Console.WriteLine($" attacker :{attacker.Id} Damage : {damage}  stat.Hp : {stat.Hp}");
-
-        var ChangePacket = new S_ChangeHp();
-        ChangePacket.ObjectId = Id;
-        ChangePacket.Hp = stat.Hp;
-        gameRoom.BroadCast(CurrentRoomId, ChangePacket);
-
-        if (stat.Hp <= 0)
-        {
-            stat.Hp = 0;
-            OnDead(attacker);
-        }
+        Console.WriteLine(info.Name +"은"+ attacker.info.Name + "에게 데미지 받음");
     }
-
     public virtual void OnCollision(GameObject other)
     {
         //상속받아 알아서 행동 ex) 스킬이면 데미지 사람이라면 충동처리
-        Console.WriteLine(other.info.Name + " 과 충동함");
+        Console.WriteLine(info.Name +"은"+ other.info.Name + " 과 충동함");
+    }
+
+    public virtual void OnCollisionFeedback(GameObject other = null)
+    {
+        
     }
     
     public virtual void OnDead(GameObject attacker)
     {
         if (gameRoom == null)
             return;
-
-
+        
         var diePacket = new S_Die();
         diePacket.ObjectId = Id;
         diePacket.AttackerId = attacker.Id;

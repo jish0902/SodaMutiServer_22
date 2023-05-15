@@ -130,7 +130,7 @@ public partial class GameRoom
             if (projectile.GetOwner() == player) //본인이 본인을 때릴경우
                 return;
 
-            player.OnDamaged(projectile.GetOwner(), projectile.Attack);
+            player.OnDamaged(projectile, projectile.Attack);
             Console.WriteLine($"{projectile.GetOwner().info.Name}이 {player.info.Name}를 {projectile.Attack}만큼 공격");
 
             Push(LeaveGame, attackId);

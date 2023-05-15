@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using Collision;
 using Collision.Shapes;
@@ -14,15 +15,32 @@ namespace QuadTree
         //lock을 걸어야 할까? => logic안에서 돌아간다면 상관 x, 분리한다면 o
         
         private QuadTree<GameObject> _quadDynamic = new QuadTree<GameObject>(-100,-100,200,200);
-        private readonly List<GameObject> _objects = new List<GameObject>();
 
-       
-
-        public void Insert(GameObject go)
+        private List<GameObject> _totalObjects
         {
-            if (_objects.Contains(go) == false)
+            get
             {
-                _objects.Add(go);
+                _players.AddRange(_objects);
+                return _players;
+            }
+        }
+        
+        private List<GameObject> _players;
+        private List<GameObject> _objects;
+        
+
+
+        public void Insert(List<Player> p,List<GameObject> o)
+        {
+            _players = p.Cast<GameObject>().ToList();
+            _objects = o;
+        }
+
+        private void Insert(GameObject go)
+        {
+            if (_totalObjects.Contains(go) == false)
+            {
+                _totalObjects.Add(go);
                 _quadDynamic.Insert(go,GetBounds(go));
             }
         }
@@ -35,7 +53,7 @@ namespace QuadTree
        
         public bool RemoveObject(GameObject obj)
         {
-            return _objects.Remove(obj);
+            return _totalObjects.Remove(obj);
         }
 
         /// <summary>
@@ -59,16 +77,16 @@ namespace QuadTree
             return nearest;
         }
         
-        public void tUpdate()
+        public void Update()
         {
             //  we iterate over a copy of _objects because the original gets modified
-            var objectsCopy = new List<GameObject>(_objects);
+            var objectsCopy = new List<GameObject>(_totalObjects);
+            UpdateQuadTree();
+            
             foreach (var obj in objectsCopy)
             {
                 UpdateCollision(obj);
             }
-
-            UpdateQuadTree();
         }
 
         
@@ -128,7 +146,7 @@ namespace QuadTree
         private void UpdateQuadTree()
         {
             _quadDynamic.Clear();
-            foreach (var obj in _objects)
+            foreach (var obj in _totalObjects)
             {
                 //obj.transform.position += new Vector3(Random.(-3, 4), Random.Range(-3, 4), 0);
                 _quadDynamic.Insert(obj,GetBounds(obj));

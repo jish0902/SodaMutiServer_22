@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using Google.Protobuf.Protocol;
+using QuadTree;
 using Server.Data;
 using ServerCore;
 
@@ -80,9 +81,11 @@ public class Room
 
     /*$"{tr.position.x}/{tr.position.y}/1/{room.RoomTypeId}/{room.RoomId}";
      x,y,roomtype,roomtempletType  roomttype 1:스폰 2:일반 3:통로
-    roomtempletType 1:1번형태의 방 2:2번형태
+    roomtempletType 1:1번형태의 방 2:2번형태*/
 
-     */
+
+    public QuadTreeManager quadTreeManager = new QuadTreeManager();
+    
     public bool[,] Collisions { get; set; }
     public float PosX { get; set; }
     public float PosY { get; set; }
@@ -93,7 +96,7 @@ public class Room
     public bool isSpawnPoint => RoomType == RoomType.SPAWN;
     public List<Player> Players { get; } = new();
     public List<Room> TouarableRooms { get; } = new();
-    public HashSet<GameObject> Objects { get; } = new();
+    public List<GameObject> Objects { get; } = new();
     public Vector2Int Owner { get; private set; } = new(0, 0);
     public int TryOwnerId { get; private set; }
 
@@ -290,7 +293,17 @@ public class Map
         //}
     } //LoadMap
 
-
+    public void UpdateMap()
+    {
+        //속도가 느릴것 같음 쓰레드 새로 생성하는 느낌으로 가자!!
+        foreach (Room room in Rooms)
+        {
+            room.quadTreeManager.Insert(room.Players,room.Objects);
+            room.quadTreeManager.Update();
+        }
+    }
+    
+    
     public bool ApplyLeave(GameObject gameObject)
     {
         if (gameObject.gameRoom == null)
@@ -434,20 +447,21 @@ public class Map
 
     public void AddObject(GameObject go)
     {
+        var room = Rooms.Find(p => p.Id == go.CurrentRoomId);
+
         if (go.ObjectType == GameObjectType.Player)
         {
-            var room = Rooms.Find(p => p.Id == go.CurrentRoomId);
             if (room == null || room.Players.Contains((Player)go))
                 return;
             room.Players.Add((Player)go);
         }
         else
         {
-            var room = Rooms.Find(p => p.Id == go.CurrentRoomId);
             if (room == null || room.Objects.Contains(go))
                 return;
             room.Objects.Add(go);
         }
+        
     }
 
     public GameObject FindObjById(int roomId, int playerId, int level = 2)
@@ -556,6 +570,7 @@ public class Map
     }
 
 
+    //충돌처리로 바꾸기
     public List<Player> AddPlayerInOccupationPos(int Range = 2)
     {
         var _players = new List<Player>();

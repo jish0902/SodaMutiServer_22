@@ -74,14 +74,15 @@ namespace Google.Protobuf.Protocol {
             "X0dBTUUQCRIXChNTX0xPQkJZX1BMQVlFUl9JTkZPEAsSEAoMQ19MT0JCWV9J",
             "TkZPEAwSCwoHQ19TS0lMTBANEgsKB1NfU0tJTEwQDhIRCg1TX1NUQVRfQ0hB",
             "TkdFEA8SDwoLU19ST09NX0lORk8QEBIJCgVDX0hJVBAREhEKDUNfUkVXQVJE",
-            "X0lORk8QEhISCg5DX1BSRUdBTUVfSU5GTxATKkMKDkdhbWVPYmplY3RUeXBl",
+            "X0lORk8QEhISCg5DX1BSRUdBTUVfSU5GTxATKlMKDkdhbWVPYmplY3RUeXBl",
             "EggKBE5PTkUQABIKCgZQTEFZRVIQARILCgdNT05TVEVSEAISDgoKUFJPSkVD",
-            "VElMRRADKkAKCVNraWxsVHlwZRIICgROb25lEAASCQoFTWVsZWUQARIJCgVS",
-            "YW5nZRACEggKBEJ1ZmYQAxIJCgVTcGF3bhAEKjoKDUNyZWF0dXJlU3RhdGUS",
-            "CAoESURMRRAAEgoKBk1PVklORxABEgkKBVNLSUxMEAISCAoEREVBRBADKloK",
-            "EVBsYXllclNlcnZlclN0YXRlEhYKElNFUlZFUl9TVEFURV9MT0dJThAAEhYK",
-            "ElNFUlZFUl9TVEFURV9MT0JCWRABEhUKEVNFUlZFUl9TVEFURV9HQU1FEAJC",
-            "G6oCGEdvb2dsZS5Qcm90b2J1Zi5Qcm90b2NvbGIGcHJvdG8z"));
+            "VElMRRADEg4KClNDT1BFU0tJTEwQBCpACglTa2lsbFR5cGUSCAoETm9uZRAA",
+            "EgkKBU1lbGVlEAESCQoFUmFuZ2UQAhIICgRCdWZmEAMSCQoFU3Bhd24QBCo6",
+            "Cg1DcmVhdHVyZVN0YXRlEggKBElETEUQABIKCgZNT1ZJTkcQARIJCgVTS0lM",
+            "TBACEggKBERFQUQQAypaChFQbGF5ZXJTZXJ2ZXJTdGF0ZRIWChJTRVJWRVJf",
+            "U1RBVEVfTE9HSU4QABIWChJTRVJWRVJfU1RBVEVfTE9CQlkQARIVChFTRVJW",
+            "RVJfU1RBVEVfR0FNRRACQhuqAhhHb29nbGUuUHJvdG9idWYuUHJvdG9jb2xi",
+            "BnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.MsgId), typeof(global::Google.Protobuf.Protocol.GameObjectType), typeof(global::Google.Protobuf.Protocol.SkillType), typeof(global::Google.Protobuf.Protocol.CreatureState), typeof(global::Google.Protobuf.Protocol.PlayerServerState), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -144,6 +145,10 @@ namespace Google.Protobuf.Protocol {
     [pbr::OriginalName("PLAYER")] Player = 1,
     [pbr::OriginalName("MONSTER")] Monster = 2,
     [pbr::OriginalName("PROJECTILE")] Projectile = 3,
+    /// <summary>
+    ///불장판 같은거
+    /// </summary>
+    [pbr::OriginalName("SCOPESKILL")] Scopeskill = 4,
   }
 
   public enum SkillType {
