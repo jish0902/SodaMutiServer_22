@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Server.DB
+namespace Server.DB;
+
+[Table("Account")]
+public class AccountDb
 {
-    [Table("Account")]
-    public class AccountDb
-    {
-        public int AccountDbId { get; set; }
-        public string AccountName { get; set; }
-       // public ICollection<PlayerDb> players { get; set; }
-    }
+    public int AccountDbId { get; set; }
 
-
+    public string AccountName { get; set; }
+    // public ICollection<PlayerDb> players { get; set; }
 }

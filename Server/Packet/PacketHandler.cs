@@ -1,89 +1,78 @@
-﻿using Google.Protobuf;
+﻿using System;
+using Google.Protobuf;
 using Google.Protobuf.Protocol;
-using Server.Game;
 using Server.Session;
 using ServerCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-class PacketHandler
+internal class PacketHandler
 {
-
     internal static void C_LobbyInfoHandler(PacketSession session, IMessage packet)
     {
-        ClientSession clientSession = (ClientSession)session;
-        C_LobbyInfo lobbyInfoPakcet = (C_LobbyInfo)packet;
+        var clientSession = (ClientSession)session;
+        var lobbyInfoPakcet = (C_LobbyInfo)packet;
 
         clientSession.HandleLogin(lobbyInfoPakcet);
     }
 
 
-
     //------------------------------------------------ 인게임 시작
     public static void C_EnterGameHandler(PacketSession session, IMessage packet)
     {
-        ClientSession clientSession = (ClientSession)session;
-        C_EnterGame enterGamePakcet = (C_EnterGame)packet;
+        var clientSession = (ClientSession)session;
+        var enterGamePakcet = (C_EnterGame)packet;
 
         clientSession.HandleEnterGame(enterGamePakcet);
-
     }
 
 
     public static void C_MoveHandler(PacketSession session, IMessage packet)
     {
-
         //Console.WriteLine($"x= {_packet.PositionInfo.PosX}y ={_packet.PositionInfo.PosY} z={_packet.PositionInfo.RotZ}");
 
-        
-         ClientSession clientSession = (ClientSession)session;
-         C_Move _packet = (C_Move)packet;
-        
 
-        Player player = clientSession.MyPlayer; //나중에 null로 바꿔도 참조가능
+        var clientSession = (ClientSession)session;
+        var _packet = (C_Move)packet;
+
+
+        var player = clientSession.MyPlayer; //나중에 null로 바꿔도 참조가능
         if (player == null)
-            return; 
+            return;
 
-        GameRoom room = player.gameRoom; //나중에 null로 바꿔도 참조가능
+        var room = player.gameRoom; //나중에 null로 바꿔도 참조가능
         if (room == null)
             return;
 
         room.Push(room.HandleMove, player, _packet);
-        
-
     }
 
     internal static void C_HitHandler(PacketSession session, IMessage message)
     {
-        ClientSession clientSession = (ClientSession)session;
-        C_Hit hitpacket = (C_Hit)message;
+        var clientSession = (ClientSession)session;
+        var hitpacket = (C_Hit)message;
 
-        Player player = clientSession.MyPlayer; 
+        var player = clientSession.MyPlayer;
         if (player == null)
             return;
 
-        GameRoom room = player.gameRoom;
+        var room = player.gameRoom;
         if (room == null)
             return;
 
         room.Push(room.HandleHit, player, hitpacket);
-        
-
     }
 
     internal static void C_SkillHandler(PacketSession session, IMessage message)
     {
-        
-        ClientSession clientSession = (ClientSession)session;
-        C_Skill skillPacket = (C_Skill)message;
+        var clientSession = (ClientSession)session;
+        var skillPacket = (C_Skill)message;
 
         //Console.WriteLine($"{skillPacket.Info.SkillId}");
-        Player player = clientSession.MyPlayer; ;
+        var player = clientSession.MyPlayer;
+        ;
         if (player == null)
             return;
 
-        GameRoom room = player.gameRoom;
+        var room = player.gameRoom;
         if (room == null)
             return;
 
@@ -94,16 +83,17 @@ class PacketHandler
 
     public static void C_RewardInfoHandler(PacketSession session, IMessage message)
     {
-        ClientSession clientSession = (ClientSession)session;
-        C_RewardInfo info = message as C_RewardInfo;
+        var clientSession = (ClientSession)session;
+        var info = message as C_RewardInfo;
 
-        Define.RewardsType t = (Define.RewardsType)info.RewardsType;
+        var t = (Define.RewardsType)info.RewardsType;
 
-        Player player = clientSession.MyPlayer; ;
+        var player = clientSession.MyPlayer;
+        ;
         if (player == null)
             return;
-        
-        
+
+
         if (t == Define.RewardsType.LevelUp)
         {
             player.SetLevelUp();
@@ -117,5 +107,16 @@ class PacketHandler
             //Todo : 아군 몬스터 구현
         }
     }
-}
 
+    public static void C_PregameInfoHandler(PacketSession session, IMessage message)
+    {
+        var packet = (C_PregameInfo)message;
+        var clientSession = (ClientSession)session;
+
+        //clientSession.AccountDbId //TODO
+
+
+        clientSession.LobbyGameInfo.ClassID = packet.Info.CharacterID;
+        Console.WriteLine(clientSession.LobbyGameInfo.ClassID);
+    }
+}

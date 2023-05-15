@@ -1,56 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Server.Game
+namespace Server.Game;
+
+internal class GameLogic : JobSerializer
 {
-    class GameLogic : JobSerializer
+    private int _roomId = 1;
+    private readonly Dictionary<int, GameRoom> _rooms = new();
+    public static GameLogic Instance { get; } = new();
+
+    public void Update()
     {
-        public static GameLogic Instance { get; } = new GameLogic();
-        Dictionary<int, GameRoom> _rooms = new Dictionary<int, GameRoom>();
-        int _roomId = 1;
+        Flush();
 
-        public void Update()
-        {
-            Flush();
+        foreach (var room in _rooms.Values) 
+            room.Update();
+    }
 
-            foreach(GameRoom room in _rooms.Values)
-            {
-                room.Update();
-            }
-        }
+    public GameRoom Add(int mapId)
+    {
+        var gameRoom = new GameRoom();
+        gameRoom.Push(gameRoom.Init, mapId, 9);
 
-        public GameRoom Add(int mapId)
-        {
-            GameRoom gameRoom = new GameRoom();
-            gameRoom.Push(gameRoom.Init, mapId, 9);
+        gameRoom.RoomId = _roomId;
+        _rooms.Add(_roomId, gameRoom);
+        _roomId++;
+        return gameRoom;
+    }
 
-            gameRoom.RoomId = +_roomId;
-            _rooms.Add(_roomId, gameRoom);
-            _roomId++;
-            return gameRoom;
-        }
-        public bool Remove(int roomId)
-        {
+    public bool Remove(int roomId)
+    {
+        return _rooms.Remove(roomId);
+    }
 
-            return _rooms.Remove(roomId);
-
-        }
-        public GameRoom Find(int roomId)
-        {
-
-            GameRoom room = null;
-            if (_rooms.TryGetValue(roomId, out room))
-                return room;
-            return null;
-
-        }
-
-
-        
-
-
-
-
+    public GameRoom Find(int roomId)
+    {
+        GameRoom room = null;
+        if (_rooms.TryGetValue(roomId, out room))
+            return room;
+        return null;
     }
 }

@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Google.Protobuf.Protocol;
+﻿using Google.Protobuf.Protocol;
+using Server.Data;
 
-namespace Server.Game
+namespace Server.Game;
+
+public class Projectile : GameObject
 {
-    public class Projectile : GameObject
+    public Projectile()
     {
-        public Data.Skill Data { get; set; }
+        ObjectType = GameObjectType.Projectile;
+    }
 
-        public Projectile()
-        {
-            ObjectType = GameObjectType.Projectile;
-        }
+    public Skill Data { get; set; }
 
-        public override void Update()
-        {
-
-        }
+    public override void Update()
+    {
     }
 }

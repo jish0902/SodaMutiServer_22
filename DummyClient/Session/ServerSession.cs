@@ -1,12 +1,10 @@
-﻿using ServerCore;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Net;
-using System.Text;
+using ServerCore;
 
 namespace DummyClient.Session
 {
-    class ServerSession : PacketSession
+    internal class ServerSession : PacketSession
     {
         public override void OnConnected(EndPoint endPoint)
         {

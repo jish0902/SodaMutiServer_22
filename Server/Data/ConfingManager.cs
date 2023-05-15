@@ -1,36 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
+using Newtonsoft.Json;
 
-namespace Server.Data
+namespace Server.Data;
+
+[Serializable]
+public class ServerConfig
 {
+    public string connectionString;
+    public string dataPath;
+}
 
-    [Serializable]
-    public class ServerConfig
+internal class ConfingManager
+{
+    public static ServerConfig config { get; private set; }
+
+    public static void LoadConfig()
     {
-        public string dataPath;
-        public string connectionString;
-    }
+        Console.WriteLine("testLenght start ");
+        var t = Directory.GetCurrentDirectory();
+        Console.WriteLine(t);
 
-    class ConfingManager
-    {
-        public static ServerConfig config { get; private set; }
+        var path = Path.Combine(Path.GetFullPath("./"), "config.json");
 
-        public static void LoadConfig()
-        {
-            Console.WriteLine($"testLenght start ");
-            var t = Directory.GetCurrentDirectory();
-            Console.WriteLine(t);
 
-            var path = Path.Combine(Path.GetFullPath("./"), "config.json");
-            
-            
-            Console.WriteLine(path);
-            string text = File.ReadAllText(path); //debug파일에 있음
-            Console.WriteLine($"testLenght{text.Length}");
-            config = Newtonsoft.Json.JsonConvert.DeserializeObject<ServerConfig>(text);
-        }
-
+        Console.WriteLine(path);
+        var text = File.ReadAllText(path); //debug파일에 있음
+        Console.WriteLine($"testLenght{text.Length}");
+        config = JsonConvert.DeserializeObject<ServerConfig>(text);
     }
 }

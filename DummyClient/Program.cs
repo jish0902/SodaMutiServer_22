@@ -1,40 +1,30 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Threading;
 using DummyClient.Session;
 using ServerCore;
 
 namespace DummyClient
 {
-    class Program
+    internal class Program
     {
-
         public static string IpAddress { get; set; }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-           
-
             // DNS (Domain Name System)
-            string host = Dns.GetHostName();
-            IPHostEntry ipHost = Dns.GetHostEntry(host);
-            IPAddress ipAddr = ipHost.AddressList[1];
-            IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
+            var host = Dns.GetHostName();
+            var ipHost = Dns.GetHostEntry(host);
+            var ipAddr = ipHost.AddressList[1];
+            var endPoint = new IPEndPoint(ipAddr, 7777);
 
             IpAddress = ipAddr.ToString();
 
-            
-            Connector connector = new Connector();
-            connector.Connect(endPoint,() => { return new ServerSession(); }, 1);
+
+            var connector = new Connector();
+            connector.Connect(endPoint, () => { return new ServerSession(); });
 
 
-
-
-            while (true)
-            {
-                Thread.Sleep(10000);
-            }
-
+            while (true) Thread.Sleep(10000);
         }
     }
 }

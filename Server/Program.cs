@@ -1,99 +1,128 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Numerics;
+using System.Threading;
+using Server.Data;
+using Server.Game;
 using Server.Session;
 using ServerCore;
-using Google.Protobuf.Protocol;
-using System.Threading;
-using Server.Game;
-using Server.Data;
-using System.Collections.Generic;
-using System.Net.Sockets;
 
-namespace Server
+namespace Server;
+
+// 만드는중
+
+internal class Program
 {
+    public const int ServerTick = 200; //0.2sec
+    private static readonly Listener _listener = new();
 
-    // 만드는중
+    public static string IpAddress { get; set; }
 
 
-    
-
-    class Program
+    private static void GameLogicTask()
     {
-        public const int ServerTick = 200; //0.2sec
-        static Listener _listener = new Listener();
-
-        public static string IpAddress { get; set; }
-
-
-        static void GameLogicTask()
+        while (true)
         {
-            while (true)
-            {
-                GameLogic.Instance.Update();
-                Thread.Sleep(0);
-            }
+            GameLogic.Instance.Update();
+            Thread.Sleep(0);
+        }
+    }
+
+    private static void NetworkTask()
+    {
+        while (true)
+            foreach (var session in SessionManager.Instance.GetSessions())
+                session.FlushSend();
+    }
+
+
+    private static void Main(string[] args)
+    {
+        /*
+        Circle GetBounds(GameObject obj)
+        {
+            return new Circle(new Vector2(obj.PosInfo.PosX, obj.PosInfo.PosY), Math.Max(0.5f, 0.5f));
         }
 
-        static void NetworkTask()
+        QuadTree<GameObject> _quadTree;
+
+        _quadTree = new QuadTree<GameObject>(
+            -100, // yep, MAX
+            -100, // MIN
+            200,
+            200
+        );
+
+        var p = new Player
         {
-            while (true)
+            PosInfo = { PosX = 1, PosY = 4},
+            Id = 1
+        };
+
+        _quadTree.Insert(p, GetBounds(p));
+
+        var p2 = new Player
+        {
+            Id = 2,
+            PosInfo = { PosX = 1, PosY = 1 }
+        };
+
+        _quadTree.Insert(p2, GetBounds(p2));
+
+        var nearest = new List<GameObject>(_quadTree.GetNodesInside(new Vector2(0, 0), 4));
+        foreach (var obj in nearest)
+        {
+            Console.WriteLine(obj.info.PositionInfo);
+        }
+*/
+
+       
+
+        Console.WriteLine("1");
+        ConfingManager.LoadConfig();
+        DataManager.LoadData();
+
+        GameLogic.Instance.Push(() => { GameLogic.Instance.Add(21); }); //방하나 추가
+
+
+        // DNS (Domain Name System)
+        var host = Dns.GetHostName();
+        var ipHost = Dns.GetHostEntry(host);
+        var ipAddr = IPAddress.Loopback;
+
+
+        /*
+        foreach (var _ipAddress in ipHost.AddressList)
+        {
+            if (_ipAddress.AddressFamily == AddressFamily.)
             {
-                foreach (ClientSession session in SessionManager.Instance.GetSessions())
-                {
-                    session.FlushSend();
-                }
+                ipAddr = _ipAddress;
             }
         }
+        */
 
+
+        Console.WriteLine(ipAddr);
+
+        var endPoint = new IPEndPoint(ipAddr, 7777);
+
+        IpAddress = ipAddr.ToString();
+
+
+        _listener.Init(endPoint, () => { return SessionManager.Instance.Generate(); });
+        Console.WriteLine("Listening...");
+
+        //NetworkTask
+        {
+            var t = new Thread(NetworkTask);
+            t.Name = "NetworkTask";
+            t.Start();
+        }
+
+        //GameLogic
+        Thread.CurrentThread.Name = "GameLogic";
+        GameLogicTask();
         
-
-        static void Main(string[] args)
-        {
-
-            Console.WriteLine("1");
-            ConfingManager.LoadConfig();
-            DataManager.LoadData();
-            
-            GameLogic.Instance.Push(() => { GameLogic.Instance.Add(21); }); //방하나 추가
-
-            
-
-            // DNS (Domain Name System)
-            string host = Dns.GetHostName();
-            IPHostEntry ipHost = Dns.GetHostEntry(host);
-            IPAddress ipAddr = IPAddress.Any;
-            
-            foreach (var _ipAddress in ipHost.AddressList)
-            {
-                if (_ipAddress.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    ipAddr = _ipAddress;
-                }
-            }
-            
-            
-            
-            Console.WriteLine(ipAddr);
-           
-            IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
-
-            IpAddress = ipAddr.ToString();
-
-
-            _listener.Init(endPoint, () => { return SessionManager.Instance.Generate(); });
-            Console.WriteLine("Listening...");
-
-            //NetworkTask
-            {
-                Thread t = new Thread(NetworkTask);
-                t.Name = "NetworkTask";
-                t.Start();
-            }
-
-            //GameLogic
-            Thread.CurrentThread.Name = "GameLogic";
-            GameLogicTask();
-
-        }
     }
 }

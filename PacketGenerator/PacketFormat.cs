@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace PacketGenerator;
 
-namespace PacketGenerator
+internal class PacketFormat
 {
-	class PacketFormat
-	{
-		// {0} 패킷 등록
-		public static string managerFormat =
-@"using Google.Protobuf;
+    // {0} 패킷 등록
+    public static string managerFormat =
+        @"using Google.Protobuf;
 using Google.Protobuf.Protocol;
 using ServerCore;
 using System;
@@ -75,17 +71,17 @@ class PacketManager
 	}}
 }}";
 
-		// {0} MsgId
-		// {1} 패킷 이름
-		public static string managerRegisterFormat =
-@"		
+    // {0} MsgId
+    // {1} 패킷 이름
+    public static string managerRegisterFormat =
+        @"		
 		_onRecv.Add((ushort)MsgId.{0}, MakePacket<{1}>);
 		_handler.Add((ushort)MsgId.{0}, PacketHandler.{1}Handler);";
 
 
-		//{0} 패킷 등록
-		public static string c_skillHandlerFormat =
-@"
+    //{0} 패킷 등록
+    public static string c_skillHandlerFormat =
+        @"
 using Google.Protobuf.Protocol;
 using System;
 using System.Collections.Generic;
@@ -124,13 +120,14 @@ public class SkillManager
 }}
 
 ";
-		//{0}skillId
-		public static string skillManagerRegisterFormat =
-@"		_handler.Add({0}, SkillHandler.Skill{0});";
 
-		//{0} 패킷 등록
-		public static string s_skillHandlerFormat =
-@"using Server.Game;
+    //{0}skillId
+    public static string skillManagerRegisterFormat =
+        @"		_handler.Add({0}, SkillHandler.Skill{0});";
+
+    //{0} 패킷 등록
+    public static string s_skillHandlerFormat =
+        @"using Server.Game;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -171,11 +168,10 @@ public class SkillManager
 ";
 
 
-
-		//{0}스킬 등록
-		//{1}스킬 변수 생성
-		public static string skillCoolDownFormat =
-@"using System;
+    //{0}스킬 등록
+    //{1}스킬 변수 생성
+    public static string skillCoolDownFormat =
+        @"using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -217,18 +213,12 @@ public class SkillCoolDown
 }}
 
 ";
-		//{0} 스킬 아이디
-		public static string SkillCoolHandlerReigsterFormat =
-			@"		_handler.Add({0},cool{0});";
-		
-		//{0} 스킬 아이디
-		public static string SkillCoolMemeberReigsterFormat =
-			@"	short cool{0}= 0;";
 
-	}//class
+    //{0} 스킬 아이디
+    public static string SkillCoolHandlerReigsterFormat =
+        @"		_handler.Add({0},cool{0});";
 
-
-
-
-	
-}
+    //{0} 스킬 아이디
+    public static string SkillCoolMemeberReigsterFormat =
+        @"	short cool{0}= 0;";
+} //class

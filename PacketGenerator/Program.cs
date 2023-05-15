@@ -1,141 +1,127 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Reflection;
-using System.Threading;
-using System.Xml;
-using Server;
 using Server.Data;
 
-namespace PacketGenerator
+namespace PacketGenerator;
+
+internal class Program
 {
-	class Program
-	{
-		static string clientRegister;
-		static string serverRegister;
-		static string skillRegister;
-		static string skillCoolRegister;
-		static string skillCoolMemberRegister;
+    private static string clientRegister;
+    private static string serverRegister;
+    private static string skillRegister;
+    private static string skillCoolRegister;
+    private static string skillCoolMemberRegister;
 
-		static void Main(string[] args)
-		{
-			//절대 생성 금지  ../../../Common/protoc-21.3-osx-x86_64/bin 위치에서 생성하는 파일 있음
-			ProtocolGen(args);
-			GenSkillManager(args);
-		}
+    private static void Main(string[] args)
+    {
+        //절대 생성 금지  ../../../Common/protoc-21.3-osx-x86_64/bin 위치에서 생성하는 파일 있음
+        //if (args.Length == 0)
+        //	throw new Exception("실행 금지 :Common/protoc-21.3-osx-x86_64/bin 위치에서 생성하는 파일 있음 ");
+        ProtocolGen(args);
+        GenSkillManager(args);
+    }
 
 
-		static public void ProtocolGen(string[] args)
+    public static void ProtocolGen(string[] args)
+    {
+        var file = "../../../Common/protoc-21.3-osx-x86_64/bin/Protocol.proto";
+        if (args.Length >= 1)
+            file = args[0];
+
+        var startParsing = false;
+        foreach (var line in File.ReadAllLines(file))
         {
-			string file = "../../../Common/protoc-21.3-osx-x86_64/bin/Protocol.proto";
-			if (args.Length >= 1)
-				file = args[0];
-
-			bool startParsing = false;
-			foreach (string line in File.ReadAllLines(file))
-			{
-				if (!startParsing && line.Contains("enum MsgId"))
-				{
-					startParsing = true;
-					continue;
-				}
-
-				if (!startParsing)
-					continue;
-
-				if (line.Contains("}"))
-					break;
-
-				string[] names = line.Trim().Split(" =");
-				if (names.Length == 0)
-					continue;
-
-				string name = names[0];
-				if (name.StartsWith("S_"))
-				{
-					string[] words = name.Split("_");
-
-					string msgName = "";
-					foreach (string word in words)
-						msgName += FirstCharToUpper(word);
-
-					string packetName = $"S_{msgName.Substring(1)}";
-					clientRegister += string.Format(PacketFormat.managerRegisterFormat, msgName, packetName);
-				}
-				else if (name.StartsWith("C_"))
-				{
-					string[] words = name.Split("_");
-
-					string msgName = "";
-					foreach (string word in words)
-						msgName += FirstCharToUpper(word);
-
-					string packetName = $"C_{msgName.Substring(1)}";
-					serverRegister += string.Format(PacketFormat.managerRegisterFormat, msgName, packetName);
-				}
-
-			}
-
-			string clientManagerText = string.Format(PacketFormat.managerFormat, clientRegister);
-			File.WriteAllText("ClientPacketManager.cs", clientManagerText);
-			Console.WriteLine(1);
-			string serverManagerText = string.Format(PacketFormat.managerFormat, serverRegister);
-			File.WriteAllText("ServerPacketManager.cs", serverManagerText);
-			Console.WriteLine(1);
-		}
-
-
-
-		public static void GenSkillManager(string[] args)
-        {
-			string file = "../../../Common/Config/SkillData.json";
-			if (args.Length >= 2)
-				file = args[1];
-			
-			DataManager.LoadData(file);
-			
-
-			foreach (var item in DataManager.SkillDict)
+            if (!startParsing && line.Contains("enum MsgId"))
             {
-				skillRegister += string.Format(PacketFormat.skillManagerRegisterFormat, item.Key.ToString()) +Environment.NewLine;
-				skillCoolRegister += string.Format(PacketFormat.SkillCoolHandlerReigsterFormat, item.Key.ToString()) + Environment.NewLine;
-				skillCoolMemberRegister += string.Format(PacketFormat.SkillCoolMemeberReigsterFormat, item.Key.ToString()) + Environment.NewLine;
-			}
-			string c_skillRegisterText = string.Format(PacketFormat.c_skillHandlerFormat, skillRegister);
-			string s_skillRegisterText = string.Format(PacketFormat.s_skillHandlerFormat, skillRegister);
-			string SkillCoolDown = string.Format(PacketFormat.skillCoolDownFormat, skillCoolRegister, skillCoolMemberRegister);
+                startParsing = true;
+                continue;
+            }
 
-			File.WriteAllText("C_SkillManager.cs", c_skillRegisterText);
-			File.WriteAllText("S_SkillManager.cs", s_skillRegisterText);
-			File.WriteAllText("SkillCoolDown.cs", SkillCoolDown);
+            if (!startParsing)
+                continue;
 
+            if (line.Contains("}"))
+                break;
 
-		}
+            var names = line.Trim().Split(" =");
+            if (names.Length == 0)
+                continue;
 
-		public static void MonstaDataMerge(string[] args){
-			
-		}
-		public static void SkillCoolGen(string[] args)
-        {
+            var name = names[0];
+            if (name.StartsWith("S_"))
+            {
+                var words = name.Split("_");
 
+                var msgName = "";
+                foreach (var word in words)
+                    msgName += FirstCharToUpper(word);
+
+                var packetName = $"S_{msgName.Substring(1)}";
+                clientRegister += string.Format(PacketFormat.managerRegisterFormat, msgName, packetName);
+            }
+            else if (name.StartsWith("C_"))
+            {
+                var words = name.Split("_");
+
+                var msgName = "";
+                foreach (var word in words)
+                    msgName += FirstCharToUpper(word);
+
+                var packetName = $"C_{msgName.Substring(1)}";
+                serverRegister += string.Format(PacketFormat.managerRegisterFormat, msgName, packetName);
+            }
         }
 
+        var clientManagerText = string.Format(PacketFormat.managerFormat, clientRegister);
+        File.WriteAllText("ClientPacketManager.cs", clientManagerText);
+        Console.WriteLine(1);
+        var serverManagerText = string.Format(PacketFormat.managerFormat, serverRegister);
+        File.WriteAllText("ServerPacketManager.cs", serverManagerText);
+        Console.WriteLine(1);
+    }
 
 
+    public static void GenSkillManager(string[] args)
+    {
+        var file = "../../../Common/Config/SkillData.json";
+        if (args.Length >= 2)
+            file = args[1];
+
+        DataManager.LoadData(file);
 
 
+        foreach (var item in DataManager.SkillDict)
+        {
+            skillRegister += string.Format(PacketFormat.skillManagerRegisterFormat, item.Key.ToString()) +
+                             Environment.NewLine;
+            skillCoolRegister += string.Format(PacketFormat.SkillCoolHandlerReigsterFormat, item.Key.ToString()) +
+                                 Environment.NewLine;
+            skillCoolMemberRegister += string.Format(PacketFormat.SkillCoolMemeberReigsterFormat, item.Key.ToString()) +
+                                       Environment.NewLine;
+        }
+
+        var c_skillRegisterText = string.Format(PacketFormat.c_skillHandlerFormat, skillRegister);
+        var s_skillRegisterText = string.Format(PacketFormat.s_skillHandlerFormat, skillRegister);
+        var SkillCoolDown = string.Format(PacketFormat.skillCoolDownFormat, skillCoolRegister, skillCoolMemberRegister);
+
+        File.WriteAllText("C_SkillManager.cs", c_skillRegisterText);
+        File.WriteAllText("S_SkillManager.cs", s_skillRegisterText);
+        File.WriteAllText("SkillCoolDown.cs", SkillCoolDown);
+    }
+
+    public static void MonstaDataMerge(string[] args)
+    {
+    }
+
+    public static void SkillCoolGen(string[] args)
+    {
+    }
 
 
-
-
-
-
-		public static string FirstCharToUpper(string input)
-		{
-			if (string.IsNullOrEmpty(input))
-				return "";
-			return input[0].ToString().ToUpper() + input.Substring(1).ToLower();
-		}
-	}
+    public static string FirstCharToUpper(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return "";
+        return input[0].ToString().ToUpper() + input.Substring(1).ToLower();
+    }
 }

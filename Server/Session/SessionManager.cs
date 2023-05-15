@@ -1,85 +1,87 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace Server.Session
+namespace Server.Session;
+
+internal class SessionManager
 {
-    class SessionManager
+    private readonly object _lock = new();
+
+    private int _sessionId;
+    private readonly Dictionary<int, ClientSession> _sessions = new();
+    public static SessionManager Instance { get; } = new();
+
+    public int GetBusySocre()
     {
-        static SessionManager _instance = new SessionManager();
-        public static SessionManager Instance { get { return _instance; } }
-
-        int _sessionId = 0;
-        Dictionary<int, ClientSession> _sessions = new Dictionary<int, ClientSession>();
-        object _lock = new object();
-
-        public int GetBusySocre()
+        var count = 0;
+        lock (_lock)
         {
-            int count = 0;
-            lock (_lock)
-            {
-                count = _sessions.Count;
-            }
-            return count;
+            count = _sessions.Count;
         }
 
-        public List<ClientSession> GetSessions()
+        return count;
+    }
+
+    public List<ClientSession> GetSessions()
+    {
+        var sessions = new List<ClientSession>();
+
+        lock (_lock)
         {
-            List<ClientSession> sessions = new List<ClientSession>();
-
-            lock (_lock)
-            {
-                sessions = _sessions.Values.ToList();
-            }
-
-            return sessions;
+            sessions = _sessions.Values.ToList();
         }
 
+        return sessions;
+    }
 
-        public ClientSession Generate()
+
+    public ClientSession Generate()
+    {
+        var session = new ClientSession();
+        lock (_lock)
         {
-            ClientSession session = new ClientSession();
-            lock (_lock)
-            {
-                session.SessionId = _sessionId++;
-                _sessions.Add(_sessionId, session);
-            }
-            Console.WriteLine($"Connected ({_sessions.Count}) Player");
-
-            return session;
+            session.SessionId = _sessionId++;
+            _sessions.Add(_sessionId, session); // session.SessionId 아닌가?
         }
 
-        /*
-         a += 3
+        Console.WriteLine($"Connected ({_sessions.Count}) Player");
 
-         a => 0
-         0 + 1
-         a <= 0
-         
-         a => 0
-         0 -1
-         a= -1
-         
-        
-         */
+        return session;
+    }
 
-        public ClientSession Find(int id)
+    /*
+     a += 3
+
+     a => 0
+     0 + 1
+     a <= 0
+     
+     a => 0
+     0 -1
+     a= -1
+     
+    
+     */
+
+    public ClientSession Find(int id)
+    {
+        ClientSession session = null;
+        lock (_lock)
         {
-            ClientSession session = null;
-            lock (_lock)
-            {
-                _sessions.TryGetValue(id, out session);
-            }
-            return session;
+            _sessions.TryGetValue(id, out session);
         }
-        public void Remove(ClientSession session)
+
+        return session;
+    }
+
+    public void Remove(ClientSession session)
+    {
+        lock (_lock)
         {
-            lock (_lock)
-            {
-                _sessions.Remove(session.SessionId);
-            }
-            Console.WriteLine($"Conntected ({_sessions.Count}) Players");
+            _sessions.Remove(session.SessionId);
         }
+
+        Console.WriteLine($"DisConnected ({_sessions.Count}) Players");
     }
 }

@@ -1,5 +1,12 @@
 public class Define
 {
+    public enum RewardsType
+    {
+        RandomItem = 0,
+        LevelUp = 1,
+        RandomSpawn = 2
+    }
+
     public enum Scene
     {
         Unknown,
@@ -21,12 +28,4 @@ public class Define
         Click,
         Drag
     }
-    
-    public enum RewardsType
-    {
-        RandomItem = 0,
-        LevelUp = 1,
-        RandomSpawn = 2,
-    }
-    
 }

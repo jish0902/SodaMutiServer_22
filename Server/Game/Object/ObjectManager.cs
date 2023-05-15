@@ -1,77 +1,70 @@
-﻿using Google.Protobuf.Protocol;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using Google.Protobuf.Protocol;
 
-namespace Server.Game
+namespace Server.Game;
+
+internal class ObjectManager
 {
-    class ObjectManager
+    //[unused(1)] [type(7)] [Id(24)]
+    private int _counter = 1;
+    private readonly object _lock = new();
+    private readonly Dictionary<int, Player> _players = new();
+    public static ObjectManager Instance { get; } = new();
+
+    public T Add<T>() where T : GameObject, new()
     {
-        public static ObjectManager Instance { get; } = new ObjectManager();
-        object _lock = new object();
-        Dictionary<int, Player> _players = new Dictionary<int, Player>();
+        var gameObjcet = new T();
 
-        //[unused(1)] [type(7)] [Id(24)]
-        int _counter = 1;
-
-        public T Add<T>() where T : GameObject, new()
+        lock (_lock)
         {
-            T gameObjcet = new T();
+            gameObjcet.Id = GenerateId(gameObjcet.ObjectType);
+            if (gameObjcet.ObjectType == GameObjectType.Player) 
+                _players.Add(gameObjcet.Id, gameObjcet as Player);
+        }
 
-            lock (_lock)
+        return gameObjcet;
+    }
+
+    private int GenerateId(GameObjectType type) //[unused(1)] [type(7)] [Id(24)]
+    {
+        lock (_lock)
+        {
+            return ((int)type << 24) | _counter++;
+        }
+    }
+
+    public static GameObjectType GetObjectTypeById(int id)
+    {
+        var type = (id >> 24) & 0x7f;
+        return (GameObjectType)type;
+    }
+
+    public bool Remove(int objectId)
+    {
+        var objectType = GetObjectTypeById(objectId);
+        lock (_lock)
+        {
+            if (objectType == GameObjectType.Player)
+                return _players.Remove(objectId);
+        }
+
+        return false;
+    }
+
+    public Player Find(int objectId)
+    {
+        var objectType = GetObjectTypeById(objectId);
+
+        lock (_lock)
+        {
+            if (objectType == GameObjectType.Player)
             {
-                gameObjcet.Id = GenerateId(gameObjcet.ObjectType);
-                if(gameObjcet.ObjectType == GameObjectType.Player)
-                {
-                    _players.Add(gameObjcet.Id, gameObjcet as Player);
-                }
+                Player player = null;
+                if (_players.TryGetValue(objectId, out player))
+                    return player;
             }
-
-            return gameObjcet;
         }
 
-        int GenerateId (GameObjectType type)
-        {
-
-            lock (_lock)
-            {
-                return ((int)type << 24 | (_counter++));
-            }
-
-        }
-
-        public static GameObjectType GetObjectTypeById(int id)
-        {
-            int type = (id >> 24) & 0x7f;
-            return (GameObjectType)type;
-        }
-
-        public bool Remove(int objectId)
-        {
-            GameObjectType objectType = GetObjectTypeById(objectId);
-            lock (_lock)
-            {
-                if (objectType == GameObjectType.Player)
-                    return _players.Remove(objectId);
-            }
-            return false;
-        }
-
-        public Player Find(int objectId)
-        {
-            GameObjectType objectType = GetObjectTypeById(objectId);
-
-            lock (_lock)
-            {
-                if (objectType == GameObjectType.Player)
-                {
-                    Player player = null;
-                    if (_players.TryGetValue(objectId, out player))
-                        return player;
-                }
-            }
-            return null;
-        }
-
-    }    
+        return null;
+    }
 }
