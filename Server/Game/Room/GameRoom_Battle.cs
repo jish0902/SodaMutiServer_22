@@ -106,7 +106,7 @@ public partial class GameRoom
         SkillManager.Instance.UseSkill(player, packet.Info.SkillId);
     }
 
-    public void HandleHit(Player player, C_Hit packet) //화살만
+    /*public void HandleHit(Player player, C_Hit packet) //화살만
     {
         var attackId = packet.AttackId; //화살아이디
         var hitId = packet.HitId; //맞은아이디
@@ -118,7 +118,7 @@ public partial class GameRoom
         }
 
         Projectile projectile = null;
-        if (_projectilList.TryGetValue(attackId, out projectile) == false)
+        if (_skillObjList.TryGetValue(attackId, out projectile) == false)
         {
             Console.WriteLine("HandleHit이 Projectile아님");
             return;
@@ -151,5 +151,5 @@ public partial class GameRoom
 
 
         //Todo:
-    }
+    }*/
 }

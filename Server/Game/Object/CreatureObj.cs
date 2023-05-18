@@ -12,13 +12,13 @@ public class CreatureObj : GameObject
         if (other.ObjectType == GameObjectType.Projectile)
         {
             OnDamaged(other,other.Attack);
-            other.OnCollisionFeedback();
+            other.OnCollisionFeedback(this);
         }
         else if (other.ObjectType == GameObjectType.Scopeskill)
         {
             //할일 TODO : 장판 데이미지 일정량만 받게(일시 무적)
             OnDamaged(other,other.Attack);
-            other.OnCollisionFeedback();
+            other.OnCollisionFeedback(this);
         }
         
         

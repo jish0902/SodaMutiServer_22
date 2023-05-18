@@ -82,6 +82,6 @@ public class VisionRegion
 
         PreviousObjects = currentObject;
 
-        Owner.gameRoom.PushAfter(Program.ServerTick, Update); // .2초
+        Owner.gameRoom.PushAfter(Program.ServerIntervalTick, Update); // .2초
     } //update
 }

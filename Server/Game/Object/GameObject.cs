@@ -172,7 +172,11 @@ public class GameObject
         Console.WriteLine(info.Name +"은"+ other.info.Name + " 과 충동함");
     }
 
-    public virtual void OnCollisionFeedback(GameObject other = null)
+    /// <summary>
+    /// 충돌한 객체에서 정보를 받음
+    /// </summary>
+    /// <param name="other"></param>
+    public virtual void OnCollisionFeedback(GameObject other)
     {
         
     }

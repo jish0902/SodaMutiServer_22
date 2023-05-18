@@ -25,6 +25,8 @@ public class PriorityQueue<T> where T : IComparable<T>
             now = next;
         }
     }
+    
+    
 
 
     public T Pop()
@@ -62,7 +64,6 @@ public class PriorityQueue<T> where T : IComparable<T>
 
         return temp;
     }
-
 
     public T Peek()
     {

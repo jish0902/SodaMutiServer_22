@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using Collision.Shapes;
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
 
@@ -14,7 +15,7 @@ public partial class GameRoom : JobSerializer
     
     private readonly Dictionary<int, Monster> _MonsterList = new();
     private readonly Dictionary<int, Player> _playerList = new();
-    private readonly Dictionary<int, Projectile> _projectilList = new();
+    private readonly Dictionary<int, SkillObj> _skillObjList = new();
 
 
     public void Init(int mapId, int zoneCells)
@@ -29,6 +30,7 @@ public partial class GameRoom : JobSerializer
     {
         for (var i = 0; i < 2; i++)
         {
+            Shape t = new Polygon(0,0,);
             var arrow = ObjectManager.Instance.Add<Arrow>();
             if (arrow == null)
                 return;
@@ -121,14 +123,14 @@ public partial class GameRoom : JobSerializer
             Map.AddObject(monster);
             monster.Update();
         }
-        else if (type == GameObjectType.Projectile)
+        else if (type == GameObjectType.Projectile && type == GameObjectType.Scopeskill)
         {
-            var projectile = gameObject as Projectile;
-            _projectilList.Add(gameObject.Id, projectile);
-            projectile.gameRoom = this;
+            var skillObj = gameObject as SkillObj;
+            _skillObjList.Add(gameObject.Id, skillObj);
+            skillObj.gameRoom = this;
 
-            Map.AddObject(projectile);
-            projectile.Update();
+            Map.AddObject(skillObj);
+            skillObj.Update();
         } //if끝
 
         {
@@ -177,17 +179,18 @@ public partial class GameRoom : JobSerializer
                 _MonsterList.Remove(id);
             }
         }
-        else if (type == GameObjectType.Projectile)
+        else if (type == GameObjectType.Projectile || type == GameObjectType.Scopeskill)
         {
-            Projectile projectile;
-            if (_projectilList.TryGetValue(id, out projectile))
+            SkillObj skillObj;
+            if (_skillObjList.TryGetValue(id, out skillObj))
             {
-                if (Map.RemoveObject(projectile) == 1)
+                if (Map.RemoveObject(skillObj) == -1)
                     Console.WriteLine("지우기 오류");
+                skillObj.Destroy();
                 var despawnpacket = new S_Despawn();
                 despawnpacket.ObjcetIds.Add(id);
-                BroadCast(projectile.CurrentRoomId, despawnpacket);
-                _projectilList.Remove(id);
+                BroadCast(skillObj.CurrentRoomId, despawnpacket);
+                _skillObjList.Remove(id);
             }
         }
     }

@@ -24,6 +24,7 @@ namespace DummyClient
             connector.Connect(endPoint, () => { return new ServerSession(); });
 
 
+            
             while (true) Thread.Sleep(10000);
         }
     }

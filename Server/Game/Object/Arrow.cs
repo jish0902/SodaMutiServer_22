@@ -1,35 +1,44 @@
 ﻿using System;
+using Collision.Shapes;
 using Google.Protobuf.Protocol;
+using Microsoft.VisualBasic.CompilerServices;
+using ServerCore;
 
 namespace Server.Game;
 
 public class Arrow : Projectile
 {
-    public bool active;
-    private bool Destoryed;
-
-    public Arrow()
+    public Arrow(Shape  shape)
     {
         Console.WriteLine("Arrow");
+        ObjectType = GameObjectType.Projectile;
+        _shape = shape;
+    }
+
+    public override bool CheakData()
+    {
+        
+        if (Data == null ||  OwnerId == -1 || gameRoom == null || destroyed || Data.projectile == null)
+            return false;
+        return true;
+        
     }
 
     public override void Update()
     {
-        if (Data == null || Data.projectile == null || OwnerId == -1 || gameRoom == null || Destoryed)
-            return;
-
-        gameRoom.PushAfter(Program.ServerTick, Update);
+        base.Update();
+        
         if (active == false) //처음 실행
         {
             Console.WriteLine("시간" + Environment.TickCount64);
             gameRoom.PushAfter(5 * 1000, Destroy);
-            ;
+            
 
             active = true;
         }
         else
         {
-            CellPos += Speed * Program.ServerTick / 1000 * Dir;
+            CellPos += Speed * Program.ServerIntervalTick / 1000 * Dir;
         }
 
         Console.WriteLine("Arw" + CellPos + $"time {Environment.TickCount64}");
@@ -44,14 +53,14 @@ public class Arrow : Projectile
     }
 
 
-    public void Destroy()
+    public override void Destroy()
     {
         if (Data == null || Data.projectile == null || OwnerId == -1 || gameRoom == null)
-            return;
+            Console.WriteLine("Destroy 오류");
 
         gameRoom.Push(() => { ObjectManager.Instance.Remove(Id); });
         gameRoom.Push(gameRoom.LeaveGame, Id);
-        Destoryed = true;
+        destroyed = true;
         Console.WriteLine("Destory");
     }
 
@@ -67,8 +76,8 @@ public class Arrow : Projectile
 
     public override void OnCollisionFeedback(GameObject other = null)
     {
+        //특성에 따라 삭제 안될수도?
         Destroy();
-
     }
 
     /*if (Room.Map.ApplyMove(this,destPos,cheakObjects : true,collision : false))

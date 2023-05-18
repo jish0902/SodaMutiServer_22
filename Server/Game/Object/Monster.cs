@@ -96,7 +96,7 @@ public class Monster : CreatureObj
                 break;
         }
 
-        if (gameRoom != null) _job = gameRoom.PushAfter(Program.ServerTick, Update);
+        if (gameRoom != null) _job = gameRoom.PushAfter(Program.ServerIntervalTick, Update);
     }
 
 
@@ -263,9 +263,9 @@ public class Monster : CreatureObj
             Dir = Vector2.Normalize(tempTarget - CellPos);
 
             if (_dis > FindRange + 5) //너무 멀면 빠르게 이동               Todo : 순간이동 구현
-                CellPos += Speed * 2 * Program.ServerTick / 1000 * Dir;
+                CellPos += Speed * 2 * Program.ServerIntervalTick / 1000 * Dir;
             else //적당히 멀면
-                CellPos += Speed * Program.ServerTick / 1000 * Dir;
+                CellPos += Speed * Program.ServerIntervalTick / 1000 * Dir;
         }
         else //적이면
         {
@@ -282,7 +282,7 @@ public class Monster : CreatureObj
 
             var tempTarget = _path == null ? CellPos : (Vector2)_path[1];
             Dir = Vector2.Normalize(tempTarget - CellPos);
-            CellPos += Speed * Program.ServerTick / 1000 * Dir;
+            CellPos += Speed * Program.ServerIntervalTick / 1000 * Dir;
         }
 
 

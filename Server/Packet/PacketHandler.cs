@@ -45,21 +45,7 @@ internal class PacketHandler
         room.Push(room.HandleMove, player, _packet);
     }
 
-    internal static void C_HitHandler(PacketSession session, IMessage message)
-    {
-        var clientSession = (ClientSession)session;
-        var hitpacket = (C_Hit)message;
-
-        var player = clientSession.MyPlayer;
-        if (player == null)
-            return;
-
-        var room = player.gameRoom;
-        if (room == null)
-            return;
-
-        room.Push(room.HandleHit, player, hitpacket);
-    }
+   
 
     internal static void C_SkillHandler(PacketSession session, IMessage message)
     {

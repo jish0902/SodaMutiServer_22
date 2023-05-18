@@ -14,7 +14,9 @@ namespace Server;
 
 internal class Program
 {
-    public const int ServerTick = 200; //0.2sec
+    public const int ServerIntervalTick = 200; //0.2sec
+    public static ushort ServerTickCount = 0;
+
     private static readonly Listener _listener = new();
 
     public static string IpAddress { get; set; }
@@ -22,10 +24,10 @@ internal class Program
 
     private static void GameLogicTask()
     {
+        
         while (true)
         {
             GameLogic.Instance.Update();
-            Thread.Sleep(0);
         }
     }
 
@@ -120,9 +122,17 @@ internal class Program
             t.Start();
         }
 
+
+        {
+            //DB
+            
+            
+            
+        }
+
         //GameLogic
         Thread.CurrentThread.Name = "GameLogic";
-        GameLogicTask();
         
+        TaskInterval.Update(ServerIntervalTick,ref ServerTickCount,GameLogicTask);
     }
 }
